@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ Sign-Up! }}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+
+  <body>
+    <h1 name="Sign-Up"></h1>
+    <div name="content">
+      <h1>{{ title }} Form</h1>
+
+      <form name="adduser" method="post" action="/signup">
+        <ul>
+          <li>First Name</li>
+
+          <li><input type="text" placeholder="FName" name="fname"></li>
+
+          <li>Last Name</li>
+
+          <li><input type="text" placeholder="LName" name="lname"></li>
+
+          <li>Email</li>
+
+          <li><input type="text" placeholder="Email" name="email"></li>
+
+          <li></li>
+
+          <li>Password</li>
+
+          <li><input type="text" placeholder="Password" name="password"></li>
+
+          <li><button type="submit">Submit</button></li>
+        </ul>
+      </form>
+
+      <a href="/userlist">See userlist</a>
+    </div>
+  </body>
+</html>
