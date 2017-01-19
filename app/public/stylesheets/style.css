@@ -11,9 +11,15 @@ body {
   padding: ;
   font-family: raleway;
 }
-
-a {
-  color: #00B7FF;
+a{
+  font-weight: bold;
+  text-decoration: none;
+}
+a:visited {
+  color: #000;
+}
+a:hover {
+  color: #D3D3D3;
 }
 
 #nav {
@@ -55,7 +61,8 @@ button{
   outline: 0;
 }
 #testp {
-  width:300px;
+  padding: 20px;
+  padding-top: 0px;
 }
 #search {
   display: inline;
@@ -70,4 +77,26 @@ button{
 #searchbox {
   padding: 7px;
   border-radius: 7px;
+}
+#categories{
+  line-height: 24px;
+  background-color: #F3F3F3;
+  padding: 20px;
+  border-radius: 20px;
+  display: inline-block;
+}
+#browse{
+  border-radius: 20px;
+  padding: 10px;
+  margin-left: 220px;
+  margin-top: -160px;
+  background-color: #F3F3F3;
+  display: inline-block;
+}
+.dummyProduct{
+  margin: 20px;
+  width: 200px;
+  height: 200px;
+  background-color: #878787;
+  display: inline-block;
 }
