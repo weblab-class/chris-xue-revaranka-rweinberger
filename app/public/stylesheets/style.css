@@ -39,14 +39,12 @@ a:hover {
   padding: 10px;
   display: inline-block;
 }
-button{
+
+.navbutton {
   float: right;
   margin-right: 25px;
   margin-top: 25px;
   padding: 7px;
-
-}
-.button {
   font-family: ralewayMed;
   background-color: #D3D3D3;
   border-radius: 15px;
@@ -54,11 +52,14 @@ button{
   border-bottom: solid 5px #878787;
   border-right: solid 5px #878787;
 }
-.button:active {
+.navbutton:active {
   border: none;
 }
-.button:focus {
+.navbutton:focus {
   outline: 0;
+}
+#title{
+  margin-left: 40px;
 }
 #testp {
   padding: 20px;
@@ -67,7 +68,7 @@ button{
 #search {
   display: inline;
   float: left;
-  margin-top: 25px;
+  margin-top: 0px;
   margin-left: 180px;
 }
 #go{
@@ -75,6 +76,7 @@ button{
   margin-left: 10px;
 }
 #searchbox {
+  margin-top: 25px;
   padding: 7px;
   border-radius: 7px;
 }
@@ -89,7 +91,7 @@ button{
   max-width: 980px;
   border-radius: 20px;
   padding: 10px;
-  margin-left: 220px;
+  margin-left: 240px;
   margin-top: -160px;
   background-color: #F3F3F3;
   display: inline-block;

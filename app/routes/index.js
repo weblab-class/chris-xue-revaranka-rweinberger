@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+
 /* GET the User Model */
 var User = require('../schemas/user');
+var item = require('../schemas/item');
 
 /* GET signup page. */
 router.post('/adduser', function(req, res, next) {
@@ -17,19 +19,39 @@ router.post('/adduser', function(req, res, next) {
 		'email': email,
 		'password': password
 	});
-
-	newUser.save(function(err) {
-		console.log(err);
-	});
+  db.users.insert(newUser);
+	// newUser.save(function(err) {
+	// 	console.log(err);
+	// });
 	res.redirect('/home');
+});
+/* add a new item*/
+router.get('/newitem', function(req, res) {
+  res.render('newitem');
+});
 
+router.post('/uploaditem', function(req, res, next) {
+  var itemname = req.body.itemname;
+  var description = req.body.description;
 
+  var newItem = new item({
+    'itemname': itemname,
+    'description': description
+  });
+  db.items.insert(newItem);
+  // newItem.save(function(err) {
+  //   console.log(err);
+  // });
+  res.redirect('/uploadsuccess');
 });
 
 router.get('/signup', function(req, res) {
   res.render('signup');
 });
 
+router.get('/uploadsuccess', function(req, res) {
+  res.render('uploadsuccess');
+});
 
 
 /* GET login page. */
@@ -54,11 +76,6 @@ router.get('/', function(req, res, next) {
  //      	}
    	
  //  	});
-
-
-
-
-});
 
 /* GET home/ page. */
 router.get('/home', function(req, res) {
