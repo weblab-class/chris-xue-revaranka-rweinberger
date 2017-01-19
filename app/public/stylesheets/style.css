@@ -1,8 +1,73 @@
+@font-face {
+  font-family: raleway;
+  src: url(/fonts/Raleway/Raleway-Regular.ttf);
+}
+@font-face {
+  font-family: ralewayMed;
+  src: url(/fonts/Raleway/Raleway-Medium.ttf);
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: ;
+  font-family: raleway;
 }
 
 a {
   color: #00B7FF;
+}
+
+#nav {
+  position: fixed;
+  background-color: #F3F3F3;
+  width: 100%;
+  border-bottom: solid 1px #ccc;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+#content {
+  padding: 50px;
+  padding-top: 90px;
+}
+#logo {
+  float:left;
+  padding: 10px;
+  display: inline-block;
+}
+button{
+  float: right;
+  margin-right: 25px;
+  margin-top: 25px;
+  padding: 7px;
+
+}
+.button {
+  font-family: ralewayMed;
+  background-color: #D3D3D3;
+  border-radius: 15px;
+  border: none;
+  border-bottom: solid 5px #878787;
+  border-right: solid 5px #878787;
+}
+.button:active {
+  border: none;
+}
+.button:focus {
+  outline: 0;
+}
+#testp {
+  width:300px;
+}
+#search {
+  display: inline;
+  float: left;
+  margin-top: 25px;
+  margin-left: 180px;
+}
+#go{
+  padding: 7px;
+  margin-left: 10px;
+}
+#searchbox {
+  padding: 7px;
+  border-radius: 7px;
 }
