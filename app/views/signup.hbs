@@ -3,6 +3,7 @@
   <head>
     <title>{{ SignUp }}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   </head>
 
   <body>
@@ -10,31 +11,29 @@
     <div name="content">
       <h1>{{ title }} Form</h1>
 
-      <form name="adduser" method="post" action="/signup">
+      <form name="signup" method="post" action="/adduser">
         <ul>
-          <li>First Name</li>
+          <li>Name</li>
 
-          <li><input type="text" placeholder="FName" name="fname"></li>
+          <li><input type="text" placeholder="Name" name="name"></li>
 
-          <li>Last Name</li>
+          <li>Venmo</li>
 
-          <li><input type="text" placeholder="LName" name="lname"></li>
+          <li><input type="text" placeholder="Venmo" name="venmo"></li>
 
           <li>Email</li>
 
           <li><input type="text" placeholder="Email" name="email"></li>
 
-          <li></li>
-
           <li>Password</li>
 
           <li><input type="text" placeholder="Password" name="password"></li>
 
-          <li><button type="submit">Submit</button></li>
+          <li><button type="submit">Submit</button>
         </ul>
       </form>
 
-      <a href="/userlist">See userlist</a>
+<!--       <a href="/userlist">See userlist</a> -->
     </div>
   </body>
 </html>
