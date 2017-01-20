@@ -73,11 +73,30 @@ router.get('/', function(req, res, next) {
    	
  //  	});
 
-/* GET home/ page. */
-router.get('/home', function(req, res) {
-  res.render('home');
+/* GET home page. */
+
+router.get('/home', function (req, res, next) {
+  Item.find({}, function(err, items) {
+    var itemlist = [];
+    items.forEach(function(item) {
+      itemlist.push({itemname:item.itemname, price:item.price, description:item.description});
+    });
+    res.render('home', {item:itemlist});
+    console.log('hi')
+  });
 });
 
+/* get list of all items in db*/
+router.get('/itemlist', function(req, res) {
+  Item.find({}, function(err, items) {
+    var itemlist = [];
+    items.forEach(function(item) {
+      itemlist.push({itemname:item.itemname, price:item.price, description:item.description});
+    });
+
+    res.send(itemlist);  
+  });
+});
 
 
 module.exports = router;

@@ -33,18 +33,9 @@
         <a href="/home">furniture</a><br>
       </div>
       <div id="browse">
-        <div class="dummyProduct"></div>
-        <div class="dummyProduct"></div>
-        <div class="dummyProduct"></div>
-        <div class="dummyProduct"></div>
-        <div class="dummyProduct"></div>
-        <div class="dummyProduct"></div>
-        <div class="dummyProduct"></div>
-        <div class="dummyProduct"></div>
-        <div class="dummyProduct"></div>
-        <div class="dummyProduct"></div>
-        <div class="dummyProduct"></div>
-        <div class="dummyProduct"></div>
+        {{#each item}}
+          {{> item_partial}}
+        {{/each }}
       </div>
     </div>
   </body>

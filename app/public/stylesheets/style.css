@@ -96,12 +96,16 @@ a:hover {
   background-color: #F3F3F3;
   display: inline-block;
 }
-.dummyProduct{
+.product{
+  text-align: center;
   margin: 20px;
   width: 200px;
   height: 200px;
   background-color: #878787;
   display: inline-block;
+}
+#productcontent{
+  line-height: 200px;
 }
 .contentbutton {
   margin-top: 10px;
@@ -131,3 +135,57 @@ a:hover {
   width: 135px;
   margin-right: 20px;
 }
+#itemcontent{
+  margin:auto;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  text-align: center;
+  max-width: 30%;
+  margin: 150px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 15px;
+  position: relative;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #C4C4C4;
+}
+.popup .popupcontent {
+  padding: 10px;
+  margin: 10px;
+}
+/*
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}*/
