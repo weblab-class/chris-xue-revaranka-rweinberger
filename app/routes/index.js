@@ -18,13 +18,20 @@ router.post('/adduser', function(req, res, next) {
 		'email': email,
 		'password': password
 	});
+<<<<<<< HEAD
 
   newUser.save();
 	// newUser.save(function(err) {
 	// 	console.log(err);
 	// });
+=======
+	newUser.save(function(err) {
+		console.log(err);
+	});
+>>>>>>> 3a0e45a7421081123109423f9d393f4667fe3b3a
 	res.redirect('/home');
 });
+
 /* add a new item*/
 router.get('/newitem', function(req, res) {
   res.render('newitem');
@@ -32,16 +39,24 @@ router.get('/newitem', function(req, res) {
 
 router.post('/uploaditem', function(req, res, next) {
   var itemname = req.body.itemname;
+  var price = req.body.price;
   var description = req.body.description;
 
   var newItem = new Item({
     'itemname': itemname,
+    'price': price,
     'description': description
   });
+<<<<<<< HEAD
   newItem.save();
   // newItem.save(function(err) {
   //   console.log(err);
   // });
+=======
+  newItem.save(function(err) {
+    console.log(err);
+  });
+>>>>>>> 3a0e45a7421081123109423f9d393f4667fe3b3a
   res.redirect('/uploadsuccess');
 });
 

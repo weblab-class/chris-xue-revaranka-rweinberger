@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-
+mongoose.createConnection('mongodb://localhost/app');
 
 // TODO: Fill out the userSchema.
 // Hint: a user is an object such as
@@ -9,7 +9,7 @@ var userSchema = new mongoose.Schema({
 	venmo: {type: String, required: false, index: {unique: true}},
   	email: {type: String, required: true, index: {unique: true}},
   	password: {type: String, required: true}
-});
+}, {collection: 'users'});
 
 var User = mongoose.model('User', userSchema);
 
