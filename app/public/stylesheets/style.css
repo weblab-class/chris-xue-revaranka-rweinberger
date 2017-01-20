@@ -103,7 +103,7 @@ a:hover {
   background-color: #878787;
   display: inline-block;
 }
-#submititem {
+.contentbutton {
   margin-top: 10px;
   padding: 7px;
   font-family: ralewayMed;
@@ -112,6 +112,12 @@ a:hover {
   border: none;
   border-bottom: solid 5px #878787;
   border-right: solid 5px #878787;
+}
+.contentbutton:active {
+  border: none;
+}
+.contentbutton:focus {
+  outline: 0;
 }
 #itemdescription{
   border: solid 2px #eeeeee;
