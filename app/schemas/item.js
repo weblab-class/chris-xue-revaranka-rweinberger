@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+mongoose.createConnection('mongodb://localhost/app');
 
 
 // TODO: Fill out the userSchema.
@@ -7,7 +8,7 @@ var mongoose = require('mongoose');
 var itemSchema = new mongoose.Schema({
   itemname: {type: String, required: true, index: {unique: true}},
   description: {type: String, required: true, index: {unique: true}},
-});
+}, {collection: 'items'});
 
 var item = mongoose.model('item', itemSchema);
 

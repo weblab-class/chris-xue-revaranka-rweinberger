@@ -19,12 +19,12 @@ router.post('/adduser', function(req, res, next) {
 		'email': email,
 		'password': password
 	});
-  db.users.insert(newUser);
-	// newUser.save(function(err) {
-	// 	console.log(err);
-	// });
+	newUser.save(function(err) {
+		console.log(err);
+	});
 	res.redirect('/home');
 });
+
 /* add a new item*/
 router.get('/newitem', function(req, res) {
   res.render('newitem');
@@ -38,10 +38,9 @@ router.post('/uploaditem', function(req, res, next) {
     'itemname': itemname,
     'description': description
   });
-  db.items.insert(newItem);
-  // newItem.save(function(err) {
-  //   console.log(err);
-  // });
+  newItem.save(function(err) {
+    console.log(err);
+  });
   res.redirect('/uploadsuccess');
 });
 

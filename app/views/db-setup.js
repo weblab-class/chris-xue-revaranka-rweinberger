@@ -1,5 +1,4 @@
 var mongo = require('mongodb').MongoClient;
-
 var dbConnectionUrl = 'mongodb://localhost:27017/app';
 
 var collections = {};
