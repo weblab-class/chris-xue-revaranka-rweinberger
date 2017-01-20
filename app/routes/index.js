@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-
 /* GET the User Model */
 var User = require('../schemas/user');
-var item = require('../schemas/item');
+var Item = require('../schemas/item');
 
 /* GET signup page. */
 router.post('/adduser', function(req, res, next) {
@@ -19,7 +18,8 @@ router.post('/adduser', function(req, res, next) {
 		'email': email,
 		'password': password
 	});
-  db.users.insert(newUser);
+
+  newUser.save();
 	// newUser.save(function(err) {
 	// 	console.log(err);
 	// });
@@ -34,11 +34,11 @@ router.post('/uploaditem', function(req, res, next) {
   var itemname = req.body.itemname;
   var description = req.body.description;
 
-  var newItem = new item({
+  var newItem = new Item({
     'itemname': itemname,
     'description': description
   });
-  db.items.insert(newItem);
+  newItem.save();
   // newItem.save(function(err) {
   //   console.log(err);
   // });

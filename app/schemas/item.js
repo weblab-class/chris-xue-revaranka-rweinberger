@@ -9,6 +9,6 @@ var itemSchema = new mongoose.Schema({
   description: {type: String, required: true, index: {unique: true}},
 });
 
-var item = mongoose.model('item', itemSchema);
+var item = mongoose.model('Item', itemSchema);
 
 module.exports = item;
