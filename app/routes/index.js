@@ -116,6 +116,9 @@ router.get('/uploadsuccess', function(req, res) {
   res.render('uploadsuccess');
 });
 
+router.get('/addtag', function(req, res) {
+  res.send('hello add tag');
+});
 
 /* get list of all items in db*/
 router.get('/itemlist', function(req, res) {

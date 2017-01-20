@@ -99,9 +99,11 @@ a:hover {
 .product{
   text-align: center;
   margin: 20px;
-  width: 200px;
-  height: 200px;
-  background-color: #878787;
+  width: 194px;
+  height: 194px;
+  background-color: #C8C8C8;
+  border: solid 3px #878787;
+  border-radius: 15px;
   display: inline-block;
 }
 #productcontent{
@@ -117,12 +119,15 @@ a:hover {
   border-bottom: solid 5px #878787;
   border-right: solid 5px #878787;
 }
+
 .contentbutton:active {
   border: none;
 }
+
 .contentbutton:focus {
   outline: 0;
 }
+
 #itemdescription{
   border: solid 2px #eeeeee;
   border-top: solid 2px #9a9a9a;
@@ -179,6 +184,21 @@ a:hover {
 .popup .popupcontent {
   padding: 10px;
   margin: 10px;
+}
+.tag{
+  padding: 5px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  margin-right: 7px;
+  font-size: 12px;
+  background-color: #D3D3D3;
+  border-radius: 15px;
+  display: inline-block;
+}
+.closetag{
+  border: none;
+  background-color: #878787;
+  border-radius: 15px;
 }
 /*
 @media screen and (max-width: 700px){

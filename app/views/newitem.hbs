@@ -2,7 +2,8 @@
 <html>
   <head>
     <title>New Item</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   </head>
 
  <body> 
@@ -26,10 +27,16 @@
         &#36;&#32;<input class='inputbox' type="number" placeholder='price' name='price'>
         <br>
         <textarea id='itemdescription' rows="8" placeholder='description' name='description' cols="50"></textarea> <br>
+      
+        <input id="inserttag" class='inputbox' type='text' placeholder='add tags' name='inserttag'>
+        <button id="addtag" class="contentbutton" type='button'>add</button><br>
+        <div id="tags"></div>
+
         <button class="contentbutton" type = 'submit'>list it!</button>&#32;
         <button type="button" class="contentbutton" onclick="location.href='/home'">cancel</button><br>
       </form>
     </div>
+    <script src="/scripts/addtag.js"></script>
   </body>
 </html>
 
