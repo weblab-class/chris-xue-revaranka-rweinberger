@@ -1,0 +1,55 @@
+/* =============================================================================
+   DO NOT CHANGE ANY OF THE CODE HERE! MODIFY STYLES.CSS INSTEAD
+   ========================================================================== */
+
+/* Modified Jayden Seric's Foundation */
+html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0;font:16px/1 sans-serif;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}h1,h2,h3,h4,p,blockquote,figure,ol,ul{margin:0;padding:0}main{display:block}h1,h2,h3,h4{font-size:inherit}strong{font-weight:700}button{color:inherit;-webkit-transition:.3s;transition:.3s}button{overflow:visible;border:0;font:inherit;-webkit-font-smoothing:inherit;letter-spacing:inherit;background:none;cursor:pointer}::-moz-focus-inner{padding:0;border:0}:focus{outline:0}img{max-width:100%;height:auto;border:0}
+* {-moz-box-sizing: border-box;box-sizing: border-box}
+
+
+/* Workshop Template */
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #515A6B;
+    background-image: url("../images/background.png");
+    background-size: cover;
+    background-position: center 100%;
+    background-repeat: no-repeat;
+    font-family: sans-serif;
+}
+
+h1.workshop-name {
+    color: white;
+    font-family: 'helvetica neue', arial, sans-serif;
+    font-weight: normal;
+    margin-top: 6vh;
+    margin-left: calc(50vw - 325px);
+    font-size: 2.25em;
+}
+
+div.content {
+    height: 78vh;
+    width: 650px;
+    position: fixed;
+    top: 16vh;
+    left: calc(50vw - 325px);
+    background-color: rgba(255, 255, 255, .75);
+    overflow: auto;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+img.sonde {
+    left: calc(50vw - 325px - 50px);
+    bottom: 0;
+    position: absolute;
+    height: 100px;
+}
+
+a:hover {
+    cursor: pointer;
+}
