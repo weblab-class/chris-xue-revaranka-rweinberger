@@ -49,6 +49,9 @@ router.get('/uploadsuccess', function(req, res) {
   res.render('uploadsuccess');
 });
 
+router.get('/addtag', function(req, res) {
+  res.send('hello add tag');
+});
 
 /* GET login page. */
 router.get('/', function(req, res, next) {
