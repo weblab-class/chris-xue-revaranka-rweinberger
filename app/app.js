@@ -10,19 +10,15 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-<<<<<<< HEAD
 
-mongoose.connect('mongodb://localhost/app');
-
-=======
 // database setup
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/app');
+mongoose.connect('mongodb://localhost/app');
 var connection = mongoose.connection;
 connection.on('error', console.error.bind(console, 'connection error:'));
 connection.on('connected', function() {
   console.log('database connected!');
 });
->>>>>>> 3a0e45a7421081123109423f9d393f4667fe3b3a
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 var exphbs = require('express-handlebars');
