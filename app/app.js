@@ -6,6 +6,22 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+//STUFF I'M ADDING 
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var User = require('./schemas/user.js');
+
+//passport serialization/deserialization 
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+
+//DONE WITH STUFF I'M ADDING 
+
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -32,6 +48,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//ALSO STUFF I'M ADDING: passport stuff
+app.use(session({ secret: 'my super secret secret', resave: 'false', saveUninitialized: 'true' }));
+app.use(passport.initialize());
+app.use(passport.session());
+//----//
 
 app.use('/', index);
 app.use('/users', users);
