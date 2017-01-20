@@ -75,7 +75,7 @@ a:hover {
   padding: 7px;
   margin-left: 10px;
 }
-#searchbox {
+.inputbox {
   margin-top: 25px;
   padding: 7px;
   border-radius: 7px;
@@ -102,4 +102,26 @@ a:hover {
   height: 200px;
   background-color: #878787;
   display: inline-block;
+}
+#submititem {
+  margin-top: 10px;
+  padding: 7px;
+  font-family: ralewayMed;
+  background-color: #D3D3D3;
+  border-radius: 15px;
+  border: none;
+  border-bottom: solid 5px #878787;
+  border-right: solid 5px #878787;
+}
+#itemdescription{
+  border: solid 2px #eeeeee;
+  border-top: solid 2px #9a9a9a;
+  border-left: solid 2px #9a9a9a;
+  margin-top: 25px;
+  padding: 7px;
+  border-radius: 7px;
+}
+#itemname{
+  width: 135px;
+  margin-right: 20px;
 }

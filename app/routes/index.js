@@ -32,10 +32,12 @@ router.get('/newitem', function(req, res) {
 
 router.post('/uploaditem', function(req, res, next) {
   var itemname = req.body.itemname;
+  var price = req.body.price;
   var description = req.body.description;
 
   var newItem = new item({
     'itemname': itemname,
+    'price': price,
     'description': description
   });
   newItem.save(function(err) {
