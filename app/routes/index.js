@@ -83,19 +83,11 @@ router.get('/home', function (req, res, next) {
     if(req.isAuthenticated()) {
       bool = true;
       var name_user = req.user.username;
-<<<<<<< HEAD
-
-=======
       res.render('home', {boolean: bool, item: itemlist, name: name_user});
->>>>>>> 5eeb45f3e2c19068cfba873307d757535940c000
     } else {
       bool = false;
       res.render('home', {boolean: bool, item: itemlist});
     }
-<<<<<<< HEAD
-    res.render('home', {boolean: bool, item: itemlist, name: name_user});
-=======
->>>>>>> 5eeb45f3e2c19068cfba873307d757535940c000
   });
 });
 
