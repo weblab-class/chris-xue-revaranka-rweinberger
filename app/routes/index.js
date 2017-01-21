@@ -143,18 +143,20 @@ router.get('/itemlist', function(req, res) {
 router.post('/searchresults', function(req, res) {
   term = req.body.term;
   Item.find({}, function(err, items) {
-    var taglist = [];
     itemlist = [];
     items.forEach(function(item) {
-      tags = item.tags
-      taglist.push(tags)
+      tags = item.tags;
+      title = item.itemname;
+      var exists = title.search(term);
+      if (exists != -1) {
+        itemlist.push(item)
+      }
       for (i=0; i < tags.length; i++){
         if (tags[i] == term){
           itemlist.push(item)
         }
       };
     });
-
     res.send(itemlist);  
   });
 });
