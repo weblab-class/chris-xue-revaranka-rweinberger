@@ -77,7 +77,15 @@ router.get('/home', function (req, res, next) {
     items.forEach(function(item) {
       itemlist.push({itemname:item.itemname, price:item.price, description:item.description});
     });
-    res.render('home', {item:itemlist});
+    // res.render('home', {item:itemlist});
+    var bool = true
+    if(req.isAuthenticated()) {
+      bool = true
+    } else {
+      bool = false
+    }
+    var name_user = 'pat';
+    res.render('home', {boolean: bool, item: itemlist, name: name_user});
   });
 });
 
