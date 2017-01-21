@@ -148,13 +148,15 @@ router.post('/searchresults', function(req, res) {
     items.forEach(function(item) {
       tags = item.tags
       taglist.push(tags)
-      // for (i=0; i<; iteration statement){
-      //   Statement(s) to be executed if test condition is true
-      // };
+      for (i=0; i < tags.length; i++){
+        if (tags[i] == term){
+          itemlist.push(item)
+        }
+      };
     });
 
-    res.send(taglist);  
+    res.send(itemlist);  
   });
-
+});
 
 module.exports = router;
