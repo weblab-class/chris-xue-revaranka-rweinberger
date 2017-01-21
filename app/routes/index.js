@@ -161,4 +161,28 @@ router.post('/searchresults', function(req, res) {
   });
 });
 
+//CATEGORIES//
+router.get('/tech', function(req,res){
+  Item.find({'category':'Tech'}, function(err, items){
+    res.send(items);
+  });
+});
+
+router.get('/furniture', function(req,res){
+  Item.find({'category':'Furniture'}, function(err, items){
+    res.send(items);
+  });
+});
+
+router.get('/books', function(req,res){
+  Item.find({'category':'Books'}, function(err, items){
+    res.send(items);
+  });
+});
+
+router.get('/clothes', function(req,res){
+  Item.find({'category':'Clothes'}, function(err, items){
+    res.send(items);
+  });
+});
 module.exports = router;
