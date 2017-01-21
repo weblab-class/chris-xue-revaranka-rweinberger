@@ -136,7 +136,7 @@ router.get('/uploadsuccess', function(req, res) {
 });
 
 
-/* get list of all items in db*/
+/* itemlist and userlist*/
 router.get('/itemlist', function(req, res) {
   Item.find({}, function(err, items) {
     var itemlist = [];
@@ -145,6 +145,17 @@ router.get('/itemlist', function(req, res) {
     });
 
     res.send(itemlist);  
+  });
+});
+
+router.get('/userlist', function(req, res) {
+  User.find({}, function(err, users) {
+    var userlist = [];m
+    users.forEach(function(user) {
+      userlist.push({name:user.name, venmo:user.venmo});
+    });
+
+    res.send(userlist);  
   });
 });
 
