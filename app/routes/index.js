@@ -43,6 +43,12 @@ router.post('/signup', function (req, res, next) {
   });
 
 });
+
+router.post('/logout', function(req, res){
+  req.logout();
+  res.redirect('/login');
+});
+
 // router.post('/', function(req, res, next) {
   // res.render('index', {title: 'Login'});
 
