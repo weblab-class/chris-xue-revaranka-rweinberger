@@ -140,16 +140,21 @@ router.get('/itemlist', function(req, res) {
 });
 
 /*search results*/
-router.get('/searchresults', function(req, res) {
+router.post('/searchresults', function(req, res) {
+  term = req.body.term;
   Item.find({}, function(err, items) {
-    var itemlist = [];
+    var taglist = [];
+    itemlist = [];
     items.forEach(function(item) {
-      itemlist.push({itemname:item.itemname, price:item.price, description:item.description});
+      tags = item.tags
+      taglist.push(tags)
+      // for (i=0; i<; iteration statement){
+      //   Statement(s) to be executed if test condition is true
+      // };
     });
 
-    res.send(itemlist);  
+    res.send(taglist);  
   });
-});
 
 
 module.exports = router;
