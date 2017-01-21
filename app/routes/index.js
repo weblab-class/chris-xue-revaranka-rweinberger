@@ -149,9 +149,9 @@ router.get('/itemlist', function(req, res) {
 
 router.get('/userlist', function(req, res) {
   User.find({}, function(err, users) {
-    var userlist = [];
+    var userlist = [];m
     users.forEach(function(user) {
-      userlist.push({name:user.name, venmo:user.venmo, email:user.email, password:user.password});
+      userlist.push({name:user.name, venmo:user.venmo});
     });
 
     res.send(userlist);  
