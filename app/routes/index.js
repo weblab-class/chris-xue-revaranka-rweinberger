@@ -29,6 +29,7 @@ router.post('/login',
 
 router.post('/signup', function (req, res, next) {
   console.log('signed up');
+  console.log(req.body);
   var user = new User({name: req.body.name, venmo: req.body.venmo, username: req.body.username});
   User.register(user, req.body.password, function(registrationError) {
     if(!registrationError) {
@@ -84,7 +85,7 @@ router.get('/home', function (req, res, next) {
     } else {
       bool = false
     }
-    var name_user = usernam;
+    var name_user = req.user.username;
     res.render('home', {boolean: bool, item: itemlist, name: name_user});
   });
 });
