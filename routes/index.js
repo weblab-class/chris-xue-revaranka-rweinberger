@@ -76,18 +76,18 @@ router.get('/home', function (req, res, next) {
   Item.find({}, function(err, items) {
     var itemlist = [];
     items.forEach(function(item) {
-      itemlist.push({itemname:item.itemname, price:item.price, description:item.description});
+      itemlist.push({itemname:item.itemname, price:item.price, description:item.description, user: item.user});
     });
     // res.render('home', {item:itemlist});
-    var bool = true
+    var bool = true;
     if(req.isAuthenticated()) {
       bool = true;
       var name_user = req.user.username;
-      res.render('home', {boolean: bool, item: itemlist, name: name_user});
+      res.render('home', {boolean: bool, items: itemlist, name: name_user});
     } else {
       bool = false;
-      res.render('home', {boolean: bool, item: itemlist});
-    }
+      res.render('home', {boolean: bool, items: itemlist});
+    };
   });
 });
 
@@ -110,7 +110,7 @@ router.get('/home', function (req, res, next) {
 
 /* add a new item*/
 router.get('/newitem', function(req, res) {
-  var bool = true
+  var bool = true;
   if(req.isAuthenticated()) {
     bool = true;
     var name_user = req.user.username;
@@ -174,21 +174,30 @@ router.get('/userlist', function(req, res) {
 router.post('/searchresults', function(req, res) {
   term = req.body.term;
   Item.find({}, function(err, items) {
-    itemlist = [];
+    var itemlist = new Set();
     items.forEach(function(item) {
       tags = item.tags;
       title = item.itemname;
       var exists = title.search(term);
       if (exists != -1) {
-        itemlist.push(item)
-      }
+        itemlist.add(item)
+      };
       for (i=0; i < tags.length; i++){
-        if (tags[i] == term){
-          itemlist.push(item)
-        }
+        if (tags[i] == term) {
+          itemlist.add(item)
+        };
       };
     });
-    res.send(itemlist);  
+    items = Array.from(itemlist);
+    var bool = true;
+    if(req.isAuthenticated()) {
+      bool = true;
+      var name_user = req.user.username;
+      res.render('searchresults', {boolean: bool, term:term,items: items, name: name_user});
+    } else {
+      bool = false;
+      res.render('searchresults', {boolean: bool, term:term, items: items});
+    };
   });
 });
 

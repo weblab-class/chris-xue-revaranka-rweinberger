@@ -99,6 +99,14 @@ a:hover {
   background-color: #F3F3F3;
   display: inline-block;
 }
+#products{
+  border-radius: 20px;
+  padding: 10px;
+  margin-left: 40px;
+  margin-top: 20px;
+  background-color: #F3F3F3;
+  display: inline-block;
+}
 .product{
   text-align: center;
   margin: 20px;

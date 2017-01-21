@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+
+  <body>
+    {{> navbar}}
+
+    <div id="content">
+      <h1 id="title">Search results for "{{term}}" </h1>
+      <div id="products">
+        {{#each items}}
+          {{> item_partial}}
+        {{/each }}
+      </div>
+    </div>
+  </body>
+</html>
