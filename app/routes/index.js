@@ -84,7 +84,7 @@ router.get('/home', function (req, res, next) {
     } else {
       bool = false
     }
-    var name_user = 'pat';
+    var name_user = usernam;
     res.render('home', {boolean: bool, item: itemlist, name: name_user});
   });
 });
