@@ -82,11 +82,12 @@ router.get('/home', function (req, res, next) {
     var bool = true
     if(req.isAuthenticated()) {
       bool = true
+      var name_user = req.user.username;
+      res.render('home', {boolean: bool, item: itemlist, name: name_user});
     } else {
       bool = false
+      res.render('home', {boolean: bool, item: itemlist});
     }
-    var name_user = req.user.username;
-    res.render('home', {boolean: bool, item: itemlist, name: name_user});
   });
 });
 
