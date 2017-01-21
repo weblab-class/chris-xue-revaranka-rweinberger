@@ -1,12 +1,16 @@
 <div class="product">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <div>
     <a id="productcontent" href="#{{itemname}}"> {{itemname}}</a>
   </div>
-  <!-- {{price}}<br> -->
-  <!-- Description: {{description}} -->
 
   <div id="{{itemname}}" class="overlay">
     <div class="popup">
+      {{#if starred}}
+      <div class='star' id='star{{id}}'>&#9733;</div>
+      {{else}}
+      <div class='blankstar' id='blankstar{{id}}'>&#9734;</div>
+      {{/if}}
       <h2>{{itemname}}</h2>
       &#36;&#32; {{price}}
       <a class="close" href="#">&times;</a>
@@ -15,6 +19,8 @@
         <br><br>
         posted by {{user}}
       </div>
+      <div style="display:none" class='id' id="{{id}}"></div>
     </div>
+    <script src="/scripts/staritem.js"></script>
   </div>
 </div>

@@ -72,13 +72,13 @@ router.post('/logout', function(req, res){
 /* GET home page. */
 
 router.get('/home', function (req, res, next) {
-  console.log('hi');
+  var starid = req.body.id;
+  console.log(starid);
   Item.find({}, function(err, items) {
     var itemlist = [];
     items.forEach(function(item) {
-      itemlist.push({itemname:item.itemname, price:item.price, description:item.description, user: item.user});
+      itemlist.push({itemname:item.itemname, price:item.price, description:item.description, user: item.user, id:item.id});
     });
-    // res.render('home', {item:itemlist});
     var bool = true;
     if(req.isAuthenticated()) {
       bool = true;
@@ -90,6 +90,22 @@ router.get('/home', function (req, res, next) {
     };
   });
 });
+
+/* starring items */
+// router.post('/starred', function(req, res, next) {
+//   var starreditems = req.body.starreditems;
+//   //console.log(tags);
+//   var newItem = new Item({
+//     'itemname': itemname,
+//     'price': price,
+//     'description': description,
+//     'tags':tags,
+//     'category':category,
+//     'user':user
+//   });
+//   newItem.save();
+//   res.send('/uploadsuccess');
+// });
 
 
 // router.post('/adduser', function(req, res, next) {
