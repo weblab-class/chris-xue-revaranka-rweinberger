@@ -71,13 +71,13 @@ router.post('/logout', function(req, res){
 /* GET home page. */
 
 router.get('/home', function (req, res, next) {
+  console.log('hi');
   Item.find({}, function(err, items) {
     var itemlist = [];
     items.forEach(function(item) {
       itemlist.push({itemname:item.itemname, price:item.price, description:item.description});
     });
     res.render('home', {item:itemlist});
-    console.log('hi')
   });
 });
 
@@ -107,14 +107,16 @@ router.post('/uploaditem', function(req, res, next) {
   var itemname = req.body.itemname;
   var price = req.body.price;
   var description = req.body.description;
-
+  var tags = req.body.tags;
+  console.log(tags);
   var newItem = new Item({
     'itemname': itemname,
     'price': price,
-    'description': description
+    'description': description,
+    'tags':tags
   });
   newItem.save();
-  res.redirect('/uploadsuccess');
+  res.send('/uploadsuccess');
 });
 
 
@@ -122,12 +124,21 @@ router.get('/uploadsuccess', function(req, res) {
   res.render('uploadsuccess');
 });
 
-router.get('/addtag', function(req, res) {
-  res.send('hello add tag');
-});
 
 /* get list of all items in db*/
 router.get('/itemlist', function(req, res) {
+  Item.find({}, function(err, items) {
+    var itemlist = [];
+    items.forEach(function(item) {
+      itemlist.push({itemname:item.itemname, price:item.price, description:item.description});
+    });
+
+    res.send(itemlist);  
+  });
+});
+
+/*search results*/
+router.get('/searchresults', function(req, res) {
   Item.find({}, function(err, items) {
     var itemlist = [];
     items.forEach(function(item) {
