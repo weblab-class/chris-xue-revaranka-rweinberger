@@ -131,5 +131,17 @@ router.get('/itemlist', function(req, res) {
   });
 });
 
+/*search results*/
+router.get('/searchresults', function(req, res) {
+  Item.find({}, function(err, items) {
+    var itemlist = [];
+    items.forEach(function(item) {
+      itemlist.push({itemname:item.itemname, price:item.price, description:item.description});
+    });
+
+    res.send(itemlist);  
+  });
+});
+
 
 module.exports = router;
