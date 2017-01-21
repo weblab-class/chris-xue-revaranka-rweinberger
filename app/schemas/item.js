@@ -11,6 +11,7 @@ var itemSchema = new mongoose.Schema({
   description: {type: String, required: true, index: {unique: false}},
   tags: {type: Array, required: false, index: {unique: false}},
   category: {type: String, required: true, index: {unique:false}},
+  user: {type: String, required: true}
 }, {collection: 'items'});
 
 var item = mongoose.model('Item', itemSchema);

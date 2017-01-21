@@ -81,11 +81,11 @@ router.get('/home', function (req, res, next) {
     // res.render('home', {item:itemlist});
     var bool = true
     if(req.isAuthenticated()) {
-      bool = true
+      bool = true;
       var name_user = req.user.username;
       res.render('home', {boolean: bool, item: itemlist, name: name_user});
     } else {
-      bool = false
+      bool = false;
       res.render('home', {boolean: bool, item: itemlist});
     }
   });
@@ -110,7 +110,15 @@ router.get('/home', function (req, res, next) {
 
 /* add a new item*/
 router.get('/newitem', function(req, res) {
-  res.render('newitem');
+  var bool = true
+  if(req.isAuthenticated()) {
+    bool = true;
+    var name_user = req.user.username;
+    res.render('newitem', {boolean: bool, name: name_user});
+  } else {
+    bool = false;
+    res.redirect('/login');
+  };
 });
 
 router.post('/uploaditem', function(req, res, next) {
@@ -119,13 +127,15 @@ router.post('/uploaditem', function(req, res, next) {
   var description = req.body.description;
   var tags = req.body.tags;
   var category = req.body.category;
+  var user = req.user.username;
   //console.log(tags);
   var newItem = new Item({
     'itemname': itemname,
     'price': price,
     'description': description,
     'tags':tags,
-    'category':category
+    'category':category,
+    'user':user
   });
   newItem.save();
   res.send('/uploadsuccess');
@@ -142,7 +152,7 @@ router.get('/itemlist', function(req, res) {
   Item.find({}, function(err, items) {
     var itemlist = [];
     items.forEach(function(item) {
-      itemlist.push({itemname:item.itemname, price:item.price, description:item.description, tags:item.tags, category:item.category});
+      itemlist.push({itemname:item.itemname, price:item.price, description:item.description, tags:item.tags, category:item.category, user: item.user});
     });
 
     res.send(itemlist);  
@@ -151,7 +161,7 @@ router.get('/itemlist', function(req, res) {
 
 router.get('/userlist', function(req, res) {
   User.find({}, function(err, users) {
-    var userlist = [];m
+    var userlist = [];
     users.forEach(function(user) {
       userlist.push({name:user.name, venmo:user.venmo});
     });
