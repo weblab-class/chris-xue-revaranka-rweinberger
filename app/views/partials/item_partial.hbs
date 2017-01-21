@@ -1,14 +1,14 @@
 <div class="product">
   <div>
-    <a id="productcontent" href="#popup">{{itemname}}</a>
+    <a id="productcontent" href="#{{itemname}}"> {{itemname}}</a>
   </div>
   <!-- {{price}}<br> -->
   <!-- Description: {{description}} -->
 
-  <div id="popup" class="overlay">
+  <div id="{{itemname}}" class="overlay">
     <div class="popup">
-      <h2>{{itemname}}</h2>
-      &#36;&#32;{{price}}
+      <h2>  {{itemname}}</h2>
+      &#36;&#32; {{price}}
       <a class="close" href="#">&times;</a>
       <div class="popupcontent">
         {{description}}

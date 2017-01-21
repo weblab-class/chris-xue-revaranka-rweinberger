@@ -116,12 +116,14 @@ router.post('/uploaditem', function(req, res, next) {
   var price = req.body.price;
   var description = req.body.description;
   var tags = req.body.tags;
-  console.log(tags);
+  var category = req.body.category;
+  //console.log(tags);
   var newItem = new Item({
     'itemname': itemname,
     'price': price,
     'description': description,
-    'tags':tags
+    'tags':tags,
+    'category':category
   });
   newItem.save();
   res.send('/uploadsuccess');
@@ -138,7 +140,7 @@ router.get('/itemlist', function(req, res) {
   Item.find({}, function(err, items) {
     var itemlist = [];
     items.forEach(function(item) {
-      itemlist.push({itemname:item.itemname, price:item.price, description:item.description});
+      itemlist.push({itemname:item.itemname, price:item.price, description:item.description, tags:item.tags, category:item.category});
     });
 
     res.send(itemlist);  
@@ -146,16 +148,49 @@ router.get('/itemlist', function(req, res) {
 });
 
 /*search results*/
-router.get('/searchresults', function(req, res) {
+router.post('/searchresults', function(req, res) {
+  term = req.body.term;
   Item.find({}, function(err, items) {
-    var itemlist = [];
+    itemlist = [];
     items.forEach(function(item) {
-      itemlist.push({itemname:item.itemname, price:item.price, description:item.description});
+      tags = item.tags;
+      title = item.itemname;
+      var exists = title.search(term);
+      if (exists != -1) {
+        itemlist.push(item)
+      }
+      for (i=0; i < tags.length; i++){
+        if (tags[i] == term){
+          itemlist.push(item)
+        }
+      };
     });
-
     res.send(itemlist);  
   });
 });
 
+//CATEGORIES//
+router.get('/tech', function(req,res){
+  Item.find({'category':'Tech'}, function(err, items){
+    res.send(items);
+  });
+});
 
+router.get('/furniture', function(req,res){
+  Item.find({'category':'Furniture'}, function(err, items){
+    res.send(items);
+  });
+});
+
+router.get('/books', function(req,res){
+  Item.find({'category':'Books'}, function(err, items){
+    res.send(items);
+  });
+});
+
+router.get('/clothes', function(req,res){
+  Item.find({'category':'Clothes'}, function(err, items){
+    res.send(items);
+  });
+});
 module.exports = router;

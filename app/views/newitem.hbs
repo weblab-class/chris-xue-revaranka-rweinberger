@@ -11,11 +11,18 @@
     <div id="content">
       <h1>Submit a new item to sell</h1>
       <div id="itemform">
-        <input id="itemname" class='inputbox' type='text' maxlength="15" placeholder='item name' name='itemname'> 
-        &#36;&#32;<input id='price' class='inputbox' type="number" placeholder='price' name='price'>
+        <input id="itemname" class='inputbox' type='text' maxlength="15" placeholder='item name' name='itemname' required> 
+        &#36;&#32;<input id='price' class='inputbox' type="number" placeholder='price' name='price' required>
         <br>
-        <textarea id='description' rows="8" placeholder='description' name='description' cols="50"></textarea> <br>
-      
+        <textarea id='description' rows="8" placeholder='description' name='description' cols="50" required></textarea> <br>
+        
+        <select id='category' name = 'category' required>
+          <option value="clothes">Clothes</option>
+          <option value="book">Book</option>
+          <option value="tech">Tech</option>
+          <option value="furniture">Furniture</option>
+        </select>
+
         <input id="inserttag" class='inputbox' type='text' placeholder='add tags' name='inserttag'>
         <button id="addtag" class="contentbutton" type='button'>add</button><br>
         <div id="tags"></div>

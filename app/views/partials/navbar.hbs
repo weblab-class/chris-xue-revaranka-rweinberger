@@ -23,8 +23,8 @@
   </form>
   <button class="navbutton" type="button">Starred Items</button>
   <button class="navbutton" type="button" onclick="location.href='/newitem'">List an Item</button>
-  <div id="search">
-    <input class="inputbox" id="searchbox" type="text" placeholder="search">
+  <form id="search" method='post' action="/searchresults">
+    <input class="inputbox" id="searchbox" type="text" placeholder="search" name="term">
     <input class="navbutton" id="go" type="submit" value="go!">
-  </div>
+  </form>
 </div>

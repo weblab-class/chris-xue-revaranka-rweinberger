@@ -71,6 +71,9 @@ a:hover {
   margin-top: 0px;
   margin-left: 180px;
 }
+#searchbox {
+  width: 200px;
+}
 #go{
   padding: 7px;
   margin-left: 10px;

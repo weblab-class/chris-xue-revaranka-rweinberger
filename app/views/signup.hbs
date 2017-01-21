@@ -15,7 +15,7 @@
         <ul>
           <li>Name</li>
 
-          <li><input type="text" placeholder="Name" name="name"></li>
+          <li><input type="text" placeholder="Name" name="name" required></li>
 
           <li>Venmo</li>
 
@@ -23,17 +23,20 @@
 
           <li>Email</li>
 
-          <li><input type="text" placeholder="Email" name="username"></li>
+          <li><input type="email" placeholder="Email" name="username" required></li>
 
           <li>Password</li>
 
-          <li><input type="text" placeholder="Password" name="password"></li>
+          <li><input type="password" placeholder="Password" id="password" required></li>
 
+          <li> <input type='password' placeholder ="Confirm Password" id = 'confirm_password' required></li>
+          <script src="/scripts/confirmpass.js"></script>
           <li><button type="submit">Sign Up</button>
         </ul>
       </form>
 
 <!--       <a href="/userlist">See userlist</a> -->
     </div>
+
   </body>
 </html>

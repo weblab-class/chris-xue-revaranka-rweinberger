@@ -31,7 +31,9 @@ $('#submititem').on('click', function(){
     itemname:$('#itemname').val(),
     price:$('#price').val(),
     description:$('#description').val(),
-    tags:tags,}, success: function(data) {
+    tags:tags,
+    category:$('#category option:selected').text()
+    }, success: function(data) {
       window.location.href = data
     }
   });
