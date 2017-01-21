@@ -22,19 +22,19 @@
 
     <div id="content">
       <h1>Submit a new item to sell</h1>
-      <form name="newitem" method = 'post' action = '/uploaditem'>
-        <input id="itemname" class='inputbox' type='text' placeholder='item name' name='itemname'> 
-        &#36;&#32;<input class='inputbox' type="number" placeholder='price' name='price'>
+      <div id="itemform">
+        <input id="itemname" class='inputbox' type='text' maxlength="15" placeholder='item name' name='itemname'> 
+        &#36;&#32;<input id='price' class='inputbox' type="number" placeholder='price' name='price'>
         <br>
-        <textarea id='itemdescription' rows="8" placeholder='description' name='description' cols="50"></textarea> <br>
+        <textarea id='description' rows="8" placeholder='description' name='description' cols="50"></textarea> <br>
       
         <input id="inserttag" class='inputbox' type='text' placeholder='add tags' name='inserttag'>
         <button id="addtag" class="contentbutton" type='button'>add</button><br>
         <div id="tags"></div>
 
-        <button class="contentbutton" type = 'submit'>list it!</button>&#32;
+        <button id="submititem" class="contentbutton" type = 'submit'>list it!</button>&#32;
         <button type="button" class="contentbutton" onclick="location.href='/home'">cancel</button><br>
-      </form>
+      </div>
     </div>
     <script src="/scripts/addtag.js"></script>
   </body>
