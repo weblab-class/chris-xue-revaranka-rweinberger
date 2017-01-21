@@ -108,12 +108,14 @@ router.post('/uploaditem', function(req, res, next) {
   var price = req.body.price;
   var description = req.body.description;
   var tags = req.body.tags;
-  console.log(tags);
+  var category = req.body.category;
+  //console.log(tags);
   var newItem = new Item({
     'itemname': itemname,
     'price': price,
     'description': description,
-    'tags':tags
+    'tags':tags,
+    'category':category
   });
   newItem.save();
   res.send('/uploadsuccess');
@@ -130,7 +132,7 @@ router.get('/itemlist', function(req, res) {
   Item.find({}, function(err, items) {
     var itemlist = [];
     items.forEach(function(item) {
-      itemlist.push({itemname:item.itemname, price:item.price, description:item.description});
+      itemlist.push({itemname:item.itemname, price:item.price, description:item.description, tags:item.tags, category:item.category});
     });
 
     res.send(itemlist);  
