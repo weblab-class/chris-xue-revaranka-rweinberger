@@ -1,11 +1,15 @@
 var express = require('express');
 var router = express.Router();
-
 var passport = require('passport');
 
 /* GET the User Model */
 var User = require('../schemas/user');
 var Item = require('../schemas/item');
+
+
+// router.get('/', function(req, res, next) {
+//   res.render('index')
+// });
 
 /* GET signup page. */
 router.get('/login', function(req, res, next) {
@@ -80,8 +84,8 @@ router.get('/home', function (req, res, next) {
     var bool = true;
     if(req.isAuthenticated()) {
       bool = true;
-      var name_user = req.user.username;
-      res.render('home', {boolean: bool, items: itemlist, name: name_user});
+      var name = req.user.name;
+      res.render('home', {boolean: bool, items: itemlist, name: name});
     } else {
       bool = false;
       res.render('home', {boolean: bool, items: itemlist});
@@ -92,12 +96,10 @@ router.get('/home', function (req, res, next) {
 /* receiving starred items */
 router.post('/star', function (req, res, next) {
   var starred = req.body.id;
-  console.log('user starred '+starred);
-  var user = req.body.username;
-  users.update(
-    {username: user},
-    {$push:{starred:starred}}
-    );
+  var user = req.user.username;
+  console.log(starred);
+  console.log(user);
+  User.update({username:user},{$push:{starred:starred}});
 });
 
 
@@ -122,8 +124,8 @@ router.get('/newitem', function(req, res) {
   var bool = true;
   if(req.isAuthenticated()) {
     bool = true;
-    var name_user = req.user.username;
-    res.render('newitem', {boolean: bool, name: name_user});
+    var name = req.user.name;
+    res.render('newitem', {boolean: bool, name: name});
   } else {
     bool = false;
     res.redirect('/login');
@@ -179,16 +181,37 @@ router.get('/userlist', function(req, res) {
   });
 });
 
+/*user profile page*/
+router.get('/profile', function(req, res) {
+  if(req.isAuthenticated()) {
+    var email = req.user.username;
+    Item.find({'user':email}, function(err, items){
+    var bool = true;
+    var name = req.user.name;
+    var venmo = req.user.venmo;
+    res.render('profile', {boolean:bool, name: name, email: email, venmo: venmo, items: items});
+    });
+  } else {
+    bool = false;
+    res.redirect('login');
+  };
+});
+
 /*search results*/
 router.post('/searchresults', function(req, res) {
-  term = req.body.term;
+  term = req.body.term.toLowerCase();
   Item.find({}, function(err, items) {
     var itemlist = new Set();
     items.forEach(function(item) {
-      tags = item.tags;
-      title = item.itemname;
-      var exists = title.search(term);
-      if (exists != -1) {
+      var tags = item.tags;
+      var title = item.itemname.toLowerCase();
+      var description = item.description.toLowerCase();
+      var existsTitle = title.search(term);
+      var existsDes = description.search(term);
+      if (existsTitle != -1) {
+        itemlist.add(item)
+      };
+      if (existsDes != -1) {
         itemlist.add(item)
       };
       for (i=0; i < tags.length; i++){
@@ -196,13 +219,16 @@ router.post('/searchresults', function(req, res) {
           itemlist.add(item)
         };
       };
+      if (item.category.toLowerCase() == term) {
+        itemlist.add(item)
+      };
     });
     items = Array.from(itemlist);
     var bool = true;
     if(req.isAuthenticated()) {
       bool = true;
-      var name_user = req.user.username;
-      res.render('searchresults', {boolean: bool, term:term,items: items, name: name_user});
+      var name = req.user.name;
+      res.render('searchresults', {boolean: bool, term:term,items: items, name: name});
     } else {
       bool = false;
       res.render('searchresults', {boolean: bool, term:term, items: items});
@@ -237,8 +263,8 @@ router.get('/clothes', function(req,res){
     var bool = true;
     if(req.isAuthenticated()) {
       bool = true;
-      var name_user = req.user.username;
-      res.render('home', {boolean: bool, items: items, name: name_user});
+      var name = req.user.name;
+      res.render('home', {boolean: bool, items: items, name: name});
     } else {
       bool = false;
       res.render('home', {boolean: bool, items: items});
@@ -252,8 +278,8 @@ router.get('/books', function(req,res){
     var bool = true;
     if(req.isAuthenticated()) {
       bool = true;
-      var name_user = req.user.username;
-      res.render('home', {boolean: bool, items: items, name: name_user});
+      var name = req.user.name;
+      res.render('home', {boolean: bool, items: items, name: name});
     } else {
       bool = false;
       res.render('home', {boolean: bool, items: items});
@@ -267,8 +293,8 @@ router.get('/tech', function(req,res){
     var bool = true;
     if(req.isAuthenticated()) {
       bool = true;
-      var name_user = req.user.username;
-      res.render('home', {boolean: bool, items: items, name: name_user});
+      var name = req.user.name;
+      res.render('home', {boolean: bool, items: items, name: name});
     } else {
       bool = false;
       res.render('home', {boolean: bool, items: items});
@@ -282,8 +308,8 @@ router.get('/furniture', function(req,res){
     var bool = true;
     if(req.isAuthenticated()) {
       bool = true;
-      var name_user = req.user.username;
-      res.render('home', {boolean: bool, items: items, name: name_user});
+      var name = req.user.name;
+      res.render('home', {boolean: bool, items: items, name: name});
     } else {
       bool = false;
       res.render('home', {boolean: bool, items: items});
