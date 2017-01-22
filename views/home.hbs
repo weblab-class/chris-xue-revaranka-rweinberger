@@ -3,6 +3,7 @@
   <head>
     <title>Home</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   </head>
 
   <body>
@@ -21,11 +22,29 @@
         <a href="/tech">tech</a><br>
         <a href="/furniture">furniture</a><br>
       </div>
+      <div id='sortbox'>
+        <u>Sort by</u><br>
+        <select id='sort' name = 'sort' required>
+          {{#if search}}
+          <option value="dateON">Date: old to new</option>
+          <option value="dateNO">Date: new to old</option>
+          <option value="priceLH">Price: low to high</option>
+          <option value="priceHL">Price: high to low</option>
+          <option value="relevance">Relevance</option>
+          {{else}}
+          <option value="dateON">Date: old to new</option>
+          <option value="dateNO">Date: new to old</option>
+          <option value="priceLH">Price: low to high</option>
+          <option value="priceHL">Price: high to low</option>
+          {{/if}}
+        </select>
+      </div>
       <div id="browse">
         {{#each items}}
           {{> item_partial}}
         {{/each }}
       </div>
     </div>
+  <script src="/scripts/sortby.js"></script>
   </body>
 </html>

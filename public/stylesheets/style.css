@@ -95,7 +95,7 @@ a:hover {
   border-radius: 20px;
   padding: 10px;
   margin-left: 240px;
-  margin-top: -160px;
+  margin-top: -263px;
   background-color: #F3F3F3;
   display: inline-block;
 }
@@ -260,6 +260,14 @@ a:hover {
   margin: 7px;
   display: block;
   padding: 4px;
+}
+#sortbox{
+  margin-top: 15px;
+  width: 143px;
+  line-height: 24px;
+  background-color: #F3F3F3;
+  padding: 20px;
+  border-radius: 20px;
 }
 /*
 @media screen and (max-width: 700px){

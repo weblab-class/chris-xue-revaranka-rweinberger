@@ -102,6 +102,29 @@ router.post('/star', function (req, res, next) {
   User.update({username:user},{$push:{starred:starred}});
 });
 
+/*resorting items THIS DOESN'T WORK YET*/ 
+router.post('/sort', function (req, res, next) {
+  var sort = req.body.sort;
+  if (sort == "dateNO") {
+    Item.find({}, function(err, items) {
+    console.log(sort);
+    items.reverse();
+    if(req.isAuthenticated()) {
+      bool = true;
+      var name = req.user.name;
+      res.redirect('home', {boolean: bool, items: items, name: name});
+    } else {
+      bool = false;
+      res.redirect('home', {boolean: bool, items: items});
+    };
+  });
+  } else {
+    console.log('something else')
+  };
+  // console.log(sort);
+  // User.update({username:user},{$push:{starred:starred}});
+});
+
 
 // router.post('/adduser', function(req, res, next) {
 // 	var name = req.body.name;
