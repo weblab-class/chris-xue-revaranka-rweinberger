@@ -99,7 +99,12 @@ router.post('/star', function (req, res, next) {
   var user = req.user.username;
   console.log(starred);
   console.log(user);
-  User.update({username:user},{$push:{starred:starred}});
+  if (req.user.starred.indexOf(starred) == -1) {
+    User.update({username:user},{$push:{starred:starred}}, function (err, raw) {
+      if (err) return handleError(err);
+      console.log('The raw response from Mongo was ', raw);
+    });
+  };
 });
 
 /*resorting items THIS DOESN'T WORK YET*/ 
@@ -177,7 +182,14 @@ router.post('/uploaditem', function(req, res, next) {
 
 
 router.get('/uploadsuccess', function(req, res) {
-  res.render('uploadsuccess');
+  if(req.isAuthenticated()) {
+    bool = true;
+    var name = req.user.name;
+    res.render('uploadsuccess', {boolean: bool, name: name});
+  } else {
+    bool = false;
+    res.redirect('/login');
+  };
 });
 
 

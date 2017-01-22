@@ -1,7 +1,7 @@
 $(".blankstar").on("click", function() {
-  var itemid = $(".id").attr('id');
-  var starid = $(this).attr('id');
-  console.log('clicked ' + starid);
+  var blankstarid = $(this).attr('id');
+  var itemid = blankstarid.substring(9);
+  console.log(itemid);
   $(this).html("&#9733;");
   $.ajax({url:'/star', type: 'POST', data: {
     id: itemid
