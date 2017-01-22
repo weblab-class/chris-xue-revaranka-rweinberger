@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.createConnection('mongodb://localhost/app');
+mongoose.createConnection('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mlab.com:27429/heroku_vjphwnnq');
 
 
 // TODO: Fill out the userSchema.
