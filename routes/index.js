@@ -72,8 +72,6 @@ router.post('/logout', function(req, res){
 /* GET home page. */
 
 router.get('/home', function (req, res, next) {
-  var starid = req.body.id;
-  console.log(starid);
   Item.find({}, function(err, items) {
     var itemlist = [];
     items.forEach(function(item) {
@@ -91,21 +89,16 @@ router.get('/home', function (req, res, next) {
   });
 });
 
-/* starring items */
-// router.post('/starred', function(req, res, next) {
-//   var starreditems = req.body.starreditems;
-//   //console.log(tags);
-//   var newItem = new Item({
-//     'itemname': itemname,
-//     'price': price,
-//     'description': description,
-//     'tags':tags,
-//     'category':category,
-//     'user':user
-//   });
-//   newItem.save();
-//   res.send('/uploadsuccess');
-// });
+/* receiving starred items */
+router.post('/star', function (req, res, next) {
+  var starred = req.body.id;
+  console.log('user starred '+starred);
+  var user = req.body.username;
+  users.update(
+    {username: user},
+    {$push:{starred:starred}}
+    );
+});
 
 
 // router.post('/adduser', function(req, res, next) {
@@ -218,29 +211,84 @@ router.post('/searchresults', function(req, res) {
 });
 
 //CATEGORIES//
+// router.get('/tech', function(req,res){
+//   Item.find({'category':'Tech'}, function(err, items){
+//     res.send(items);
+//   });
+// });
+
+// router.get('/furniture', function(req,res){
+//   Item.find({'category':'Furniture'}, function(err, items){
+//     res.send(items);
+//   });
+// });
+
+
+
+// router.get('/books', function(req,res){
+//   Item.find({'category':'Books'}, function(err, items){
+//     res.send(items);
+//   });
+// });
+
+router.get('/clothes', function(req,res){
+  Item.find({'category':'Clothes'}, function(err, items){
+    // res.send(items);
+    var bool = true;
+    if(req.isAuthenticated()) {
+      bool = true;
+      var name_user = req.user.username;
+      res.render('home', {boolean: bool, items: items, name: name_user});
+    } else {
+      bool = false;
+      res.render('home', {boolean: bool, items: items});
+    };
+  });
+});
+
+router.get('/books', function(req,res){
+  Item.find({'category':'Books'}, function(err, items){
+    // res.send(items);
+    var bool = true;
+    if(req.isAuthenticated()) {
+      bool = true;
+      var name_user = req.user.username;
+      res.render('home', {boolean: bool, items: items, name: name_user});
+    } else {
+      bool = false;
+      res.render('home', {boolean: bool, items: items});
+    };
+  });
+});
+
 router.get('/tech', function(req,res){
   Item.find({'category':'Tech'}, function(err, items){
-    res.send(items);
+    // res.send(items);
+    var bool = true;
+    if(req.isAuthenticated()) {
+      bool = true;
+      var name_user = req.user.username;
+      res.render('home', {boolean: bool, items: items, name: name_user});
+    } else {
+      bool = false;
+      res.render('home', {boolean: bool, items: items});
+    };
   });
 });
 
 router.get('/furniture', function(req,res){
   Item.find({'category':'Furniture'}, function(err, items){
-    res.send(items);
+    // res.send(items);
+    var bool = true;
+    if(req.isAuthenticated()) {
+      bool = true;
+      var name_user = req.user.username;
+      res.render('home', {boolean: bool, items: items, name: name_user});
+    } else {
+      bool = false;
+      res.render('home', {boolean: bool, items: items});
+    };
   });
 });
 
-
-
-router.get('/books', function(req,res){
-  Item.find({'category':'Books'}, function(err, items){
-    res.send(items);
-  });
-});
-
-router.get('/clothes', function(req,res){
-  Item.find({'category':'Clothes'}, function(err, items){
-    res.send(items);
-  });
-});
 module.exports = router;

@@ -3,9 +3,10 @@ $(".blankstar").on("click", function() {
   var starid = $(this).attr('id');
   console.log('clicked ' + starid);
   $(this).html("&#9733;");
-  $.ajax({url:'/home', type: 'POST', data: {
+  $.ajax({url:'/star', type: 'POST', data: {
     id: itemid
     }, success: function(data) {
+      console.log('item '+itemid)
       window.location.href = data
     }
   });
