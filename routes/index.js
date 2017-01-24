@@ -194,6 +194,31 @@ router.post('/unstar', function (req, res, next) {
   };
 });
 
+router.get('/starreditems', function(req, res) {
+  if(req.isAuthenticated()) {
+    var bool = true;
+    var starredIds = req.user.starred;
+    var otherItems = [];
+    var name = req.user.name;
+    var username = req.user.username;
+    Item.find({'_id': { $in: starredIds}}, function (err, starredItems) {
+      if (err) {
+        console.log('error');
+        res.render('error')
+      } else {
+        bool = true;
+        res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, name: name, username:username
+        });
+      }
+    });
+  } else {
+    Item.find({}, function(err, items) {
+      var bool = false;
+      res.redirect('home', {boolean: bool, items: items})
+    });
+  };
+});
+
 /*resorting items THIS DOESN'T WORK YET*/ 
 router.post('/sort', function (req, res, next) {
   var sort = req.body.sort;
