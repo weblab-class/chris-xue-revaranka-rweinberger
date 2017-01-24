@@ -175,6 +175,25 @@ router.post('/star', function (req, res, next) {
   };
 });
 
+router.post('/unstar', function (req, res, next) {
+  var unstarred = req.body.id;
+  if(req.isAuthenticated()) {
+    var user = req.user.username;
+    var starredIds = req.user.starred;
+    var index = starredIds.indexOf(unstarred);
+    starredIds.splice(index, 1);
+    console.log(user);
+    console.log(index);
+    console.log(starredIds);
+    User.update({username:user},{$set:{starred:starredIds}}, function (err, raw) {
+      if (err) return handleError(err);
+      console.log('The raw response from Mongo was ', raw);
+    });
+  } else {
+    console.log('unregistered user attempted to unstar ' + starred);
+  };
+});
+
 /*resorting items THIS DOESN'T WORK YET*/ 
 router.post('/sort', function (req, res, next) {
   var sort = req.body.sort;
