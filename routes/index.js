@@ -1,11 +1,30 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var exphbs = require('express-handlebars');
 
 /* GET the User Model */
 var User = require('../schemas/user');
 var Item = require('../schemas/item');
 
+//helper fn for starring items
+// var hbs = exphbs.create({
+//     // Specify helpers which are only registered on this instance. 
+//     helpers: {
+//       starred: function (id, username) {
+//         console.log('doing starred function');
+//         User.findOne({ 'username': username }, 'starred', function (err, user) {
+//           var starred = user.starred;
+//           if (err) return handleError(err);
+//           if (starred.indexOf(id) != -1) {
+//             return "&#9733;"
+//           } else {
+//             return "&#9734;"
+//           };
+//         });
+//       }
+//     }
+// });
 
 // router.get('/', function(req, res, next) {
 //   res.render('index')
@@ -72,38 +91,91 @@ router.post('/logout', function(req, res){
  //       }
     
  //   });
-
 /* GET home page. */
 
 router.get('/home', function (req, res, next) {
   Item.find({}, function(err, items) {
-    var itemlist = [];
-    items.forEach(function(item) {
-      itemlist.push({itemname:item.itemname, price:item.price, description:item.description, user: item.user, id:item.id});
-    });
     var bool = true;
     if(req.isAuthenticated()) {
-      bool = true;
       var name = req.user.name;
-      res.render('home', {boolean: bool, items: itemlist, name: name});
+      var username = req.user.username;
+      var starredItemIds = req.user.starred;
+      var starredItems = [];
+      var otherItems = [];
+      for (var i = 0; i < items.length; i++) {
+        if (starredItemIds.indexOf(items[i].id) == -1) {
+          otherItems.push(items[i]);
+        };
+      };
+      for (var i = 0; i < starredItemIds.length; i++) {
+        id = starredItemIds[i];
+        Item.findOne({'_id': id}, function (err, item) {
+          if (err) {
+            console.log('error getting starred item')
+          } else {
+            starredItems.push(item)
+          };
+        });
+      };
+      console.log('starred: ' +starredItemIds);
+      console.log('other: ' +otherItems);
+      bool = true;
+      res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, name: name, username:username
+      });
     } else {
       bool = false;
-      res.render('home', {boolean: bool, items: itemlist});
+      res.render('home', {boolean: bool, otherItems: items, helpers: {
+        starred: function () {
+          console.log('doing starred function for unregistered user');
+          return "&#9734;"
+          }
+        }
+      });
     };
   });
 });
 
+// FUCKING rip
+// starred: function (id, username) {
+//   console.log('doing starred function');
+//   returnStar = "gg";
+//   function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve,ms));
+//   };
+//   User.findOne({ 'username': username }, function (err, user) {
+//     console.log(user);
+//     var starred = user.starred;
+//     console.log(starred);
+//     if (starred.indexOf(id) != -1) {
+//       console.log('returning filled');
+//       returnStar = "&#9733;"
+//     } else {
+//       console.log('returning blank');
+//       returnStar =  "&#9734;"
+//     };
+//   });
+//   while (returnStar =='gg') {
+//     sleep(100)
+//   };
+//   console.log(returnStar);
+//   console.log('hopefully returning');
+//   return returnStar
+
 /* receiving starred items */
+
 router.post('/star', function (req, res, next) {
   var starred = req.body.id;
-  var user = req.user.username;
-  console.log(starred);
-  console.log(user);
-  if (req.user.starred.indexOf(starred) == -1) {
-    User.update({username:user},{$push:{starred:starred}}, function (err, raw) {
-      if (err) return handleError(err);
-      console.log('The raw response from Mongo was ', raw);
-    });
+  if(req.isAuthenticated()) {
+    var user = req.user.username;
+    console.log(user);
+    if (req.user.starred.indexOf(starred) == -1) {
+      User.update({username:user},{$push:{starred:starred}}, function (err, raw) {
+        if (err) return handleError(err);
+        console.log('The raw response from Mongo was ', raw);
+      });
+    };
+  } else {
+    console.log('unregistered user attempted to star ' + starred);
   };
 });
 
