@@ -95,40 +95,39 @@ router.post('/logout', function(req, res){
 
 router.get('/home', function (req, res, next) {
   Item.find({}, function(err, items) {
-    res.render('error')
-    // var bool = true;
-    // if(req.isAuthenticated()) {
-    //   var name = req.user.name;
-    //   var username = req.user.username;
-    //   var starredItemIds = req.user.starred;
-    //   var otherItems = [];
-    //   for (var i = 0; i < items.length; i++) {
-    //     if (starredItemIds.indexOf(items[i].id) == -1) {
-    //       otherItems.push(items[i]);
-    //     };
-    //   };
-    //   Item.find({'_id': starredItemIds}, function (err, starredItems) {
-    //     if (err) {
-    //       console.log('error getting starred item');
-    //       res.render('error')
-    //     } else {
-    //       console.log('starred: ' +starredItemIds);
-    //       console.log('other: ' +otherItems);
-    //       bool = true;
-    //       res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, name: name, username:username
-    //       });
-    //     }
-    //   });
-    // } else {
-    //   bool = false;
-    //   res.render('home', {boolean: bool, otherItems: items, helpers: {
-    //     starred: function () {
-    //       console.log('doing starred function for unregistered user');
-    //       return "&#9734;"
-    //       }
-    //     }
-    //   });
-    // };
+    var bool = true;
+    if(req.isAuthenticated()) {
+      var name = req.user.name;
+      var username = req.user.username;
+      var starredItemIds = req.user.starred;
+      var otherItems = [];
+      for (var i = 0; i < items.length; i++) {
+        if (starredItemIds.indexOf(items[i].id) == -1) {
+          otherItems.push(items[i]);
+        };
+      };
+      Item.find({'_id': starredItemIds}, function (err, starredItems) {
+        if (err) {
+          console.log('error getting starred item');
+          res.render('error')
+        } else {
+          console.log('starred: ' +starredItemIds);
+          console.log('other: ' +otherItems);
+          bool = true;
+          res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, name: name, username:username
+          });
+        }
+      });
+    } else {
+      bool = false;
+      res.render('home', {boolean: bool, otherItems: items, helpers: {
+        starred: function () {
+          console.log('doing starred function for unregistered user');
+          return "&#9734;"
+          }
+        }
+      });
+    };
   });
 });
 
