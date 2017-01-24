@@ -1,4 +1,5 @@
-$(".star").on("click", function() {
+$(".star").on("click", function(event) {
+  console.log(event);
   var blankstarid = $(this).attr('id');
   var itemid = blankstarid.substring(4);
   console.log(itemid);
