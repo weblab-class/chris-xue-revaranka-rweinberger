@@ -387,10 +387,20 @@ router.post('/searchresults', function(req, res) {
     if(req.isAuthenticated()) {
       bool = true;
       var name = req.user.name;
-      res.render('searchresults', {boolean: bool, term:term,items: items, name: name});
+      var starredItemIds = req.user.starred;
+      var otherItems = [];
+      var starredItems = [];
+      for (var i=0; i<items.length; i++) {
+        if (starredItemIds.indexOf(items[i].id) == -1) {
+          otherItems.push(items[i]);
+        } else {
+          starredItems.push(items[i]);
+        };
+      };
+      res.render('searchresults', {boolean: bool, term:term,starred: starredItems, unstarred: otherItems, name: name});
     } else {
       bool = false;
-      res.render('searchresults', {boolean: bool, term:term, items: items});
+      res.render('searchresults', {boolean: bool, term:term, otherItems: items});
     };
   });
 });
