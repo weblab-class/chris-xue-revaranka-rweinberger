@@ -95,8 +95,8 @@ router.post('/logout', function(req, res){
 
 router.get('/home', function (req, res, next) {
   Item.find({}, function(err, items) {
-    var bool = true;
     if(req.isAuthenticated()) {
+      var bool = true;
       var name = req.user.name;
       var username = req.user.username;
       var starredItemIds = req.user.starred;
@@ -119,7 +119,7 @@ router.get('/home', function (req, res, next) {
         }
       });
     } else {
-      bool = false;
+      var bool = false;
       res.render('home', {boolean: bool, otherItems: items, helpers: {
         starred: function () {
           console.log('doing starred function for unregistered user');
@@ -406,60 +406,200 @@ router.post('/searchresults', function(req, res) {
 
 router.get('/clothes', function(req,res){
   Item.find({'category':'Clothes'}, function(err, items){
-    // res.send(items);
-    var bool = true;
     if(req.isAuthenticated()) {
-      bool = true;
+      var bool = true;
       var name = req.user.name;
-      res.render('home', {boolean: bool, items: items, name: name});
+      var username = req.user.username;
+      var starredItemIds = req.user.starred;
+      var otherItems = [];
+      for (var i = 0; i < items.length; i++) {
+        if (starredItemIds.indexOf(items[i].id) == -1) {
+          otherItems.push(items[i]);
+        };
+      };
+      Item.find({'_id': { $in: starredItemIds}}, function (err, starredItems) {
+        if (err) {
+          console.log('error getting starred item');
+          res.render('error')
+        } else {
+          console.log(starredItems);
+          console.log('starredItems is length ' + starredItems.length);
+          var starredItemsCopy = starredItems.slice(0);
+          for (i=0; i < starredItems.length; i++) {
+            if (starredItems[i].category != 'Clothes') {
+              console.log('splicing '+ starredItems[i].itemname + ' with category ' + starredItems[i].category);
+              var copyIndex = starredItemsCopy.indexOf(starredItems[i]);
+              starredItemsCopy.splice(copyIndex,1)
+            } else {
+              console.log(starredItems[i].itemname + ' with category ' + starredItems[i].category + ' is safe');
+            };
+          };
+          console.log('starred: ' +starredItemIds);
+          console.log('other: ' +otherItems);
+          bool = true;
+          res.render('home', {boolean: bool, starItems: starredItemsCopy, otherItems:otherItems, name: name, username:username
+          });
+        }
+      });
     } else {
-      bool = false;
-      res.render('home', {boolean: bool, items: items});
+      var bool = false;
+      res.render('home', {boolean: bool, otherItems: items, helpers: {
+        starred: function () {
+          console.log('doing starred function for unregistered user');
+          return "&#9734;"
+          }
+        }
+      });
     };
   });
 });
 
 router.get('/books', function(req,res){
   Item.find({'category':'Books'}, function(err, items){
-    // res.send(items);
-    var bool = true;
     if(req.isAuthenticated()) {
-      bool = true;
+      var bool = true;
       var name = req.user.name;
-      res.render('home', {boolean: bool, items: items, name: name});
+      var username = req.user.username;
+      var starredItemIds = req.user.starred;
+      var otherItems = [];
+      for (var i = 0; i < items.length; i++) {
+        if (starredItemIds.indexOf(items[i].id) == -1) {
+          otherItems.push(items[i]);
+        };
+      };
+      Item.find({'_id': { $in: starredItemIds}}, function (err, starredItems) {
+        if (err) {
+          console.log('error getting starred item');
+          res.render('error')
+        } else {
+          console.log(starredItems);
+          console.log('starredItems is length ' + starredItems.length);
+          var starredItemsCopy = starredItems.slice(0);
+          for (i=0; i < starredItems.length; i++) {
+            if (starredItems[i].category != 'Books') {
+              console.log('splicing '+ starredItems[i].itemname + ' with category ' + starredItems[i].category);
+              var copyIndex = starredItemsCopy.indexOf(starredItems[i]);
+              starredItemsCopy.splice(copyIndex,1)
+            } else {
+              console.log(starredItems[i].itemname + ' with category ' + starredItems[i].category + ' is safe');
+            };
+          };
+          console.log('starred: ' +starredItemIds);
+          console.log('other: ' +otherItems);
+          bool = true;
+          res.render('home', {boolean: bool, starItems: starredItemsCopy, otherItems:otherItems, name: name, username:username
+          });
+        }
+      });
     } else {
-      bool = false;
-      res.render('home', {boolean: bool, items: items});
+      var bool = false;
+      res.render('home', {boolean: bool, otherItems: items, helpers: {
+        starred: function () {
+          console.log('doing starred function for unregistered user');
+          return "&#9734;"
+          }
+        }
+      });
     };
   });
 });
 
 router.get('/tech', function(req,res){
   Item.find({'category':'Tech'}, function(err, items){
-    // res.send(items);
-    var bool = true;
     if(req.isAuthenticated()) {
-      bool = true;
+      var bool = true;
       var name = req.user.name;
-      res.render('home', {boolean: bool, items: items, name: name});
+      var username = req.user.username;
+      var starredItemIds = req.user.starred;
+      var otherItems = [];
+      for (var i = 0; i < items.length; i++) {
+        if (starredItemIds.indexOf(items[i].id) == -1) {
+          otherItems.push(items[i]);
+        };
+      };
+      Item.find({'_id': { $in: starredItemIds}}, function (err, starredItems) {
+        if (err) {
+          console.log('error getting starred item');
+          res.render('error')
+        } else {
+          console.log(starredItems);
+          console.log('starredItems is length ' + starredItems.length);
+          var starredItemsCopy = starredItems.slice(0);
+          for (i=0; i < starredItems.length; i++) {
+            if (starredItems[i].category != 'Tech') {
+              console.log('splicing '+ starredItems[i].itemname + ' with category ' + starredItems[i].category);
+              var copyIndex = starredItemsCopy.indexOf(starredItems[i]);
+              starredItemsCopy.splice(copyIndex,1)
+            } else {
+              console.log(starredItems[i].itemname + ' with category ' + starredItems[i].category + ' is safe');
+            };
+          };
+          console.log('starred: ' +starredItemIds);
+          console.log('other: ' +otherItems);
+          bool = true;
+          res.render('home', {boolean: bool, starItems: starredItemsCopy, otherItems:otherItems, name: name, username:username
+          });
+        }
+      });
     } else {
-      bool = false;
-      res.render('home', {boolean: bool, items: items});
+      var bool = false;
+      res.render('home', {boolean: bool, otherItems: items, helpers: {
+        starred: function () {
+          console.log('doing starred function for unregistered user');
+          return "&#9734;"
+          }
+        }
+      });
     };
   });
 });
 
 router.get('/furniture', function(req,res){
   Item.find({'category':'Furniture'}, function(err, items){
-    // res.send(items);
-    var bool = true;
     if(req.isAuthenticated()) {
-      bool = true;
+      var bool = true;
       var name = req.user.name;
-      res.render('home', {boolean: bool, items: items, name: name});
+      var username = req.user.username;
+      var starredItemIds = req.user.starred;
+      var otherItems = [];
+      for (var i = 0; i < items.length; i++) {
+        if (starredItemIds.indexOf(items[i].id) == -1) {
+          otherItems.push(items[i]);
+        };
+      };
+      Item.find({'_id': { $in: starredItemIds}}, function (err, starredItems) {
+        if (err) {
+          console.log('error getting starred item');
+          res.render('error')
+        } else {
+          console.log(starredItems);
+          console.log('starredItems is length ' + starredItems.length);
+          var starredItemsCopy = starredItems.slice(0);
+          for (i=0; i < starredItems.length; i++) {
+            if (starredItems[i].category != 'Furniture') {
+              console.log('splicing '+ starredItems[i].itemname + ' with category ' + starredItems[i].category);
+              var copyIndex = starredItemsCopy.indexOf(starredItems[i]);
+              starredItemsCopy.splice(copyIndex,1)
+            } else {
+              console.log(starredItems[i].itemname + ' with category ' + starredItems[i].category + ' is safe');
+            };
+          };
+          console.log('starred: ' +starredItemIds);
+          console.log('other: ' +otherItems);
+          bool = true;
+          res.render('home', {boolean: bool, starItems: starredItemsCopy, otherItems:otherItems, name: name, username:username
+          });
+        }
+      });
     } else {
-      bool = false;
-      res.render('home', {boolean: bool, items: items});
+      var bool = false;
+      res.render('home', {boolean: bool, otherItems: items, helpers: {
+        starred: function () {
+          console.log('doing starred function for unregistered user');
+          return "&#9734;"
+          }
+        }
+      });
     };
   });
 });
