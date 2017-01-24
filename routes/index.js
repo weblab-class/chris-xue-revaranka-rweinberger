@@ -106,7 +106,7 @@ router.get('/home', function (req, res, next) {
           otherItems.push(items[i]);
         };
       };
-      Item.find({'_id': starredItemIds}, function (err, starredItems) {
+      Item.find({'_id': { $in: starredItemIds}}, function (err, starredItems) {
         if (err) {
           console.log('error getting starred item');
           res.render('error')
