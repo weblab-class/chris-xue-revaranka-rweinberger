@@ -100,27 +100,22 @@ router.get('/home', function (req, res, next) {
       var name = req.user.name;
       var username = req.user.username;
       var starredItemIds = req.user.starred;
-      var starredItems = [];
       var otherItems = [];
       for (var i = 0; i < items.length; i++) {
         if (starredItemIds.indexOf(items[i].id) == -1) {
           otherItems.push(items[i]);
         };
       };
-      for (var i = 0; i < starredItemIds.length; i++) {
-        id = starredItemIds[i];
-        Item.findOne({'_id': id}, function (err, item) {
-          if (err) {
-            console.log('error getting starred item')
-          } else {
-            starredItems.push(item)
-          };
-        });
-      };
-      console.log('starred: ' +starredItemIds);
-      console.log('other: ' +otherItems);
-      bool = true;
-      res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, name: name, username:username
+      Item.find({'_id': starredItemIds}, function (err, starredItems) {
+        if (err) {
+          console.log('error getting starred item')
+        } else {
+          console.log('starred: ' +starredItemIds);
+          console.log('other: ' +otherItems);
+          bool = true;
+          res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, name: name, username:username
+          });
+        }
       });
     } else {
       bool = false;
