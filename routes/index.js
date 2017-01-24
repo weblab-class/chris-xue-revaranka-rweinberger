@@ -108,7 +108,8 @@ router.get('/home', function (req, res, next) {
       };
       Item.find({'_id': starredItemIds}, function (err, starredItems) {
         if (err) {
-          console.log('error getting starred item')
+          console.log('error getting starred item');
+          res.render('error')
         } else {
           console.log('starred: ' +starredItemIds);
           console.log('other: ' +otherItems);
