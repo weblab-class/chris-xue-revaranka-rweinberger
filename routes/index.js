@@ -31,7 +31,7 @@ var Item = require('../schemas/item');
 // });
 
 /* GET signup page. */
-router.get('/login', function(req, res, next) {
+router.get('/', function(req, res, next) {
   if(req.isAuthenticated()) {
     res.redirect('/home');
   } else {
@@ -46,7 +46,7 @@ router.get('/signup', function(req, res, next) {
 
 router.post('/login',
     passport.authenticate('local', { successRedirect: '/home',
-      failureRedirect: '/login',
+      failureRedirect: '/',
       failureFlash: false })
     );
 
@@ -70,7 +70,7 @@ router.post('/signup', function (req, res, next) {
 
 router.post('/logout', function(req, res){
   req.logout();
-  res.redirect('/login');
+  res.redirect('/');
 });
 
 // router.post('/', function(req, res, next) {
@@ -400,7 +400,7 @@ router.post('/searchresults', function(req, res) {
       res.render('searchresults', {boolean: bool, term:term,starred: starredItems, unstarred: otherItems, name: name});
     } else {
       bool = false;
-      res.render('searchresults', {boolean: bool, term:term, otherItems: items});
+      res.render('searchresults', {boolean: bool, term:term, unstarred: items});
     };
   });
 });
