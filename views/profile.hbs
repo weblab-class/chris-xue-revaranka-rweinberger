@@ -15,10 +15,14 @@
       </ul>
       <h1> {{name}}&#39;s items</h1>
       <div id="products">
-        {{#each items}}
-          {{> item_partial}}
+        {{#each starred}}
+          {{> starred_item_partial}}
+        {{/each }}
+        {{#each unstarred}}
+          {{> unstarred_item_partial}}
         {{/each }}
       </div>
     </div>
+    <script src="/scripts/staritem.js"></script>
   </body>
 </html>

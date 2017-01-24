@@ -332,17 +332,29 @@ router.get('/userlist', function(req, res) {
 router.get('/profile', function(req, res) {
   if(req.isAuthenticated()) {
     var email = req.user.username;
-    Item.find({'user':email}, function(err, items){
-    var bool = true;
+    var starredItemIds = req.user.starred;
+    var otherItems = [];
+    var starredItems = [];
     var name = req.user.name;
     var venmo = req.user.venmo;
-    res.render('profile', {boolean:bool, name: name, email: email, venmo: venmo, items: items});
+    Item.find({'user':email}, function(err, items){
+      var bool = true;
+      for (var i=0; i<items.length; i++) {
+        if (starredItemIds.indexOf(items[i].id) == -1) {
+          otherItems.push(items[i]);
+        } else {
+          starredItems.push(items[i]);
+        };
+      };
+      res.render('profile', {boolean:bool, name: name, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
     });
   } else {
     bool = false;
     res.redirect('login');
   };
 });
+
+
 
 /*search results*/
 router.post('/searchresults', function(req, res) {
