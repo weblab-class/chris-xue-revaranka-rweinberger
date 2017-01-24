@@ -281,7 +281,7 @@ router.get('/userlist', function(req, res) {
   User.find({}, function(err, users) {
     var userlist = [];
     users.forEach(function(user) {
-      userlist.push({name:user.name, venmo:user.venmo});
+      userlist.push({name:user.name, venmo:user.venmo, starred: user.starred});
     });
 
     res.send(userlist);  
