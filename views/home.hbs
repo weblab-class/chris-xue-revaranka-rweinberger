@@ -3,6 +3,7 @@
   <head>
     <title>Home</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   </head>
 
   <body>
@@ -22,10 +23,15 @@
         <a href="/furniture">furniture</a><br>
       </div>
       <div id="browse">
-        {{#each item}}
-          {{> item_partial}}
+        {{#each starItems}}
+          {{> starred_item_partial}}
+        {{/each }}
+        {{#each otherItems}}
+          {{> unstarred_item_partial}}
         {{/each }}
       </div>
     </div>
+  <script src="/scripts/sortby.js"></script>
+  <script src="/scripts/staritem.js"></script>
   </body>
 </html>

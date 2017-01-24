@@ -95,7 +95,15 @@ a:hover {
   border-radius: 20px;
   padding: 10px;
   margin-left: 240px;
-  margin-top: -160px;
+  margin-top: -163px;
+  background-color: #F3F3F3;
+  display: inline-block;
+}
+#products{
+  border-radius: 20px;
+  padding: 10px;
+  margin-left: 40px;
+  margin-top: 20px;
   background-color: #F3F3F3;
   display: inline-block;
 }
@@ -207,8 +215,59 @@ a:hover {
   background-color: #878787;
   border-radius: 15px;
 }
-#hidethis {
-  color:#fff;
+.star {
+  font-size: 25px;
+  position: absolute;
+  top: 27px;
+  left: 30px;
+}
+.blankstar {
+  font-size: 25px;
+  position: absolute;
+  top: 27px;
+  left: 30px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.show {display:block;}
+.dropdown{
+  float: right;
+  margin-right: 25px;
+  margin-top: 25px;
+  font-family: ralewayMed;
+}
+.dropbtn {
+  padding: 7px;
+  background-color: #D3D3D3;
+  border-radius: 15px;
+  border: none;
+  border-bottom: solid 5px #878787;
+  border-right: solid 5px #878787;
+}
+.dropbtn:active {
+  border: none;
+}
+.dropbtn:focus {
+  outline: 0;
+}
+.droppedbtn{
+  background-color: #D3D3D3;
+  margin: 7px;
+  display: block;
+  padding: 4px;
+}
+#sortbox{
+  margin-top: 15px;
+  width: 143px;
+  line-height: 24px;
+  background-color: #F3F3F3;
+  padding: 20px;
+  border-radius: 20px;
 }
 /*
 @media screen and (max-width: 700px){

@@ -1,6 +1,4 @@
 var mongoose = require('mongoose');
-mongoose.createConnection('mongodb://localhost/app');
-
 
 // TODO: Fill out the userSchema.
 // Hint: a user is an object such as

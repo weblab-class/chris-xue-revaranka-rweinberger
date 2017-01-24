@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-// mongoose.createConnection('mongodb://localhost/app');
 
 // // TODO: Fill out the userSchema.
 // // Hint: a user is an object such as
@@ -17,7 +16,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema,
 passportLocalMongoose = require('passport-local-mongoose');
 
-var User = new Schema({name: String, venmo: String});
+var User = new Schema({name: String, venmo: String, starred: Array});
 User.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('User', User);

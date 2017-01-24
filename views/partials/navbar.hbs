@@ -1,22 +1,31 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <div id="nav">
   <a href="/home">
     <img id="logo" src="/images/beaverlogo.png" alt="HTML tutorial" style="width:60px;height:60px;border:0;">
   </a>
 
   {{#if boolean}}
-    <form name="logout" method = 'post' action = '/logout'>
-      <button class="navbutton" type="submit" >Logout</button>
-    </form>
-    <h>Welcome {{ name }}</h>
+    <div class="dropdown">
+      <button class='dropbtn' onclick="dropdown()">Welcome, {{name}}!</button>
+      <div id="dropdown" class="dropdown-content">
+        <button class="droppedbtn" type="button" onclick="location.href='/newitem'">List an Item</button>
+        <button class="droppedbtn" type="button" onclick="location.href='/starreditems'">Starred Items</button>
+        <button class="droppedbtn" type="button" onclick="location.href='/profile'">Profile</button>
+        <form name="logout" method = 'post' action = '/logout'>
+          <button class="droppedbtn" type="submit" >Logout</button>
+        </form>
+      </div>
+    </div>
   {{else}}
     <form name="logout" method = 'post' action = '/login'>
       <button class="navbutton" type="submit" >Login</button>
     </form>
   {{/if}}
-  <button class="navbutton" type="button">Starred Items</button>
-  <button class="navbutton" type="button" onclick="location.href='/newitem'">List an Item</button>
+  <!-- <button class="navbutton" type="button">Starred Items</button>
+  <button class="navbutton" type="button" onclick="location.href='/newitem'">List an Item</button> -->
   <form id="search" method='post' action="/searchresults">
     <input class="inputbox" id="searchbox" type="text" placeholder="search" name="term">
     <input class="navbutton" id="go" type="submit" value="go!">
   </form>
+  <script src="/scripts/dropdown.js"></script>
 </div>

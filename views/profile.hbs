@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>profile</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+
+  <body>
+    {{> navbar}}
+    <div id='content'>
+      <h1> {{name}} </h1>
+      <ul style="list-style: none">
+        <li>Venmo: {{venmo}}</li>
+        <li>Email: {{email}}</li>
+      </ul>
+      <h1> {{name}}&#39;s items</h1>
+      <div id="products">
+        {{#each starred}}
+          {{> starred_item_partial}}
+        {{/each }}
+        {{#each unstarred}}
+          {{> unstarred_item_partial}}
+        {{/each }}
+      </div>
+    </div>
+    <script src="/scripts/staritem.js"></script>
+  </body>
+</html>
