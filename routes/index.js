@@ -207,14 +207,11 @@ router.get('/starreditems', function(req, res) {
         res.render('error')
       } else {
         bool = true;
-        res.render('starred', {starred: starredItems, firstname: firstname});
+        res.render('starred', {boolean:bool, starred: starredItems, firstname: firstname});
       }
     });
   } else {
-    Item.find({}, function(err, items) {
-      var bool = false;
-      res.redirect('home', {boolean: bool, items: items})
-    });
+    res.redirect('/')
   };
 });
 
@@ -267,7 +264,7 @@ router.get('/newitem', function(req, res) {
     res.render('newitem', {boolean: bool, firstname: firstname});
   } else {
     bool = false;
-    res.redirect('/login');
+    res.redirect('/');
   };
 });
 
@@ -303,7 +300,7 @@ router.get('/uploadsuccess', function(req, res) {
     res.render('uploadsuccess', {boolean: bool, firstname: firstname});
   } else {
     bool = false;
-    res.redirect('/login');
+    res.redirect('/');
   };
 });
 
@@ -354,11 +351,39 @@ router.get('/profile', function(req, res) {
     });
   } else {
     bool = false;
-    res.redirect('login');
+    res.redirect('/');
   };
 });
 
+/*manage items page*/
+router.get('/manageitems', function(req, res) {
+  if(req.isAuthenticated()) {
+    var user = req.user.username;
+    var bool = true;
+    var firstname = req.user.firstname;
+    Item.find({'user':user}, function(err, items) {
+      res.render('manageitems', {boolean:bool, firstname: firstname, items:items, user:user});
+    });
+  } else {
+    res.redirect('/');
+  };
+});
 
+router.post('/deleteitem', function(req, res) {
+  var user = req.user.username;
+  var bool = true;
+  var firstname = req.user.firstname;
+  var deleteItemId = req.body.itemid;
+  Item.remove({ _id: deleteItemId }, function(err, raw) {
+    if (!err) {
+      console.log(deleteItemId);
+      // console.log('The raw response from Mongo was ', raw);
+      res.render('deletesuccess', {boolean:bool, firstname: firstname});
+    } else {
+      console.log('error deleting item');
+    }
+  });
+});
 
 /*search results*/
 router.post('/searchresults', function(req, res) {

@@ -21,7 +21,9 @@ a:visited {
 a:hover {
   color: #D3D3D3;
 }
-
+p{
+  margin-left: 40px;
+}
 #nav {
   position: fixed;
   background-color: #F3F3F3;
@@ -71,6 +73,7 @@ a:hover {
 #testp {
   padding: 20px;
   padding-top: 0px;
+  padding-left: 0px;
 }
 #search {
   display: inline;
@@ -275,6 +278,21 @@ a:hover {
   background-color: #F3F3F3;
   padding: 20px;
   border-radius: 20px;
+}
+.manage_elt{
+  display: inline-block;
+}
+.manageritem {
+  padding: 7px;
+}
+.canceldelete{
+  display:inline-block;
+}
+.deletebtn{
+  display: inline-block;
+}
+.hiddenconfirm{
+  padding: 7px;
 }
 /*
 @media screen and (max-width: 700px){

@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+
+  <body>
+    {{> navbar}}
+
+    <div id="content">
+      <h1 id="title">Item Manager for {{user}}</h1>
+      <p> Delete any of your posted items.</p>
+      <div id="products">
+        {{#each items}}
+          {{> item_manager_partial}}
+        {{/each }}
+      </div>
+    </div>
+    <script src="/scripts/deleteitem.js"></script>
+  </body>
+</html>
