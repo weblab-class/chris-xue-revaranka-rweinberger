@@ -275,6 +275,7 @@ router.post('/uploaditem', function(req, res, next) {
   var tags = req.body.tags;
   var category = req.body.category;
   var user = req.user.username;
+  var userid = req.user.id;
   var firstname = req.user.firstname;
   var lastname = req.user.lastname;
   //console.log(tags);
@@ -286,7 +287,8 @@ router.post('/uploaditem', function(req, res, next) {
     'category':category,
     'user':user,
     'firstname':firstname,
-    'lastname':lastname
+    'lastname':lastname,
+    'userid': userid
   });
   newItem.save();
   res.send('/uploadsuccess');
@@ -347,12 +349,46 @@ router.get('/profile', function(req, res) {
           starredItems.push(items[i]);
         };
       };
-      res.render('profile', {boolean:bool, firstname: firstname, lastname:lastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+      res.render('profile', {boolean:bool, firstname: firstname, profilefirstname: firstname, profilelastname:lastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
     });
   } else {
     bool = false;
     res.redirect('/');
   };
+});
+
+router.get('/profile/:id', function(req, res, next) {  
+  var id = req.params.id;
+  User.findOne({ '_id': id }, function (err, user) {
+    if (err) return handleError(err);
+    console.log('found user ' + user.firstname +' ' +user.lastname);
+    var email = user.username;
+    var starredItemIds = user.starred;
+    var otherItems = [];
+    var starredItems = [];
+    var profilefirstname = user.firstname;
+    var profilelastname = user.lastname;
+    var venmo = user.venmo;
+    if(req.isAuthenticated()) {
+      var firstname = req.user.firstname;
+      Item.find({'user':email}, function(err, items){
+        var bool = true;
+        for (var i=0; i<items.length; i++) {
+          if (starredItemIds.indexOf(items[i].id) == -1) {
+            otherItems.push(items[i]);
+          } else {
+            starredItems.push(items[i]);
+          };
+        };
+        res.render('profile', {boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+      });
+    } else {
+      bool = false;
+      Item.find({'user':email}, function(err, items){
+        res.render('profile', {boolean:bool, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, unstarred: items});
+      });
+    };
+  })
 });
 
 /*manage items page*/
