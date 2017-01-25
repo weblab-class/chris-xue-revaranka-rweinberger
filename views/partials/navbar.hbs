@@ -2,14 +2,16 @@
 <div id="nav">
   <a href="/home">
     <img id="logo" src="/images/beaverlogo.png" alt="HTML tutorial" style="width:60px;height:60px;border:0;">
+    <div id='hometext'>beaver++</div>
   </a>
 
   {{#if boolean}}
     <div class="dropdown">
-      <button class='dropbtn' onclick="dropdown()">Welcome, {{name}}!</button>
+      <button class='dropbtn' onclick="dropdown()">Welcome, {{firstname}}!</button>
       <div id="dropdown" class="dropdown-content">
         <button class="droppedbtn" type="button" onclick="location.href='/newitem'">List an Item</button>
         <button class="droppedbtn" type="button" onclick="location.href='/starreditems'">Starred Items</button>
+        <button class="droppedbtn" type="button" onclick="location.href='/manageitems'">Manage Items</button>
         <button class="droppedbtn" type="button" onclick="location.href='/profile'">Profile</button>
         <form name="logout" method = 'post' action = '/logout'>
           <button class="droppedbtn" type="submit" >Logout</button>

@@ -39,6 +39,13 @@ a:hover {
   padding: 10px;
   display: inline-block;
 }
+#hometext{
+  font-size: 200%;
+  padding: 10px;
+  position: fixed;
+  top: 15px;
+  left: 70px;
+}
 
 .navbutton {
   float: right;
