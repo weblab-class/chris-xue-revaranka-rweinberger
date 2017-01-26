@@ -24,7 +24,9 @@ a:hover {
 
 
 /*POP UPS*/
-
+body.modal-open div.modal-backdrop { 
+    z-index: 0; 
+}
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */

@@ -157,8 +157,22 @@ router.post('/login',
       failureFlash: false })
     );
 
-router.get('/signup', function(req, res, next) {
-  res.render('signup', {});
+router.post('/signup', function (req, res, next) {
+  console.log('signed up');
+  console.log(req.body);
+  var user = new User({firstname: req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo, username: req.body.username});
+  User.register(user, req.body.password, function(registrationError) {
+    if(!registrationError) {
+      req.login(user, function(loginError)
+       {
+        if (loginError) { return next(loginError); }
+        return res.redirect('/home');
+      });
+    } else {
+      res.send(registrationError);
+    }
+  });
+
 });
 
 router.get('/logout', function(req, res){
@@ -279,10 +293,7 @@ router.post('/unstar', function (req, res, next) {
     console.log(user);
     console.log(index);
     console.log(starredIds);
-    User.update({username:user},{$set:{starred:starredIds}}, function (err, raw) {
-      if (err) return handleError(err);
-      console.log('The raw response from Mongo was ', raw);
-    });
+    f
   } else {
     console.log('unregistered user attempted to unstar ' + starred);
   };
@@ -561,7 +572,7 @@ router.post('/searchresults', function(req, res) {
 // });
 
 router.get('/clothes', function(req,res){
-  Item.find({'category':'Clothes'}, function(err, items){
+  Item.find({'category':'clothes'}, function(err, items){
     if(req.isAuthenticated()) {
       var bool = true;
       var firstname = req.user.firstname;
@@ -592,7 +603,7 @@ router.get('/clothes', function(req,res){
 });
 
 router.get('/books', function(req,res){
-  Item.find({'category':'Books'}, function(err, items){
+  Item.find({'category':'books'}, function(err, items){
     if(req.isAuthenticated()) {
       var bool = true;
       var firstname = req.user.firstname;
@@ -623,7 +634,7 @@ router.get('/books', function(req,res){
 });
 
 router.get('/tech', function(req,res){
-  Item.find({'category':'Tech'}, function(err, items){
+  Item.find({'category':'tech'}, function(err, items){
     if(req.isAuthenticated()) {
       var bool = true;
       var firstname = req.user.firstname;
@@ -654,7 +665,7 @@ router.get('/tech', function(req,res){
 });
 
 router.get('/furniture', function(req,res){
-  Item.find({'category':'Furniture'}, function(err, items){
+  Item.find({'category':'furniture'}, function(err, items){
     if(req.isAuthenticated()) {
       var bool = true;
       var firstname = req.user.firstname;

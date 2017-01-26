@@ -1,4 +1,49 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <div class="product">
+  <div>
+    <a id="productcontent" data-toggle="modal" data-target="#{{itemname}}">{{itemname}}</a>
+    <img src="/uploads/{{picture}}" />
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="{{itemname}}" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <div class='blankstar' id='blankstar{{id}}'>&#9734;</div>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{{itemname}}</h4>
+          &#36;&#32; {{price}}
+        </div>
+
+        <div class="modal-body">
+          {{description}}
+          <img src="/uploads/{{picture}}" />
+          <br><br>
+          posted by <a href='/profile/{{userid}}'> {{firstname}} {{lastname}} </a><br> ({{user}})
+        </div>
+
+        <div style="display:none" class='id' id="{{id}}"></div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+
+<!-- <div class="product">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <div>
     <a id="productcontent" href="#{{itemname}}"> {{itemname}}</a>
@@ -21,4 +66,4 @@
       <div style="display:none" class='id' id="{{id}}"></div>
     </div>
   </div>
-</div>
+</div> -->
