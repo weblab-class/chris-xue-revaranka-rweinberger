@@ -58,6 +58,15 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
     res.redirect('/uploadsuccess');
   });
 
+  router.post('/uploadpic', upload.single('profpic'), function(req, res, next){
+   if (req.isAuthenticated){
+      User.update({username:req.user.username},{$set:{picture:req.file.filename}}, function(err, raw){
+        if (err){ 
+          return handleError(err);
+        }
+      })
+   }
+  })
   router.get('/uploads/:filename', function(req, res) {
   // TODO: set proper mime type + filename, handle errors, etc...
   var filename = req.params.filename;
@@ -420,6 +429,7 @@ router.get('/profile', function(req, res) {
     var firstname = req.user.firstname;
     var lastname = req.user.lastname;
     var venmo = req.user.venmo;
+    var profpic = req.user.picture
     Item.find({'user':email}, function(err, items){
       var bool = true;
       for (var i=0; i<items.length; i++) {
@@ -429,7 +439,7 @@ router.get('/profile', function(req, res) {
           starredItems.push(items[i]);
         };
       };
-      res.render('profile', {boolean:bool, firstname: firstname, profilefirstname: firstname, profilelastname:lastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+      res.render('profile', {profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: firstname, profilelastname:lastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
     });
   } else {
     bool = false;
@@ -449,6 +459,7 @@ router.get('/profile/:id', function(req, res, next) {
     var profilefirstname = user.firstname;
     var profilelastname = user.lastname;
     var venmo = user.venmo;
+    var profpic = user.picture;
     if(req.isAuthenticated()) {
       var firstname = req.user.firstname;
       Item.find({'user':email}, function(err, items){
@@ -460,12 +471,12 @@ router.get('/profile/:id', function(req, res, next) {
             starredItems.push(items[i]);
           };
         };
-        res.render('profile', {boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+        res.render('profile', {profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
       });
     } else {
       bool = false;
       Item.find({'user':email}, function(err, items){
-        res.render('profile', {boolean:bool, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, unstarred: items});
+        res.render('profile', {profpic: profpic, boolean:bool, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, unstarred: items});
       });
     };
   })
