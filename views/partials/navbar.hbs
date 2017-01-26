@@ -157,20 +157,17 @@
             <div class="modal-body">
               <form name="sign in" method = 'post' action = '/login'>
                 <ul>
-                  <li style = 'position:relative; right: 110px;font-size:17pt''> Email: </li>
-                  <li> <input style = 'height: 50px; font-size:20pt' type = 'text' placeholder = 'email' name = 'username'> </li>
+                  <!-- <li style = 'position:relative; font-size:17pt''> Email: </li> -->
+                  <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'text' placeholder = 'Email' name = 'username'> </li>
 
 
-                  <li style = 'position:relative; right: 88px;font-size:17pt''> Password: </li>
+                  <!-- <li style = 'position:relative; font-size:17pt''> Password: </li> -->
 
-                  <li> <input style = 'height: 50px; font-size:20pt;' type = 'password' placeholder= 'password' name = 'password'> </li>
+                  <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'password' placeholder= 'Password' name = 'password'> </li>
 
-                  <li><button class="button" type = 'submit'>Login</button></li>
+                  <li><button class="btn btn-default" type = 'submit'>Login</button></li>
                 </ul>
               </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
           
@@ -197,37 +194,38 @@
             <div class="modal-body">
               <form name="signup" method="post" action="/signup">
                 <ul>
-                  <li>First name</li>
+                  <!-- <li>First name</li> -->
 
-                  <li><input type="text" placeholder="First name" name="firstname" required></li>
+                  <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="First name" name="firstname" required></li>
 
-                  <li>Last name</li>
-
-
-                  <li><input type="text" placeholder="First name" name="lastname" required></li>
-
-                  <li>Venmo</li>
-
-                  <li><input type="text" placeholder="Venmo" name="venmo"></li>
-
-                  <li>Email</li>
+                  <!-- <li>Last name</li> -->
 
 
-                  <li><input type="email" placeholder="Email" name="username" required></li>
+                  <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Last name" name="lastname" required></li>
 
-                  <li>Password</li>
+                  <!-- <li>Venmo</li> -->
 
-                  <li><input type="password" placeholder="Password" name="password" required></li>
+                  <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Venmo" name="venmo"></li>
 
-                  <li> <input type='password' placeholder ="Confirm Password" id = 'password' required></li>
+                  <!-- <li>Email</li> -->
+
+
+                  <li><input type="email" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Email" name="username" required></li>
+
+                  <!-- <li>Password</li> -->
+
+                  <li><input type="password" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Password" name="password" required></li>
+
+                  <li> <input type='password' style = 'font-size:14pt; padding: 4px; margin:7px' placeholder ="Confirm Password" id = 'password' required></li>
                   <script src="/scripts/confirmpass.js"></script>
-                  <li><button type="submit">Sign Up</button>
+                  <li><button class="btn btn-default" type="submit" style='margin:4px;'>Sign Up</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" style='margin:4px;'>Cancel</button></li>
                 </ul>
               </form>
             </div>
-            <div class="modal-footer">
+           <!--  <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+            </div> -->
           </div>
           
         </div>
