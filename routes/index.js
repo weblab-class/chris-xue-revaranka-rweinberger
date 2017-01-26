@@ -101,7 +101,7 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
 
 /* GET signup page. */
 router.get('/', function(req, res, next) {
-<<<<<<< HEAD
+
   Item.find({}, function(err, items) {
     if(req.isAuthenticated()) {
       var bool = true;
