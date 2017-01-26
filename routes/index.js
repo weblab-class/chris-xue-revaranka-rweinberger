@@ -14,7 +14,9 @@ var GridFsStorage = require('multer-gridfs-storage');
 var User = require('../schemas/user');
 var Item = require('../schemas/item');
 
-mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mlab.com:27429/heroku_vjphwnnq', function(err, db) {
+// mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mlab.com:27429/heroku_vjphwnnq
+
+mongo.connect('mongodb://localhost/app', function(err, db) {
     var gfs = Grid(db, mongo);
     var storage = GridFsStorage({
         gfs: gfs,
@@ -141,7 +143,6 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/login', function(req, res, next) {
-
   User.register(user, req.body.password, function(registrationError) {
     if(!registrationError) {
       req.login(user, function(loginError)
@@ -156,10 +157,41 @@ router.get('/login', function(req, res, next) {
 
 });
 
+
+router.post('/login',
+    passport.authenticate('local', { successRedirect: '/home',
+      failureRedirect: '/login',
+      failureFlash: false })
+    );
+
+
+router.post('/signup', function (req, res, next) {
+  console.log('signed up');
+  var user = new User({name: req.body.name, venmo: req.body.venmo, username: req.body.username});
+  User.register(user, req.body.password, function(registrationError) {
+    if(!registrationError) {
+      req.login(user, function(loginError)
+       {
+        if (loginError) { return next(loginError); }
+        return res.redirect('/home');
+      });
+    } else {
+      res.send(registrationError);
+    }
+  });
+
+});
+
+
+router.get('/signup', function(req, res, next) {
+  res.render('signup', {});
+});
+
 router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
+
 
 // router.post('/', function(req, res, next) {
   // res.render('index', {title: 'Login'});
