@@ -12,7 +12,8 @@ var itemSchema = new mongoose.Schema({
   user: {type: String, required: true},
   firstname: {type: String, required: true},
   lastname: {type: String, required: true},
-  userid: {type:String, required: true}
+  userid: {type:String, required: true},
+  picture: {type:String, required: false}
 }, {collection: 'items'});
 
 var item = mongoose.model('Item', itemSchema);
