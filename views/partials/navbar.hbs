@@ -1,31 +1,170 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<div id="nav">
-  <a href="/home">
-    <img id="logo" src="/images/beaverlogo.png" alt="HTML tutorial" style="width:60px;height:60px;border:0;">
-  </a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/stylesheets/style.css">
 
-  {{#if boolean}}
-    <div class="dropdown">
-      <button class='dropbtn' onclick="dropdown()">Welcome, {{name}}!</button>
-      <div id="dropdown" class="dropdown-content">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- <div id="nav"> -->
+<!--   <a href="/home">
+    <img id="logo" src="/images/beaverlogo.png" alt="HTML tutorial" style="width:60px;height:60px;border:0;">
+  </a> -->
+
+
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #47474C;">
+
+    <a class="navbar-brand navbar nav" href="/"</a>
+      <img src="/images/webbeaver.png" width="90" height="40" class="d-inline-block" alt="">
+
+    </a>
+
+    <button class = 'navbar-toggle' data-toggle = 'collapse' data-target = '.navHeaderCollapse'>
+      <span class = 'icon-bar'></span>
+      <span class = 'icon-bar'></span>
+      <span class = 'icon-bar'></span>
+    </button>
+
+    <div class="collapse navbar-collapse navHeaderCollapse">
+
+
+  <form class="navbar-form navbar-left" method="post" action="/searchresults">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="find items" name="term">
+    </div>
+    <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+  </form> 
+
+    {{#if boolean}}
+<!--     <div class="dropdown">
+      <button class='dropbtn' onclick="dropdown()">Welcome, {{name}}!</button> -->
+<!--       <div id="dropdown" class="dropdown-content">
+
+ --> 
+<!-- 
+  <form id="search" method='post' action="/searchresults">
+      <input class="inputbox" id="searchtopbox" type="text"  placeholder="search item" name="term">
+      <input class="onebutton" id="go" type="submit" value="+ +">
+  </form>  -->   
+
+
+
+
+<!--       <form class="form-inline">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search Items">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" href="/searchresults">Search</button>
+      </form> -->
+<!--       <div class="col-sm-3 col-md-3 pull-left">
+            <form action='/searchresult' class="navbar-form" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="q">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>  -->   
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item">
+            <a class="nav-link" href="/newitem">List an Item</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/starreditems">Starred Items</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/profile">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+
+ <!-- <form name="logout" method = 'post' action = '/logout'>
+          <button class="droppedbtn" type="submit" >Logout</button>
+          </form>
         <button class="droppedbtn" type="button" onclick="location.href='/newitem'">List an Item</button>
         <button class="droppedbtn" type="button" onclick="location.href='/starreditems'">Starred Items</button>
-        <button class="droppedbtn" type="button" onclick="location.href='/profile'">Profile</button>
-        <form name="logout" method = 'post' action = '/logout'>
+        <button class="droppedbtn" type="button" onclick="location.href='/profile'">Profile</button> -->
+
+<!--         <form name="logout" method = 'post' action = '/logout'>
           <button class="droppedbtn" type="submit" >Logout</button>
-        </form>
-      </div>
-    </div>
+        </form> -->
+
   {{else}}
-    <form name="logout" method = 'post' action = '/login'>
-      <button class="navbutton" type="submit" >Login</button>
-    </form>
+
+<!--      <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #47474C;">
+
+          <a class="navbar-brand navbar nav" href="/"</a>
+            <img src="/images/webbeaver.png" width="90" height="35" class="d-inline-block" alt="">
+      
+          </a>
+
+          <button class = 'navbar-toggle' data-toggle = 'collapse' data-target = '.navHeaderCollapse'>
+            <span class = 'icon-bar'></span>
+            <span class = 'icon-bar'></span>
+            <span class = 'icon-bar'></span>
+          </button>
+
+          <div class="collapse navbar-collapse navHeaderCollapse"> -->
+
+
+    <!--       <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search Items">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" href="/searchresults">Search</button>
+          </form> -->
+    <!--       <div class="col-sm-3 col-md-3 pull-left">
+                <form action='/searchresult' class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>  --> 
+ 
+
+            <ul class="nav navbar-nav navbar-right">
+
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/signup">Sign Up</a>
+              </li>
+
+            </ul>
+          </div>
+        </nav>
+
+
+  <!--     <form name="logout" method = 'post' action = '/login'>
+          <button class="droppedbtn" type="submit" >Login</button>
+          </form>
+ -->
+   
+     
   {{/if}}
-  <!-- <button class="navbutton" type="button">Starred Items</button>
-  <button class="navbutton" type="button" onclick="location.href='/newitem'">List an Item</button> -->
-  <form id="search" method='post' action="/searchresults">
+<!--   </div>
+ -->
+    <!--      <form id="search" method='post' action="/searchresults">
+            <input class="inputbox" id="searchbox" type="text"  placeholder="search item" name="term">
+            <input class="twobuttons" id="go" type="submit" value="+ +" >
+        </form> -->
+
+<!--   <form id="search" method='post' action="/searchresults">
     <input class="inputbox" id="searchbox" type="text" placeholder="search" name="term">
     <input class="navbutton" id="go" type="submit" value="go!">
   </form>
-  <script src="/scripts/dropdown.js"></script>
-</div>
+<!--   <script src="/scripts/dropdown.js"></script> -->
+ </div>
+

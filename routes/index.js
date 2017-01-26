@@ -31,6 +31,45 @@ var Item = require('../schemas/item');
 // });
 
 /* GET signup page. */
+router.get('/', function(req, res, next) {
+  Item.find({}, function(err, items) {
+    if(req.isAuthenticated()) {
+      var bool = true;
+      var name = req.user.name;
+      var username = req.user.username;
+      var starredItemIds = req.user.starred;
+      var otherItems = [];
+      for (var i = 0; i < items.length; i++) {
+        if (starredItemIds.indexOf(items[i].id) == -1) {
+          otherItems.push(items[i]);
+        };
+      };
+      Item.find({'_id': { $in: starredItemIds}}, function (err, starredItems) {
+        if (err) {
+          console.log('error getting starred item');
+          res.render('error')
+        } else {
+          console.log('starred: ' +starredItemIds);
+          console.log('other: ' +otherItems);
+          bool = true;
+          res.render('slashscreen', {boolean: bool, starItems: starredItems, otherItems:otherItems, name: name, username:username
+          });
+        }
+      });
+    } else {
+      var bool = false;
+      res.render('slashscreen', {boolean: bool, otherItems: items, helpers: {
+        starred: function () {
+          console.log('doing starred function for unregistered user');
+          return "&#9734;"
+          }
+        }
+      });
+    };
+});
+});
+
+
 router.get('/login', function(req, res, next) {
   if(req.isAuthenticated()) {
     res.redirect('/home');
@@ -43,7 +82,6 @@ router.get('/signup', function(req, res, next) {
   res.render('signup', {});
 });
 
-
 router.post('/login',
     passport.authenticate('local', { successRedirect: '/home',
       failureRedirect: '/login',
@@ -51,8 +89,7 @@ router.post('/login',
     );
 
 router.post('/signup', function (req, res, next) {
-  console.log('signed up');
-  console.log(req.body);
+
   var user = new User({name: req.body.name, venmo: req.body.venmo, username: req.body.username});
   User.register(user, req.body.password, function(registrationError) {
     if(!registrationError) {
@@ -68,7 +105,7 @@ router.post('/signup', function (req, res, next) {
 
 });
 
-router.post('/logout', function(req, res){
+router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/login');
 });

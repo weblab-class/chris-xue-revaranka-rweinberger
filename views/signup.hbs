@@ -4,36 +4,46 @@
     <title>{{ SignUp }}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+   
   </head>
 
   <body>
     <h1 name="Sign-Up"></h1>
     <div name="content">
-      <h1>{{ title }} Form</h1>
 
-      <form name="signup" method="post" action="/signup">
-        <ul>
-          <li>Name</li>
+          <h1>{{ title }} Form</h1>
 
-          <li><input type="text" placeholder="Name" name="name" required></li>
+              <form name="signup" method="post" action="/signup">
+                <ul>
+                  <li>Name</li>
 
-          <li>Venmo</li>
+                  <li><input type="text" placeholder="Name" name="name" required></li>
 
-          <li><input type="text" placeholder="Venmo" name="venmo"></li>
+                  <li>Venmo</li>
 
-          <li>Email</li>
+                  <li><input type="text" placeholder="Venmo" name="venmo"></li>
 
-          <li><input type="email" placeholder="Email" name="username" required></li>
+                  <li>Email</li>
 
-          <li>Password</li>
+                  <li><input type="email" placeholder="Email" name="username" required></li>
 
-          <li><input type="password" placeholder="Password" name="password" required></li>
+                  <li>Password</li>
 
-          <li> <input type='password' placeholder ="Confirm Password" id = 'password' required></li>
-          <script src="/scripts/confirmpass.js"></script>
-          <li><button type="submit">Sign Up</button>
-        </ul>
-      </form>
+                  <li><input type="password" placeholder="Password" name="password" required></li>
+
+                  <li> <input type='password' placeholder ="Confirm Password" id = 'password' required></li>
+                  <script src="/scripts/confirmpass.js"></script>
+                  <li><button type="submit">Sign Up</button>
+                </ul>
+              </form>
+ 
+<!--         <div id =wrapper> -->
+
+
+
 
 <!--       <a href="/userlist">See userlist</a> -->
     </div>

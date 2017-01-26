@@ -22,14 +22,131 @@ a:hover {
   color: #D3D3D3;
 }
 
-#nav {
+/*POP UPS*/
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5px auto; /* 15% from the top and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    /* Position it in the top right corner outside of the modal */
+    position: absolute;
+    right: 25px;
+    top: 0; 
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+/* Close button on hover */
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+.popup{
+  display:none;
+  position:fixed; 
+  top:0;
+  left:0;
+  color:blue;
+  width:100%;
+  height:100%;
+}
+#popupwrapper{
+  position:fixed; 
+  width:500px;
+  margin:70px;
+
+}
+#popupcontainer{
+  background-color: purple;
+}
+
+/*#nav {
   position: fixed;
-  background-color: #F3F3F3;
+  background-color: #999898;
   width: 100%;
   border-bottom: solid 1px #ccc;
   margin-top: -10px;
   margin-left: -10px;
 }
+*/
+
+#nav {
+  position: fixed;
+  background-color: #999898;
+  width: 150%;
+/*  border-bottom: solid 1px #ccc;
+*/  height: 70px;
+  top: 0px;
+  right: 0px;
+
+}
+
+.navbutton {
+  float: right;
+  margin-right: 45px;
+  margin-top: 20px;
+  font-family: ralewayMed;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.droppedbtn{
+  float: right;
+  margin-right: 0px;
+  margin-top: px;
+  font-family: ralewayMed;
+  font-size: 15px;
+  padding: 26px;
+  border: none;
+  background: none;
+}
+
+.droppedbtn:hover {
+  background-color: #727272; 
+   
+
+
+}
+
 #content {
   padding: 50px;
   padding-top: 90px;
@@ -40,7 +157,8 @@ a:hover {
   display: inline-block;
 }
 
-.navbutton {
+
+/*.navbutton {
   float: right;
   margin-right: 25px;
   margin-top: 25px;
@@ -51,7 +169,7 @@ a:hover {
   border: none;
   border-bottom: solid 5px #878787;
   border-right: solid 5px #878787;
-}
+}*/
 .navbutton:active {
   border: none;
 }
@@ -66,13 +184,112 @@ a:hover {
   padding-top: 0px;
 }
 #search {
-  display: inline;
+/*  display: inline;*/
   float: left;
-  margin-top: 0px;
-  margin-left: 180px;
+/*  margin-top: 0px;
+*/  margin-left: 270px;
+  margin-bottom: 150px;
 }
+/*#searchbox {
+  width: 200px;*/
+#mains {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+#center-divs {
+
+    position: absolute;
+    width: 700px;
+    height: 350px;
+    top: 50%;
+    margin-top: -95px;
+    left: 50%;
+    margin-left: -375px;
+}
+
+#logos {
+    position: absolute;
+    height: 275px;
+    width: 600px;
+    left: 15%;
+    top: 0px;
+    margin-left: -40px;
+}
+
 #searchbox {
-  width: 200px;
+    position: absolute;
+    width: 400px;
+    height: 30px;
+    top: 180px;
+    color: black;
+    font-family: sans-serif;
+    font-size: 20px;
+    margin-left: -50px;
+}
+
+.twobuttons {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    background-color: #C1272D;
+    top: 250px;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    font-family: sans-serif;
+    border-radius: 20px;
+    margin-left: 60px;
+
+}
+
+.navbar-nav li a {
+    line-height: 38px;
+    right: 25px;
+}
+
+.navbar-form{
+
+    line-height: 50px;
+    right: 15px;
+}
+
+.btn-default{
+  color: black;
+
+}
+
+
+#searchtopbox{
+    position: absolute;
+    width: 200px;
+    height: 14px;
+    top: -5px;
+    color: black;
+    font-family: sans-serif;
+    font-size: 20px;
+    margin-left: 450px;
+}
+
+.onebutton{
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    background-color: #C1272D;
+    top: 28px;
+    text-align: center;
+    color: white;
+    font-size: 10px;
+    font-family: sans-serif;
+    border-radius: 20px;
+    margin-left: 675px;
+}
+
+
+
 }
 #go{
   padding: 7px;
@@ -81,7 +298,7 @@ a:hover {
 .inputbox {
   margin-top: 25px;
   padding: 7px;
-  border-radius: 7px;
+  
 }
 #categories{
   line-height: 24px;
@@ -89,6 +306,7 @@ a:hover {
   padding: 20px;
   border-radius: 20px;
   display: inline-block;
+
 }
 #browse{
   max-width: 980px;
@@ -235,32 +453,29 @@ a:hover {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 .show {display:block;}
-.dropdown{
+
+/*.dropdown{
   float: right;
   margin-right: 25px;
   margin-top: 25px;
   font-family: ralewayMed;
 }
 .dropbtn {
-  padding: 7px;
-  background-color: #D3D3D3;
-  border-radius: 15px;
-  border: none;
-  border-bottom: solid 5px #878787;
-  border-right: solid 5px #878787;
+  float: right;
+  margin-right: 45px;
+  margin-top: dr;
+  font-family: ralewayMed;
+    padding: 0;
+    border: none;
+    background: none;
 }
 .dropbtn:active {
   border: none;
 }
 .dropbtn:focus {
   outline: 0;
-}
-.droppedbtn{
-  background-color: #D3D3D3;
-  margin: 7px;
-  display: block;
-  padding: 4px;
-}
+}*/
+
 #sortbox{
   margin-top: 15px;
   width: 143px;
