@@ -37,8 +37,45 @@
     <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
   </form> 
         <ul class="nav navbar-nav navbar-right original">
+          <!-- ******** NEW ITEM ********  -->
           <li class="nav-item">
-            <a class="nav-link" href="/newitem">List an Item</a>
+            <!-- Trigger the modal with a button -->
+            <a data-toggle="modal" data-target="#newitem">List an Item</a>
+
+            <!-- Modal -->
+            <div class="modal fade" id="newitem" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <h1>Post a new item</h1>
+                    <div id="itemform">
+                      <form method="post" action="/uploaditem" enctype="multipart/form-data">
+                      <input id="itemname" class='inputbox' type='text' maxlength="15" placeholder='item name' name='itemname' required> 
+                      &#36;&#32;<input id='price' class='inputbox' type="number" placeholder='price' name='price' required>
+                      <br>
+                      <textarea id='description' rows="8" placeholder='description' name='description' cols="50" required></textarea> <br>
+                      
+                      <select id='category' name = 'category' required>
+                        <option value="clothes">Clothes</option>
+                        <option value="book">Books</option>
+                        <option value="tech">Tech</option>
+                        <option value="furniture">Furniture</option>
+                      </select>
+
+                      <input id="inserttag" class='inputbox' type='text' placeholder='add tags' name='inserttag'>
+                      <button id="addtag" class="contentbutton" type='button'>add</button><br>
+                      <div id="tags"></div>
+
+                      <input type="file" name="picture" />
+
+                      <button id="submititem" class="contentbutton" type = 'submit'>list it!</button>&#32;
+                      <button type="button" class="contentbutton" onclick="location.href='/home'">cancel</button><br>
+                      </form>
+                  </div>
+                  <script src="/scripts/addtag.js"></script>
+                </div>
+              </div>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/starreditems">Starred Items</a>
