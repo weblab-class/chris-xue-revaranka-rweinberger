@@ -161,6 +161,24 @@ router.get('/signup', function(req, res, next) {
   res.render('signup', {});
 });
 
+
+router.post('/signup', function (req, res, next) {
+  console.log('signed up');
+  var user = new User({firstname: req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo, username: req.body.username});
+  User.register(user, req.body.password, function(registrationError) {
+    if(!registrationError) {
+      req.login(user, function(loginError)
+       {
+        if (loginError) { return next(loginError); }
+        return res.redirect('/home');
+      });
+    } else {
+      res.send(registrationError);
+    }
+  });
+
+});
+
 router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
