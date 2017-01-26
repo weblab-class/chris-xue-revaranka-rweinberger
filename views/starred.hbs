@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+
+  <body>
+    {{> navbar}}
+
+    <div id="content">
+      <h1 id="title">{{firstname}}&#39;s starred items </h1>
+      <div id="products">
+        {{#each starred}}
+          {{> starred_item_partial}}
+        {{/each }}
+      </div>
+    </div>
+    <script src="/scripts/staritem.js"></script>
+  </body>
+</html>

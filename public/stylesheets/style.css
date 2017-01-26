@@ -22,6 +22,7 @@ a:hover {
   color: #D3D3D3;
 }
 
+
 /*POP UPS*/
 
 .modal {
@@ -99,6 +100,12 @@ a:hover {
 }
 
 /*#nav {
+=======
+p{
+  margin-left: 40px;
+}
+#nav {
+>>>>>>> 6fc630f3a1f73006ff74c8e239084e11b6b2f2cf
   position: fixed;
   background-color: #999898;
   width: 100%;
@@ -156,6 +163,13 @@ a:hover {
   padding: 10px;
   display: inline-block;
 }
+#hometext{
+  font-size: 200%;
+  padding: 10px;
+  position: fixed;
+  top: 15px;
+  left: 70px;
+}
 
 
 /*.navbutton {
@@ -182,6 +196,7 @@ a:hover {
 #testp {
   padding: 20px;
   padding-top: 0px;
+  padding-left: 0px;
 }
 #search {
 /*  display: inline;*/
@@ -335,6 +350,10 @@ a:hover {
   border-radius: 15px;
   display: inline-block;
 }
+.product img {
+  max-width: 100%;
+  max-height: 100%;
+}
 #productcontent{
   /*line-height: 200px;*/
 }
@@ -483,6 +502,21 @@ a:hover {
   background-color: #F3F3F3;
   padding: 20px;
   border-radius: 20px;
+}
+.manage_elt{
+  display: inline-block;
+}
+.manageritem {
+  padding: 7px;
+}
+.canceldelete{
+  display:inline-block;
+}
+.deletebtn{
+  display: inline-block;
+}
+.hiddenconfirm{
+  padding: 7px;
 }
 /*
 @media screen and (max-width: 700px){

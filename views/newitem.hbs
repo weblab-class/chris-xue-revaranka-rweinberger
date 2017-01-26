@@ -11,6 +11,7 @@
     <div id="content">
       <h1>Post a new item</h1>
       <div id="itemform">
+        <form method="post" action="/uploaditem" enctype="multipart/form-data">
         <input id="itemname" class='inputbox' type='text' maxlength="15" placeholder='item name' name='itemname' required> 
         &#36;&#32;<input id='price' class='inputbox' type="number" placeholder='price' name='price' required>
         <br>
@@ -27,8 +28,11 @@
         <button id="addtag" class="contentbutton" type='button'>add</button><br>
         <div id="tags"></div>
 
+        <input type="file" name="picture" />
+
         <button id="submititem" class="contentbutton" type = 'submit'>list it!</button>&#32;
         <button type="button" class="contentbutton" onclick="location.href='/home'">cancel</button><br>
+        </form>
       </div>
     </div>
     <script src="/scripts/addtag.js"></script>

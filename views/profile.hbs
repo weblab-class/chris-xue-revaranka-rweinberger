@@ -8,12 +8,12 @@
   <body>
     {{> navbar}}
     <div id='content'>
-      <h1> {{name}} </h1>
+      <h1> {{profilefirstname}} {{profilelastname}} </h1>
       <ul style="list-style: none">
         <li>Venmo: {{venmo}}</li>
         <li>Email: {{email}}</li>
       </ul>
-      <h1> {{name}}&#39;s items</h1>
+      <h1> {{profilefirstname}}&#39;s items</h1>
       <div id="products">
         {{#each starred}}
           {{> starred_item_partial}}

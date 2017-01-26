@@ -2,10 +2,79 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var exphbs = require('express-handlebars');
+var multer = require('multer');
+var mime = require('mime');
+var crypto = require('crypto');
+var Grid = require('gridfs-stream');
+var mongo = require('mongodb');
+var GridFsStorage = require('multer-gridfs-storage');
+
 
 /* GET the User Model */
 var User = require('../schemas/user');
 var Item = require('../schemas/item');
+
+mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mlab.com:27429/heroku_vjphwnnq', function(err, db) {
+    var gfs = Grid(db, mongo);
+    var storage = GridFsStorage({
+        gfs: gfs,
+       filename: function(req, file, cb) {
+           crypto.randomBytes(16, function (err, raw) {
+            cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+           });
+         }
+  });
+       
+  var upload = multer({ storage: storage });
+
+  router.post('/uploaditem', upload.single('picture'), function(req, res, next) {
+    var itemname = req.body.itemname;
+    var price = req.body.price;
+    var description = req.body.description;
+    var tags = req.body.tags;
+    var category = req.body.category;
+    var user = req.user.username;
+    var userid = req.user.id;
+    var firstname = req.user.firstname;
+    var lastname = req.user.lastname;
+    var picture = req.file.filename;
+    //console.log(tags);
+    console.log(req.file);
+    var newItem = new Item({
+      'itemname': itemname,
+      'price': price,
+      'description': description,
+      'tags':tags,
+      'category':category,
+      'user':user,
+      'firstname':firstname,
+      'lastname':lastname,
+      'userid': userid,
+      'picture': picture
+    });
+    newItem.save();
+    res.redirect('/uploadsuccess');
+  });
+
+  router.get('/uploads/:filename', function(req, res) {
+  // TODO: set proper mime type + filename, handle errors, etc...
+  var filename = req.params.filename;
+  mongo.GridStore.exist(db, filename, function(err, exists){
+    if(exists) {
+            gfs
+        // create a read stream from gfs...
+        .createReadStream({ filename: filename })
+        // and pipe it to Express' response
+        .pipe(res);
+
+      } else {
+        res.status(404).send();
+      }
+  })
+    });
+
+});
+
 
 //helper fn for starring items
 // var hbs = exphbs.create({
@@ -32,6 +101,7 @@ var Item = require('../schemas/item');
 
 /* GET signup page. */
 router.get('/', function(req, res, next) {
+<<<<<<< HEAD
   Item.find({}, function(err, items) {
     if(req.isAuthenticated()) {
       var bool = true;
@@ -71,26 +141,7 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/login', function(req, res, next) {
-  if(req.isAuthenticated()) {
-    res.redirect('/home');
-  } else {
-    res.render('login', {});
-  }
-});
 
-router.get('/signup', function(req, res, next) {
-  res.render('signup', {});
-});
-
-router.post('/login',
-    passport.authenticate('local', { successRedirect: '/home',
-      failureRedirect: '/login',
-      failureFlash: false })
-    );
-
-router.post('/signup', function (req, res, next) {
-
-  var user = new User({name: req.body.name, venmo: req.body.venmo, username: req.body.username});
   User.register(user, req.body.password, function(registrationError) {
     if(!registrationError) {
       req.login(user, function(loginError)
@@ -107,7 +158,7 @@ router.post('/signup', function (req, res, next) {
 
 router.get('/logout', function(req, res){
   req.logout();
-  res.redirect('/login');
+  res.redirect('/');
 });
 
 // router.post('/', function(req, res, next) {
@@ -134,7 +185,7 @@ router.get('/home', function (req, res, next) {
   Item.find({}, function(err, items) {
     if(req.isAuthenticated()) {
       var bool = true;
-      var name = req.user.name;
+      var firstname = req.user.firstname;
       var username = req.user.username;
       var starredItemIds = req.user.starred;
       var otherItems = [];
@@ -151,7 +202,7 @@ router.get('/home', function (req, res, next) {
           console.log('starred: ' +starredItemIds);
           console.log('other: ' +otherItems);
           bool = true;
-          res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, name: name, username:username
+          res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
           });
         }
       });
@@ -236,7 +287,7 @@ router.get('/starreditems', function(req, res) {
     var bool = true;
     var starredIds = req.user.starred;
     var otherItems = [];
-    var name = req.user.name;
+    var firstname = req.user.firstname;
     var username = req.user.username;
     Item.find({'_id': { $in: starredIds}}, function (err, starredItems) {
       if (err) {
@@ -244,15 +295,11 @@ router.get('/starreditems', function(req, res) {
         res.render('error')
       } else {
         bool = true;
-        res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, name: name, username:username
-        });
+        res.render('starred', {boolean:bool, starred: starredItems, firstname: firstname});
       }
     });
   } else {
-    Item.find({}, function(err, items) {
-      var bool = false;
-      res.redirect('home', {boolean: bool, items: items})
-    });
+    res.redirect('/')
   };
 });
 
@@ -265,8 +312,8 @@ router.post('/sort', function (req, res, next) {
     items.reverse();
     if(req.isAuthenticated()) {
       bool = true;
-      var name = req.user.name;
-      res.redirect('home', {boolean: bool, items: items, name: name});
+      var firstname = req.user.firstname;
+      res.redirect('home', {boolean: bool, items: items, firstname: firstname});
     } else {
       bool = false;
       res.redirect('home', {boolean: bool, items: items});
@@ -301,43 +348,24 @@ router.get('/newitem', function(req, res) {
   var bool = true;
   if(req.isAuthenticated()) {
     bool = true;
-    var name = req.user.name;
-    res.render('newitem', {boolean: bool, name: name});
+    var firstname = req.user.firstname;
+    res.render('newitem', {boolean: bool, firstname: firstname});
   } else {
     bool = false;
-    res.redirect('/login');
+    res.redirect('/');
   };
 });
 
-router.post('/uploaditem', function(req, res, next) {
-  var itemname = req.body.itemname;
-  var price = req.body.price;
-  var description = req.body.description;
-  var tags = req.body.tags;
-  var category = req.body.category;
-  var user = req.user.username;
-  //console.log(tags);
-  var newItem = new Item({
-    'itemname': itemname,
-    'price': price,
-    'description': description,
-    'tags':tags,
-    'category':category,
-    'user':user
-  });
-  newItem.save();
-  res.send('/uploadsuccess');
-});
 
 
 router.get('/uploadsuccess', function(req, res) {
   if(req.isAuthenticated()) {
     bool = true;
-    var name = req.user.name;
-    res.render('uploadsuccess', {boolean: bool, name: name});
+    var firstname = req.user.firstname;
+    res.render('uploadsuccess', {boolean: bool, firstname: firstname});
   } else {
     bool = false;
-    res.redirect('/login');
+    res.redirect('/');
   };
 });
 
@@ -347,7 +375,7 @@ router.get('/itemlist', function(req, res) {
   Item.find({}, function(err, items) {
     var itemlist = [];
     items.forEach(function(item) {
-      itemlist.push({itemname:item.itemname, price:item.price, description:item.description, tags:item.tags, category:item.category, user: item.user});
+      itemlist.push({itemname:item.itemname, price:item.price, description:item.description, tags:item.tags, category:item.category, user: item.user, firstname: item.firstname, lastname: item.lastname});
     });
 
     res.send(itemlist);  
@@ -358,7 +386,7 @@ router.get('/userlist', function(req, res) {
   User.find({}, function(err, users) {
     var userlist = [];
     users.forEach(function(user) {
-      userlist.push({name:user.name, venmo:user.venmo, starred: user.starred});
+      userlist.push({firstname:user.firstname, lastname:user.lastname, username: user.userneame, venmo:user.venmo, starred: user.starred});
     });
 
     res.send(userlist);  
@@ -372,7 +400,8 @@ router.get('/profile', function(req, res) {
     var starredItemIds = req.user.starred;
     var otherItems = [];
     var starredItems = [];
-    var name = req.user.name;
+    var firstname = req.user.firstname;
+    var lastname = req.user.lastname;
     var venmo = req.user.venmo;
     Item.find({'user':email}, function(err, items){
       var bool = true;
@@ -383,15 +412,77 @@ router.get('/profile', function(req, res) {
           starredItems.push(items[i]);
         };
       };
-      res.render('profile', {boolean:bool, name: name, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+      res.render('profile', {boolean:bool, firstname: firstname, profilefirstname: firstname, profilelastname:lastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
     });
   } else {
     bool = false;
-    res.redirect('login');
+    res.redirect('/');
   };
 });
 
+router.get('/profile/:id', function(req, res, next) {  
+  var id = req.params.id;
+  User.findOne({ '_id': id }, function (err, user) {
+    if (err) return handleError(err);
+    console.log('found user ' + user.firstname +' ' +user.lastname);
+    var email = user.username;
+    var starredItemIds = user.starred;
+    var otherItems = [];
+    var starredItems = [];
+    var profilefirstname = user.firstname;
+    var profilelastname = user.lastname;
+    var venmo = user.venmo;
+    if(req.isAuthenticated()) {
+      var firstname = req.user.firstname;
+      Item.find({'user':email}, function(err, items){
+        var bool = true;
+        for (var i=0; i<items.length; i++) {
+          if (starredItemIds.indexOf(items[i].id) == -1) {
+            otherItems.push(items[i]);
+          } else {
+            starredItems.push(items[i]);
+          };
+        };
+        res.render('profile', {boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+      });
+    } else {
+      bool = false;
+      Item.find({'user':email}, function(err, items){
+        res.render('profile', {boolean:bool, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, unstarred: items});
+      });
+    };
+  })
+});
 
+/*manage items page*/
+router.get('/manageitems', function(req, res) {
+  if(req.isAuthenticated()) {
+    var user = req.user.username;
+    var bool = true;
+    var firstname = req.user.firstname;
+    Item.find({'user':user}, function(err, items) {
+      res.render('manageitems', {boolean:bool, firstname: firstname, items:items, user:user});
+    });
+  } else {
+    res.redirect('/');
+  };
+});
+
+router.post('/deleteitem', function(req, res) {
+  var user = req.user.username;
+  var bool = true;
+  var firstname = req.user.firstname;
+  var deleteItemId = req.body.itemid;
+  Item.remove({ _id: deleteItemId }, function(err, raw) {
+    if (!err) {
+      console.log(deleteItemId);
+      // console.log('The raw response from Mongo was ', raw);
+      res.render('deletesuccess', {boolean:bool, firstname: firstname});
+    } else {
+      console.log('error deleting item');
+    }
+  });
+});
 
 /*search results*/
 router.post('/searchresults', function(req, res) {
@@ -423,7 +514,7 @@ router.post('/searchresults', function(req, res) {
     var bool = true;
     if(req.isAuthenticated()) {
       bool = true;
-      var name = req.user.name;
+      var firstname = req.user.firstname;
       var starredItemIds = req.user.starred;
       var otherItems = [];
       var starredItems = [];
@@ -434,10 +525,10 @@ router.post('/searchresults', function(req, res) {
           starredItems.push(items[i]);
         };
       };
-      res.render('searchresults', {boolean: bool, term:term,starred: starredItems, unstarred: otherItems, name: name});
+      res.render('searchresults', {boolean: bool, term:term,starred: starredItems, unstarred: otherItems, firstname: firstname});
     } else {
       bool = false;
-      res.render('searchresults', {boolean: bool, term:term, otherItems: items});
+      res.render('searchresults', {boolean: bool, term:term, unstarred: items});
     };
   });
 });
@@ -467,38 +558,19 @@ router.get('/clothes', function(req,res){
   Item.find({'category':'Clothes'}, function(err, items){
     if(req.isAuthenticated()) {
       var bool = true;
-      var name = req.user.name;
+      var firstname = req.user.firstname;
       var username = req.user.username;
       var starredItemIds = req.user.starred;
       var otherItems = [];
+      var starredItems = [];
       for (var i = 0; i < items.length; i++) {
         if (starredItemIds.indexOf(items[i].id) == -1) {
           otherItems.push(items[i]);
+        } else {
+          starredItems.push(items[i])
         };
       };
-      Item.find({'_id': { $in: starredItemIds}}, function (err, starredItems) {
-        if (err) {
-          console.log('error getting starred item');
-          res.render('error')
-        } else {
-          console.log(starredItems);
-          console.log('starredItems is length ' + starredItems.length);
-          var starredItemsCopy = starredItems.slice(0);
-          for (i=0; i < starredItems.length; i++) {
-            if (starredItems[i].category != 'Clothes') {
-              console.log('splicing '+ starredItems[i].itemname + ' with category ' + starredItems[i].category);
-              var copyIndex = starredItemsCopy.indexOf(starredItems[i]);
-              starredItemsCopy.splice(copyIndex,1)
-            } else {
-              console.log(starredItems[i].itemname + ' with category ' + starredItems[i].category + ' is safe');
-            };
-          };
-          console.log('starred: ' +starredItemIds);
-          console.log('other: ' +otherItems);
-          bool = true;
-          res.render('home', {boolean: bool, starItems: starredItemsCopy, otherItems:otherItems, name: name, username:username
-          });
-        }
+      res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
       });
     } else {
       var bool = false;
@@ -517,38 +589,19 @@ router.get('/books', function(req,res){
   Item.find({'category':'Books'}, function(err, items){
     if(req.isAuthenticated()) {
       var bool = true;
-      var name = req.user.name;
+      var firstname = req.user.firstname;
       var username = req.user.username;
       var starredItemIds = req.user.starred;
       var otherItems = [];
+      var starredItems = [];
       for (var i = 0; i < items.length; i++) {
         if (starredItemIds.indexOf(items[i].id) == -1) {
           otherItems.push(items[i]);
+        } else {
+          starredItems.push(items[i])
         };
       };
-      Item.find({'_id': { $in: starredItemIds}}, function (err, starredItems) {
-        if (err) {
-          console.log('error getting starred item');
-          res.render('error')
-        } else {
-          console.log(starredItems);
-          console.log('starredItems is length ' + starredItems.length);
-          var starredItemsCopy = starredItems.slice(0);
-          for (i=0; i < starredItems.length; i++) {
-            if (starredItems[i].category != 'Books') {
-              console.log('splicing '+ starredItems[i].itemname + ' with category ' + starredItems[i].category);
-              var copyIndex = starredItemsCopy.indexOf(starredItems[i]);
-              starredItemsCopy.splice(copyIndex,1)
-            } else {
-              console.log(starredItems[i].itemname + ' with category ' + starredItems[i].category + ' is safe');
-            };
-          };
-          console.log('starred: ' +starredItemIds);
-          console.log('other: ' +otherItems);
-          bool = true;
-          res.render('home', {boolean: bool, starItems: starredItemsCopy, otherItems:otherItems, name: name, username:username
-          });
-        }
+      res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
       });
     } else {
       var bool = false;
@@ -567,38 +620,19 @@ router.get('/tech', function(req,res){
   Item.find({'category':'Tech'}, function(err, items){
     if(req.isAuthenticated()) {
       var bool = true;
-      var name = req.user.name;
+      var firstname = req.user.firstname;
       var username = req.user.username;
       var starredItemIds = req.user.starred;
       var otherItems = [];
+      var starredItems = [];
       for (var i = 0; i < items.length; i++) {
         if (starredItemIds.indexOf(items[i].id) == -1) {
           otherItems.push(items[i]);
+        } else {
+          starredItems.push(items[i])
         };
       };
-      Item.find({'_id': { $in: starredItemIds}}, function (err, starredItems) {
-        if (err) {
-          console.log('error getting starred item');
-          res.render('error')
-        } else {
-          console.log(starredItems);
-          console.log('starredItems is length ' + starredItems.length);
-          var starredItemsCopy = starredItems.slice(0);
-          for (i=0; i < starredItems.length; i++) {
-            if (starredItems[i].category != 'Tech') {
-              console.log('splicing '+ starredItems[i].itemname + ' with category ' + starredItems[i].category);
-              var copyIndex = starredItemsCopy.indexOf(starredItems[i]);
-              starredItemsCopy.splice(copyIndex,1)
-            } else {
-              console.log(starredItems[i].itemname + ' with category ' + starredItems[i].category + ' is safe');
-            };
-          };
-          console.log('starred: ' +starredItemIds);
-          console.log('other: ' +otherItems);
-          bool = true;
-          res.render('home', {boolean: bool, starItems: starredItemsCopy, otherItems:otherItems, name: name, username:username
-          });
-        }
+      res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
       });
     } else {
       var bool = false;
@@ -617,38 +651,19 @@ router.get('/furniture', function(req,res){
   Item.find({'category':'Furniture'}, function(err, items){
     if(req.isAuthenticated()) {
       var bool = true;
-      var name = req.user.name;
+      var firstname = req.user.firstname;
       var username = req.user.username;
       var starredItemIds = req.user.starred;
       var otherItems = [];
+      var starredItems = [];
       for (var i = 0; i < items.length; i++) {
         if (starredItemIds.indexOf(items[i].id) == -1) {
           otherItems.push(items[i]);
+        } else {
+          starredItems.push(items[i])
         };
       };
-      Item.find({'_id': { $in: starredItemIds}}, function (err, starredItems) {
-        if (err) {
-          console.log('error getting starred item');
-          res.render('error')
-        } else {
-          console.log(starredItems);
-          console.log('starredItems is length ' + starredItems.length);
-          var starredItemsCopy = starredItems.slice(0);
-          for (i=0; i < starredItems.length; i++) {
-            if (starredItems[i].category != 'Furniture') {
-              console.log('splicing '+ starredItems[i].itemname + ' with category ' + starredItems[i].category);
-              var copyIndex = starredItemsCopy.indexOf(starredItems[i]);
-              starredItemsCopy.splice(copyIndex,1)
-            } else {
-              console.log(starredItems[i].itemname + ' with category ' + starredItems[i].category + ' is safe');
-            };
-          };
-          console.log('starred: ' +starredItemIds);
-          console.log('other: ' +otherItems);
-          bool = true;
-          res.render('home', {boolean: bool, starItems: starredItemsCopy, otherItems:otherItems, name: name, username:username
-          });
-        }
+      res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
       });
     } else {
       var bool = false;
@@ -662,5 +677,6 @@ router.get('/furniture', function(req,res){
     };
   });
 });
+
 
 module.exports = router;
