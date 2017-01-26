@@ -117,6 +117,17 @@ p{
 }
 */
 
+.categories{
+  margin-top: 70px;
+  text-align:center;
+  height: 50px;
+}
+
+.textin{
+  text-align:center;
+  float:none;
+}
+
 #nav {
   position: fixed;
   background-color: #999898;
@@ -263,7 +274,7 @@ p{
 
 }
 
-.navbar-nav li a {
+.original li a {
     line-height: 38px;
     right: 25px;
 }
