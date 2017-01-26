@@ -24,7 +24,9 @@ a:hover {
 
 
 /*POP UPS*/
-
+body.modal-open div.modal-backdrop { 
+    z-index: 0; 
+}
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -326,6 +328,12 @@ p{
   padding: 7px;
   
 }
+
+#profpic{
+  max-width: 300px;
+  max-height: 300px;
+}
+
 #categories{
   line-height: 24px;
   background-color: #F3F3F3;

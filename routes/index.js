@@ -58,6 +58,15 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
     res.redirect('/uploadsuccess');
   });
 
+  router.post('/uploadpic', upload.single('profpic'), function(req, res, next){
+   if (req.isAuthenticated){
+      User.update({username:req.user.username},{$set:{picture:req.file.filename}}, function(err, raw){
+        if (err){ 
+          return handleError(err);
+        }
+      })
+   }
+  })
   router.get('/uploads/:filename', function(req, res) {
   // TODO: set proper mime type + filename, handle errors, etc...
   var filename = req.params.filename;
@@ -157,8 +166,22 @@ router.post('/login',
       failureFlash: false })
     );
 
-router.get('/signup', function(req, res, next) {
-  res.render('signup', {});
+router.post('/signup', function (req, res, next) {
+  console.log('signed up');
+  console.log(req.body);
+  var user = new User({firstname: req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo, username: req.body.username});
+  User.register(user, req.body.password, function(registrationError) {
+    if(!registrationError) {
+      req.login(user, function(loginError)
+       {
+        if (loginError) { return next(loginError); }
+        return res.redirect('/home');
+      });
+    } else {
+      res.send(registrationError);
+    }
+  });
+
 });
 
 
@@ -297,10 +320,7 @@ router.post('/unstar', function (req, res, next) {
     console.log(user);
     console.log(index);
     console.log(starredIds);
-    User.update({username:user},{$set:{starred:starredIds}}, function (err, raw) {
-      if (err) return handleError(err);
-      console.log('The raw response from Mongo was ', raw);
-    });
+    f
   } else {
     console.log('unregistered user attempted to unstar ' + starred);
   };
@@ -427,6 +447,7 @@ router.get('/profile', function(req, res) {
     var firstname = req.user.firstname;
     var lastname = req.user.lastname;
     var venmo = req.user.venmo;
+    var profpic = req.user.picture
     Item.find({'user':email}, function(err, items){
       var bool = true;
       for (var i=0; i<items.length; i++) {
@@ -436,7 +457,7 @@ router.get('/profile', function(req, res) {
           starredItems.push(items[i]);
         };
       };
-      res.render('profile', {boolean:bool, firstname: firstname, profilefirstname: firstname, profilelastname:lastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+      res.render('profile', {profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: firstname, profilelastname:lastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
     });
   } else {
     bool = false;
@@ -456,6 +477,7 @@ router.get('/profile/:id', function(req, res, next) {
     var profilefirstname = user.firstname;
     var profilelastname = user.lastname;
     var venmo = user.venmo;
+    var profpic = user.picture;
     if(req.isAuthenticated()) {
       var firstname = req.user.firstname;
       Item.find({'user':email}, function(err, items){
@@ -467,12 +489,12 @@ router.get('/profile/:id', function(req, res, next) {
             starredItems.push(items[i]);
           };
         };
-        res.render('profile', {boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+        res.render('profile', {profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
       });
     } else {
       bool = false;
       Item.find({'user':email}, function(err, items){
-        res.render('profile', {boolean:bool, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, unstarred: items});
+        res.render('profile', {profpic: profpic, boolean:bool, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, unstarred: items});
       });
     };
   })
@@ -579,7 +601,7 @@ router.post('/searchresults', function(req, res) {
 // });
 
 router.get('/clothes', function(req,res){
-  Item.find({'category':'Clothes'}, function(err, items){
+  Item.find({'category':'clothes'}, function(err, items){
     if(req.isAuthenticated()) {
       var bool = true;
       var firstname = req.user.firstname;
@@ -610,7 +632,7 @@ router.get('/clothes', function(req,res){
 });
 
 router.get('/books', function(req,res){
-  Item.find({'category':'Books'}, function(err, items){
+  Item.find({'category':'books'}, function(err, items){
     if(req.isAuthenticated()) {
       var bool = true;
       var firstname = req.user.firstname;
@@ -641,7 +663,7 @@ router.get('/books', function(req,res){
 });
 
 router.get('/tech', function(req,res){
-  Item.find({'category':'Tech'}, function(err, items){
+  Item.find({'category':'tech'}, function(err, items){
     if(req.isAuthenticated()) {
       var bool = true;
       var firstname = req.user.firstname;
@@ -672,7 +694,7 @@ router.get('/tech', function(req,res){
 });
 
 router.get('/furniture', function(req,res){
-  Item.find({'category':'Furniture'}, function(err, items){
+  Item.find({'category':'furniture'}, function(err, items){
     if(req.isAuthenticated()) {
       var bool = true;
       var firstname = req.user.firstname;

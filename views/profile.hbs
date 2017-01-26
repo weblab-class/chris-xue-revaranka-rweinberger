@@ -12,8 +12,13 @@
       <ul style="list-style: none">
         <li>Venmo: {{venmo}}</li>
         <li>Email: {{email}}</li>
+        <img id = 'profpic' src="/uploads/{{profpic}}" />
       </ul>
       <h1> {{profilefirstname}}&#39;s items</h1>
+       <form method="post" action="/uploadpic" enctype="multipart/form-data">
+      <input type = file name= 'profpic'/>
+      <button id="submitpic" class="contentbutton" type = 'submit'>submit profpic!</button>&#32;
+      </form>
       <div id="products">
         {{#each starred}}
           {{> starred_item_partial}}

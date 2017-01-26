@@ -1,4 +1,5 @@
 $(".blankstar").on("click", function() {
+  console.log("HELLO");
   $(this).removeClass('blankstar');
   $(this).addClass('star');
   console.log($(this).attr('class'));
