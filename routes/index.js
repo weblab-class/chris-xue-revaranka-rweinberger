@@ -16,7 +16,7 @@ var Item = require('../schemas/item');
 
 // mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mlab.com:27429/heroku_vjphwnnq
 
-mongo.connect('mongodb://localhost/app', function(err, db) {
+mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mlab.com:27429/heroku_vjphwnnq', function(err, db) {
     var gfs = Grid(db, mongo);
     var storage = GridFsStorage({
         gfs: gfs,
