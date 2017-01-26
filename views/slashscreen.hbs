@@ -1,111 +1,50 @@
-<!-- <!DOCTYPE html>
-    <head>
-        <link rel="stylesheet" href='/stylesheets/slashscreen.css'>
-    </head>
-<body>
-
-    <center>
-
-        <img id="logo" src="/images/webbeaver.png" height=30% width=50%>
-    </center>
-
-
-
-<section class = 'parallax'>
-    <div class = 'parallax-inner'>
-        <h1>What does our product do?></h1>
-        <h2>It does some dope shit<
-
-    </div>
-</section>
-
-
-</body>
-</html> -->
-
-<!-- <html> -->
-<!-- <head>
-    <link rel="stylesheet" href='/stylesheets/slashscreen.css'>
-</head> -->
-<!-- <style>
-body, html {
-    height: 100%;
-}
-
-</style>
-
-<body>
-
-<div id ="parallax">
-<form id="search" method='post' action="/searchresults">
-    <input class="inputbox" id="searchbox" type="text" placeholder="search" name="term">
-    <input class="navbutton" id="go" type="submit" value="go!">
-  </form>
-
-
-</div>
-
-
-
-<div class = "search">
-    <h1 class = 'main'>
-        Welcome to Beaver++
-    </h1>
-    <h2 class= 'body'>
-        We do dope shit
-    </h2>
-
-
-</div>
-
-<div class="parallax"></div>
-
-</body>
-</html>
- -->
-<!-- <head>
-    <link rel="stylesheet" href='/stylesheets/slashscreen.css'>
-</head>
-
-<div class="container">
-    <img src="/images/webdev.jpg" alt="Beaver++" height= 50% width= 60% />
-    <form id="search" method='post' action="/searchresults">
-        <input class="inputbox" id="searchbox" type="text" placeholder="search" name="term">
-        <input class="navbutton" id="go" type="submit" value="go!">
-    </form>
-
- </div> -->
- <!-- <html>
- <body>
- <table align = 'center'>
-    <tr>
-        <td>
-        <table>
-         -->
-
 <!DOCTYPE html>
 <html>
     <head>
         <title>beaver++</title>
         <link rel="stylesheet" href='/stylesheets/slashscreen.css'>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet" />
 
     </head>
-
-    {{> navbar }}
-
 <body>
-<img src="/images/pretty.png"  id="mains">
+    {{> navbar }}
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
+
+
+<!--First Page-->
+<div id="home" class="home">
     <div id="center-divs">
         <img src="/images/webbeaver.png" id="logos" />
         <form id="search" method='post' action="/searchresults">
             <input class="inputbox" id="searchbox" type="text"  placeholder="find items" name="term">
             <input class="twobuttons" id="go" type="submit" value="+ +" style="left: 300px;">
         </form>
-
+    </div>
 </div>
-</body>
-</html>
+
+
+<!-- second section - About -->
+<div id="about" class="pad-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6 text-center">
+                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet.</h2>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed interdum metus et ligula venenatis, at rhoncus nisi molestie. Pellentesque porttitor elit suscipit massa laoreet metus.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
