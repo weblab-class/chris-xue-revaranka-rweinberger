@@ -10,7 +10,6 @@ var mongo = require('mongodb');
 var GridFsStorage = require('multer-gridfs-storage');
 
 
-
 /* GET the User Model */
 var User = require('../schemas/user');
 var Item = require('../schemas/item');
