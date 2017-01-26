@@ -22,7 +22,10 @@ a:hover {
   color: #D3D3D3;
 }
 
-
+.dropdown {
+  padding:15px;
+  margin-right: 10px;
+}
 /*POP UPS*/
 body.modal-open div.modal-backdrop { 
     z-index: 0; 

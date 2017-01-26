@@ -116,7 +116,7 @@ router.get('/', function(req, res, next) {
   Item.find({}, function(err, items) {
     if(req.isAuthenticated()) {
       var bool = true;
-      var name = req.user.name;
+      var firstname = req.user.firstname;
       var username = req.user.username;
       var starredItemIds = req.user.starred;
       var otherItems = [];
@@ -133,7 +133,7 @@ router.get('/', function(req, res, next) {
           console.log('starred: ' +starredItemIds);
           console.log('other: ' +otherItems);
           bool = true;
-          res.render('slashscreen', {boolean: bool, starItems: starredItems, otherItems:otherItems, name: name, username:username
+          res.render('slashscreen', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
           });
         }
       });
