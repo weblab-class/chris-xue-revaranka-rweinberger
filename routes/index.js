@@ -2,10 +2,80 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var exphbs = require('express-handlebars');
+var multer = require('multer');
+var mime = require('mime');
+var crypto = require('crypto');
+var Grid = require('gridfs-stream');
+var mongo = require('mongodb');
+var GridFsStorage = require('multer-gridfs-storage');
+
+
 
 /* GET the User Model */
 var User = require('../schemas/user');
 var Item = require('../schemas/item');
+
+mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mlab.com:27429/heroku_vjphwnnq', function(err, db) {
+    var gfs = Grid(db, mongo);
+    var storage = GridFsStorage({
+        gfs: gfs,
+       filename: function(req, file, cb) {
+           crypto.randomBytes(16, function (err, raw) {
+            cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+           });
+         }
+  });
+       
+  var upload = multer({ storage: storage });
+
+  router.post('/uploaditem', upload.single('picture'), function(req, res, next) {
+    var itemname = req.body.itemname;
+    var price = req.body.price;
+    var description = req.body.description;
+    var tags = req.body.tags;
+    var category = req.body.category;
+    var user = req.user.username;
+    var userid = req.user.id;
+    var firstname = req.user.firstname;
+    var lastname = req.user.lastname;
+    var picture = req.file.filename;
+    //console.log(tags);
+    console.log(req.file);
+    var newItem = new Item({
+      'itemname': itemname,
+      'price': price,
+      'description': description,
+      'tags':tags,
+      'category':category,
+      'user':user,
+      'firstname':firstname,
+      'lastname':lastname,
+      'userid': userid,
+      'picture': picture
+    });
+    newItem.save();
+    res.redirect('/uploadsuccess');
+  });
+
+  router.get('/uploads/:filename', function(req, res) {
+  // TODO: set proper mime type + filename, handle errors, etc...
+  var filename = req.params.filename;
+  mongo.GridStore.exist(db, filename, function(err, exists){
+    if(exists) {
+            gfs
+        // create a read stream from gfs...
+        .createReadStream({ filename: filename })
+        // and pipe it to Express' response
+        .pipe(res);
+
+      } else {
+        res.status(404).send();
+      }
+  })
+    });
+
+});
+
 
 //helper fn for starring items
 // var hbs = exphbs.create({
@@ -268,31 +338,6 @@ router.get('/newitem', function(req, res) {
   };
 });
 
-router.post('/uploaditem', function(req, res, next) {
-  var itemname = req.body.itemname;
-  var price = req.body.price;
-  var description = req.body.description;
-  var tags = req.body.tags;
-  var category = req.body.category;
-  var user = req.user.username;
-  var userid = req.user.id;
-  var firstname = req.user.firstname;
-  var lastname = req.user.lastname;
-  //console.log(tags);
-  var newItem = new Item({
-    'itemname': itemname,
-    'price': price,
-    'description': description,
-    'tags':tags,
-    'category':category,
-    'user':user,
-    'firstname':firstname,
-    'lastname':lastname,
-    'userid': userid
-  });
-  newItem.save();
-  res.send('/uploadsuccess');
-});
 
 
 router.get('/uploadsuccess', function(req, res) {
@@ -614,5 +659,6 @@ router.get('/furniture', function(req,res){
     };
   });
 });
+
 
 module.exports = router;

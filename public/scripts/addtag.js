@@ -24,7 +24,7 @@ $(document).on('click', ".closetag", function() {
   console.log("tag removed: "+tagtext);
   console.log("new tag array: "+ tags);
 });
-
+/*
 $('#submititem').on('click', function(){
   console.log(tags);
   $.ajax({url:'/uploaditem', type: 'POST', data: {
@@ -32,9 +32,10 @@ $('#submititem').on('click', function(){
     price:$('#price').val(),
     description:$('#description').val(),
     tags:tags,
-    category:$('#category option:selected').text()
+    category:$('#category option:selected').text(),
+
     }, success: function(data) {
       window.location.href = data
     }
   });
-})
+})*/
