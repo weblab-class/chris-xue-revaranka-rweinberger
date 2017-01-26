@@ -143,18 +143,11 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/login', function(req, res, next) {
-  User.register(user, req.body.password, function(registrationError) {
-    if(!registrationError) {
-      req.login(user, function(loginError)
-       {
-        if (loginError) { return next(loginError); }
-        return res.redirect('/home');
-      });
-    } else {
-      res.send(registrationError);
-    }
-  });
-
+  if(req.isAuthenticated()) {
+    res.redirect('/home');
+  } else {
+    res.render('login', {});
+  }
 });
 
 
@@ -163,25 +156,6 @@ router.post('/login',
       failureRedirect: '/login',
       failureFlash: false })
     );
-
-
-router.post('/signup', function (req, res, next) {
-  console.log('signed up');
-  var user = new User({name: req.body.name, venmo: req.body.venmo, username: req.body.username});
-  User.register(user, req.body.password, function(registrationError) {
-    if(!registrationError) {
-      req.login(user, function(loginError)
-       {
-        if (loginError) { return next(loginError); }
-        return res.redirect('/home');
-      });
-    } else {
-      res.send(registrationError);
-    }
-  });
-
-});
-
 
 router.get('/signup', function(req, res, next) {
   res.render('signup', {});
