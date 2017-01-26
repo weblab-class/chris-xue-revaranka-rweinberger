@@ -15,10 +15,14 @@
         <img id = 'profpic' src="/uploads/{{profpic}}" />
       </ul>
       <h1> {{profilefirstname}}&#39;s items</h1>
+      {{#if access}}
        <form method="post" action="/uploadpic" enctype="multipart/form-data">
+        
+        
       <input type = file name= 'profpic'/>
       <button id="submitpic" class="contentbutton" type = 'submit'>submit profpic!</button>&#32;
       </form>
+      {{/if}}
       <div id="products">
         {{#each starred}}
           {{> starred_item_partial}}

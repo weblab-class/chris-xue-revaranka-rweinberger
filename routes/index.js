@@ -448,6 +448,7 @@ router.get('/profile', function(req, res) {
     var lastname = req.user.lastname;
     var venmo = req.user.venmo;
     var profpic = req.user.picture
+    var access = true;
     Item.find({'user':email}, function(err, items){
       var bool = true;
       for (var i=0; i<items.length; i++) {
@@ -457,7 +458,7 @@ router.get('/profile', function(req, res) {
           starredItems.push(items[i]);
         };
       };
-      res.render('profile', {profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: firstname, profilelastname:lastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+      res.render('profile', {access: access, profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: firstname, profilelastname:lastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
     });
   } else {
     bool = false;
@@ -478,8 +479,12 @@ router.get('/profile/:id', function(req, res, next) {
     var profilelastname = user.lastname;
     var venmo = user.venmo;
     var profpic = user.picture;
+    var access= false;
     if(req.isAuthenticated()) {
       var firstname = req.user.firstname;
+      if (id == req.user.id){
+        access= true;
+      }
       Item.find({'user':email}, function(err, items){
         var bool = true;
         for (var i=0; i<items.length; i++) {
@@ -489,12 +494,12 @@ router.get('/profile/:id', function(req, res, next) {
             starredItems.push(items[i]);
           };
         };
-        res.render('profile', {profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+        res.render('profile', {access: access, profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
       });
     } else {
       bool = false;
       Item.find({'user':email}, function(err, items){
-        res.render('profile', {profpic: profpic, boolean:bool, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, unstarred: items});
+        res.render('profile', {access: access, boolean:bool, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, unstarred: items});
       });
     };
   })
