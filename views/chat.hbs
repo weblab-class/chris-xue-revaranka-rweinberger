@@ -6,17 +6,25 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-        $( document ).ready(function() {
-          var socket = io();
-          $('form').submit(function(){
-            socket.emit('chat message', $('#m').val());
-            $('#m').val('');
-            return false;
-          });
-          socket.on('chat message', function(msg){
-            $('#messages').append($('<li>').text(msg));
-          });
+      $( document ).ready(function() {
+        $.getJSON("api/user_data", function(data) {
+          // Make sure the data contains the username as expected before using it
+          if (data.hasOwnProperty('username')) {
+            socket.emit('chat message', data.username + ' connected');
+          } else {
+            socket.emit('chat message', 'unregistered user connected');
+          };
         });
+        var socket = io();
+        $('form').submit(function(){
+          socket.emit('chat message', $('#m').val());
+          $('#m').val('');
+          return false;
+        });
+        socket.on('chat message', function(msg){
+          $('#messages').append($('<li>').text(msg));
+        });
+      });
     </script>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
