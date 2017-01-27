@@ -7,7 +7,7 @@ width: 100%;
 
 
 #home {
-  background: url(../images/pretty.png) no-repeat center center fixed;
+  background: url(/images/pretty.png) no-repeat center center fixed;
   display: table;
   height: 104%;
   position: relative;
