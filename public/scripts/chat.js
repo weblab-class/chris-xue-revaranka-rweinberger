@@ -1,5 +1,6 @@
 $( document ).ready(function() {
-  $.getJSON("api/user_data", function(data) {
+  var socket = io();
+  $.getJSON("/api/user_data", function(data) {
     // Make sure the data contains the username as expected before using it
     if (data.hasOwnProperty('username')) {
       socket.emit('chat message', data.firstname+' ('+data.username+') connected');
@@ -8,6 +9,9 @@ $( document ).ready(function() {
         $('#m').val('');
         return false;
       });
+      socket.on('disconnect', function(){
+        socket.emit(data.firstname+' disconnected')
+      });
     } else {
       socket.emit('chat message', 'an unregistered user connected');
       $('form').submit(function(){
@@ -15,9 +19,11 @@ $( document ).ready(function() {
         $('#m').val('');
         return false;
       });
+      socket.on('disconnect', function(){
+        socket.emit('a guest disconnected')
+      })
     };
   });
-  var socket = io();
   socket.on('chat message', function(msg){
     $('#messages').append($('<li>').text(msg));
   });
