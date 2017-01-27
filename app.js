@@ -33,6 +33,9 @@ app.get('/chat', function(req, res){
 
 app.io.on('connection', function(socket){
   console.log('yo');
+  socket.on('connect', function (client) {
+    console.log(client);
+  });
   socket.on('disconnect', function(){
     console.log('bai');
   });

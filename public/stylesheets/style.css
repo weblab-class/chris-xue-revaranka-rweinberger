@@ -242,40 +242,8 @@ p{
     margin-left: -375px;
 }
 
-#logos {
-    position: absolute;
-    height: 275px;
-    width: 600px;
-    left: 15%;
-    top: 0px;
-    margin-left: -40px;
-}
 
-#searchbox {
-    position: absolute;
-    width: 400px;
-    height: 30px;
-    top: 180px;
-    color: black;
-    font-family: sans-serif;
-    font-size: 20px;
-    margin-left: -50px;
-}
 
-.twobuttons {
-    position: absolute;
-    width: 100px;
-    height: 30px;
-    background-color: #C1272D;
-    top: 250px;
-    text-align: center;
-    color: white;
-    font-size: 15px;
-    font-family: sans-serif;
-    border-radius: 20px;
-    margin-left: 60px;
-
-}
 
 .original li a {
     line-height: 38px;
