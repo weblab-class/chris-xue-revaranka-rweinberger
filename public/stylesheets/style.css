@@ -236,54 +236,14 @@ p{
     left: 0;
 }
 
-#center-divs {
-
-    position: absolute;
-    width: 700px;
-    height: 350px;
-    top: 50%;
-    margin-top: -95px;
-    left: 50%;
-    margin-left: -375px;
-}
-
-
-
 #habitat{
+  position: absolute;
 
   height: 250px;
   padding-top: 200px;
   padding-right: 400px;
   font-size: 70px;
 }
-
-
-#searchbox {
-    position: absolute;
-    width: 400px;
-    height: 30px;
-    top: 70%;
-    color: black;
-    font-family: sans-serif;
-    font-size: 20px;
-    margin-left: -200px;
-}
-
-.twobuttons {
-    position: absolute;
-    width: 100px;
-    height: 30px;
-    background-color: #C1272D;
-    top: 87%;
-    text-align: center;
-    color: white;
-    font-size: 15px;
-    font-family: sans-serif;
-    border-radius: 20px;
-    margin-left: -60px;
-
-}
-
 
 
 .original li a {
@@ -300,6 +260,47 @@ p{
 .btn-default{
   color: black;
 
+}
+
+
+.line {
+    border: none;
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    background-color: #C1272D;
+    top: 339px;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    font-family: sans-serif;
+    border-radius: 20px;
+    margin-left: -120px;
+
+}
+.line:focus {
+  outline:none;
+
+}
+.line:hover {
+  background-color: #a1282d
+}
+
+#searchboxhome {
+    position: absolute;
+    color: #000;
+    width: 240px;
+    height: 30px;
+    top: 265px;
+    border: none;
+    border-bottom: solid 1px #6C6C6C;
+    background:transparent;
+    font-family: sans-serif;
+    font-size: 20px;
+    margin-left: -400px;
+}
+#searchboxhome:focus {
+  outline:none;
 }
 
 
@@ -327,8 +328,6 @@ p{
     border-radius: 20px;
     margin-left: 675px;
 }
-
-
 
 }
 #go{
