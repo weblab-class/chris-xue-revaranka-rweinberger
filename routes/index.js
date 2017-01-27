@@ -13,6 +13,7 @@ var GridFsStorage = require('multer-gridfs-storage');
 /* GET the User Model */
 var User = require('../schemas/user');
 var Item = require('../schemas/item');
+var Chat = require('../schemas/chat');
 
 /*sending user data as JSON to access on client side*/
 router.get('/api/user_data', function(req, res) {
@@ -26,6 +27,76 @@ router.get('/api/user_data', function(req, res) {
     });
   }
 });
+
+/*socket*/
+
+router.get('/general-chat', function(req, res){
+  res.render('chat.hbs');
+});
+
+router.get('/newchat', function(req, res){
+  if(req.isAuthenticated()) {
+    User.find({}, function(err, users) {
+      res.render('newconvo.hbs', {users:users});
+    });
+  } else {
+    res.send('please <a href="/login">log in</a> to start a conversation!')
+  };
+});
+
+router.post('/startchat', function (req, res, next) {
+  var target = req.body.targetUser;
+  var selecting = req.body.selectingUser;
+  var users1 = [selecting,target];
+  var users2 = [target,selecting];
+  console.log(users1);
+  Chat.findOne({users:users1}, function(err, result) {
+    if (err) { /* handle err */
+      console.log('error1')
+    } if (result) {
+      console.log('ERROR: '+selecting+' attempted to start an existing conversation - 1')
+    } else {
+      Chat.findOne({users:users2}, function(err, result) {
+        if (err) {
+          console.log('error2')
+        } if (result) {
+          console.log('ERROR: '+selecting+' attempted to start an existing conversation - 2')
+        } else {
+          var newChat = new Chat({
+            'users': users1
+          });
+          newChat.save(function(err,chat) {
+            id = chat.id;
+            console.log("chat " +id+" successfully initiated");
+            res.redirect('/chat/'+id)
+          });
+        };
+      });
+    };
+  });
+});
+
+
+router.get('/chat/:id', function(req, res) {  
+  var id = req.params.id;
+  res.render('chat.hbs', {id:id})
+});
+/* IGNORE 
+var newItem = new Item({
+  'itemname': itemname,
+  'price': price,
+  'description': description,
+  'tags':tags,
+  'category':category,
+  'user':user,
+  'firstname':firstname,
+  'lastname':lastname,
+  'userid': userid,
+  'picture': picture
+});
+newItem.save();
+res.redirect('/uploadsuccess');
+*/
 
 
 // mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mlab.com:27429/heroku_vjphwnnq
@@ -73,7 +144,7 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
   });
 
   router.post('/uploadpic', upload.single('profpic'), function(req, res, next){
-   if (req.isAuthenticated){
+   if (req.isAuthenticated()){
       User.update({username:req.user.username},{$set:{picture:req.file.filename}}, function(err, raw){
         if (err){ 
           return handleError(err);

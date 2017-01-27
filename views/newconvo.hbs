@@ -1,18 +1,18 @@
 <!doctype html>
 <html>
   <head>
-    <title>chat</title>
+    <title>talk to someone</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src='scripts/chat.js'></script>
     <link rel="stylesheet" href='/stylesheets/chat.css'>
   </head>
   <body>
-    <h1>{{id}}</h1>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" placeholder="enter a message" /><button>Send</button>
-    </form>
+  <h1 style='padding:10px'> start a convo with any of these lovely ppl </h1>
+  {{#each users}}
+    {{> chat_user}}
+  {{/each}}
   </body>
+  <script src='scripts/selectuser.js'></script>
 </html>
