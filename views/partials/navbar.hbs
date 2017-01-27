@@ -24,14 +24,6 @@
     </button>
 
     <div class="collapse navbar-collapse navHeaderCollapse">
-
-
-  <form class="navbar-form navbar-left" method="post" action="/searchresults">
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="find items" name="term">
-    </div>
-    <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-  </form> 
         <ul class="nav navbar-nav navbar-right original">
           <!-- ******** NEW ITEM ********  -->
           <li class="nav-item">
@@ -117,7 +109,6 @@
 
     <a class="navbar-brand navbar nav" href="/"</a>
       <img src="/images/webbeaver.png" width="90" height="40" class="d-inline-block" alt="">
-
     </a>
 
     <button class = 'navbar-toggle' data-toggle = 'collapse' data-target = '.navHeaderCollapse'>
@@ -129,27 +120,27 @@
     <div class="collapse navbar-collapse navHeaderCollapse">
 
 
-  <form class="navbar-form navbar-left" method="post" action="/searchresults">
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="find items" name="term">
-    </div>
-    <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-  </form> 
+      <form class="navbar-form navbar-left" method="post" action="/searchresults">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="find items" name="term">
+        </div>
+        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+      </form> 
 
 
-  <ul class="nav navbar-nav navbar-right original">
+      <ul class="nav navbar-nav navbar-right original">
 
     <!-- ******** LOGIN ********  -->
-    <li class="nav-item">
+        <li class="nav-item">
       <!-- Trigger the modal with a button -->
-      <a data-toggle="modal" data-target="#login">Login</a>
+          <a data-toggle="modal" data-target="#login">Login</a>
 
       <!-- Modal -->
-      <div class="modal fade" id="login" role="dialog">
-        <div class="modal-dialog">
+            <div class="modal fade" id="login" role="dialog">
+            <div class="modal-dialog">
         
           <!-- Modal content-->
-          <div class="modal-content">
+            <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">Login</h4>
@@ -169,72 +160,86 @@
                 </ul>
               </form>
             </div>
-          </div>
+            </div>
           
-        </div>
-      </div>
-    </li>
+            </div>
+            </div>
+            </li>
 
     <!-- ******** SIGN UP ********  -->
 
-    <li class="nav-item">
+            <li class="nav-item">
       <!-- Trigger the modal with a button -->
-      <a data-toggle="modal" data-target="#signup">Sign Up</a>
+              <a data-toggle="modal" data-target="#signup">Sign Up</a>
 
       <!-- Modal -->
-      <div class="modal fade" id="signup" role="dialog">
-        <div class="modal-dialog">
+              <div class="modal fade" id="signup" role="dialog">
+                <div class="modal-dialog">
         
           <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Sign Up</h4>
-            </div>
-            <div class="modal-body">
-              <form name="signup" method="post" action="/signup">
-                <ul>
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title">Sign Up</h4>
+                    </div>
+                  <div class="modal-body">
+                  <form name="signup" method="post" action="/signup">
+                    <ul>
                   <!-- <li>First name</li> -->
 
-                  <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="First name" name="firstname" required></li>
+                      <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="First name" name="firstname" required></li>
 
                   <!-- <li>Last name</li> -->
 
 
-                  <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Last name" name="lastname" required></li>
+                      <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Last name" name="lastname" required></li>
 
                   <!-- <li>Venmo</li> -->
 
-                  <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Venmo" name="venmo"></li>
+                      <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Venmo" name="venmo"></li>
 
                   <!-- <li>Email</li> -->
 
 
-                  <li><input type="email" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Email" name="username" required></li>
+                      <li><input type="email" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Email" name="username" required></li>
 
                   <!-- <li>Password</li> -->
 
-                  <li><input type="password" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Password" name="password" required></li>
+                      <li><input type="password" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Password" name="password" required></li>
 
-                  <li> <input type='password' style = 'font-size:14pt; padding: 4px; margin:7px' placeholder ="Confirm Password" id = 'password' required></li>
-                  <script src="/scripts/confirmpass.js"></script>
-                  <li><button class="btn btn-default" type="submit" style='margin:4px;'>Sign Up</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal" style='margin:4px;'>Cancel</button></li>
-                </ul>
-              </form>
-            </div>
-           <!--  <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div> -->
-          </div>
+                      <li> <input type='password' style = 'font-size:14pt; padding: 4px; margin:7px' placeholder ="Confirm Password" id = 'password' required></li>
+                      <script src="/scripts/confirmpass.js"></script>
+                      <li><button class="btn btn-default" type="submit" style='margin:4px;'>Sign Up</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal" style='margin:4px;'>Cancel</button></li>
+                    </ul>
+                  </form>
+                  </div>  
+                </div>
           
-        </div>
+                </div>
+              </div>
+              </li>
+
+      </ul>
+
+    </div>
+    <div class="collapse navbar-collapse navHeaderCollapse textin">
+          <ul class="nav navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/clothes">Clothes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/books">Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tech">Tech</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/furniture">Furniture</a>
+          </li>
+        </ul>
+
       </div>
-    </li>
-
-  </ul>
-
-</div>
 
 </nav>
 

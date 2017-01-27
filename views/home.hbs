@@ -11,28 +11,48 @@
   <body>
     {{> navbar}}
 
+
+  
+
     <div id="content">
-      <h1 id="title">Welcome to Free &amp; For Sale! </h1>
-      <div id="testp">
-        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-        </p>
-      </div>
-      <div id="categories">
+      <h1 id="habitat">Find dank shit.</h1>
+      <form id="search" method='post' action="/searchresults">
+        <input class="inputbox" id="searchbox" type="text"  placeholder="find items" name="term">
+        <input class="twobuttons" id="go" type="submit" value="+ +" >
+      </form>
+    </div>
+      <!-- <div id="categories">
         <u>Search by category</u><br>
         <a href="/clothes">clothes</a><br>
         <a href="/books">books</a><br>
         <a href="/tech">tech</a><br>
         <a href="/furniture">furniture</a><br>
-      </div>
-      <div id="browse">
-        {{#each starItems}}
-          {{> starred_item_partial}}
-        {{/each }}
-        {{#each otherItems}}
-          {{> unstarred_item_partial}}
-        {{/each }}
+      </div> -->
+
+    <div id="about" class="pad-section">
+      <div class="container">
+            <h1 id = 'welcome'>
+                <div id="browse">
+                  {{#each starItems}}
+                    {{> starred_item_partial}}
+                  {{/each }}
+                  {{#each otherItems}}
+                    {{> unstarred_item_partial}}
+                  {{/each }}
+                </div>
+            </h1>
+       
       </div>
     </div>
+<!--     <div id="browse">
+      {{#each starItems}}
+        {{> starred_item_partial}}
+      {{/each }}
+      {{#each otherItems}}
+        {{> unstarred_item_partial}}
+      {{/each }}
+    </div> -->
+    
   <script src="/scripts/sortby.js"></script>
   <script src="/scripts/staritem.js"></script>
   </body>
