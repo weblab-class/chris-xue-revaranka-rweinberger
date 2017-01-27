@@ -247,15 +247,8 @@ p{
     margin-left: -375px;
 }
 
-#logos {
-    position: absolute;
-    height: 275px;
-    width: 600px;
-    left: 15%;
-    top: 0px;
-    margin-left: -40px;
-}
 
+<<<<<<< HEAD
 #habitat{
 
   height: 250px;
@@ -289,6 +282,9 @@ p{
     margin-left: -60px;
 
 }
+=======
+
+>>>>>>> 9cb12ab9210b0d9b1c42ee125ad41b8a188de791
 
 .original li a {
     line-height: 38px;
