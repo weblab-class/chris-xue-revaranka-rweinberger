@@ -171,15 +171,16 @@ p{
 }
 
 #content {
-  background: url(../images/pretty.png) no-repeat center center fixed;
+  background: url(../images/long-background2.png) no-repeat center right fixed;
 /*  display: table;*/
   height: 400px;
   position: relative;
   width: 100%;
+  background-size: 100% 400px;
 /*-webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;*/
-  background-size: cover;
+
 }
 #logo {
   float:left;
@@ -256,34 +257,6 @@ p{
   padding-right: 400px;
   font-size: 70px;
 }
-
-
-#searchbox {
-    position: absolute;
-    width: 400px;
-    height: 30px;
-    top: 70%;
-    color: black;
-    font-family: sans-serif;
-    font-size: 20px;
-    margin-left: -200px;
-}
-
-.twobuttons {
-    position: absolute;
-    width: 100px;
-    height: 30px;
-    background-color: #C1272D;
-    top: 87%;
-    text-align: center;
-    color: white;
-    font-size: 15px;
-    font-family: sans-serif;
-    border-radius: 20px;
-    margin-left: -60px;
-
-}
-
 
 
 .original li a {
@@ -564,3 +537,12 @@ p{
 .hiddenconfirm{
   padding: 7px;
 }
+/*
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}*/
