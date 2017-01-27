@@ -203,7 +203,7 @@
                      <h4 class="modal-title">Sign Up</h4>
                     </div>
                   <div class="modal-body">
-                  <form name="signup" method="post" action="/signup">
+                  <form name="signup" method="post" action="/signup" enctype="multipart/form-data">
                     <ul>
                   <!-- <li>First name</li> -->
 
@@ -229,6 +229,7 @@
 
                       <li> <input type='password' style = 'font-size:14pt; padding: 4px; margin:7px' placeholder ="Confirm Password" id = 'password' required></li>
                       <script src="/scripts/confirmpass.js"></script>
+                      <li> <input type = 'file' style = 'font-size:14pt; padding:4px; margin:7px' placeholder = 'Upload photo (optional)' name ='picture'></li>
                       <li><button class="btn btn-default" type="submit" style='margin:4px;'>Sign Up</button>
                       <button type="button" class="btn btn-default" data-dismiss="modal" style='margin:4px;'>Cancel</button></li>
                     </ul>

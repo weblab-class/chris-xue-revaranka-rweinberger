@@ -80,6 +80,25 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
       })
    }
   })
+    router.post('/signup', upload.single('picture'), function (req, res, next) {
+  var file = req.file.filename;
+  console.log('signed up');
+  console.log(file);
+  var user = new User({picture: file, firstname: req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo, username: req.body.username});
+  User.register(user, req.body.password, function(registrationError) {
+    if(!registrationError) {
+      req.login(user, function(loginError)
+       {
+        if (loginError) { return next(loginError); }
+        return res.redirect('/home');
+      });
+    } else {
+      res.send(registrationError);
+    }
+  });
+
+});
+
   router.get('/uploads/:filename', function(req, res) {
   // TODO: set proper mime type + filename, handle errors, etc...
   var filename = req.params.filename;
@@ -179,41 +198,7 @@ router.post('/login',
       failureFlash: false })
     );
 
-router.post('/signup', function (req, res, next) {
-  console.log('signed up');
-  console.log(req.body);
-  var user = new User({firstname: req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo, username: req.body.username});
-  User.register(user, req.body.password, function(registrationError) {
-    if(!registrationError) {
-      req.login(user, function(loginError)
-       {
-        if (loginError) { return next(loginError); }
-        return res.redirect('/home');
-      });
-    } else {
-      res.send(registrationError);
-    }
-  });
 
-});
-
-
-router.post('/signup', function (req, res, next) {
-  console.log('signed up');
-  var user = new User({firstname: req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo, username: req.body.username});
-  User.register(user, req.body.password, function(registrationError) {
-    if(!registrationError) {
-      req.login(user, function(loginError)
-       {
-        if (loginError) { return next(loginError); }
-        return res.redirect('/home');
-      });
-    } else {
-      res.send(registrationError);
-    }
-  });
-
-});
 
 router.get('/logout', function(req, res){
   req.logout();
