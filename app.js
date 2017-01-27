@@ -22,8 +22,25 @@ passport.deserializeUser(User.deserializeUser());
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-
 var app = express();
+
+//SOCKET IO
+app.io = require('socket.io')();
+
+app.get('/chat', function(req, res){
+  res.render('chat.hbs');
+});
+
+app.io.on('connection', function(socket){
+  console.log('yo');
+  socket.on('disconnect', function(){
+    console.log('bai');
+  });
+  socket.on('chat message', function(msg){
+    console.log('message: ' + msg);
+    app.io.emit('chat message', msg);
+  });
+});
 
 // database setup
 // mongoose.connect('mongodb://localhost/app');
