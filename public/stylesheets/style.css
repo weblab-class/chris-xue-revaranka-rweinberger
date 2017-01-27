@@ -248,7 +248,7 @@ p{
 }
 
 
-<<<<<<< HEAD
+
 #habitat{
 
   height: 250px;
@@ -257,34 +257,6 @@ p{
   font-size: 70px;
 }
 
-#searchbox {
-    position: absolute;
-    width: 400px;
-    height: 30px;
-    top: 70%;
-    color: black;
-    font-family: sans-serif;
-    font-size: 20px;
-    margin-left: -200px;
-}
-
-.twobuttons {
-    position: absolute;
-    width: 100px;
-    height: 30px;
-    background-color: #C1272D;
-    top: 87%;
-    text-align: center;
-    color: white;
-    font-size: 15px;
-    font-family: sans-serif;
-    border-radius: 20px;
-    margin-left: -60px;
-
-}
-=======
-
->>>>>>> 9cb12ab9210b0d9b1c42ee125ad41b8a188de791
 
 .original li a {
     line-height: 38px;
