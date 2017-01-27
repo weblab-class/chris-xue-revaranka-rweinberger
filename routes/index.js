@@ -499,7 +499,7 @@ router.get('/profile/:id', function(req, res, next) {
     } else {
       bool = false;
       Item.find({'user':email}, function(err, items){
-        res.render('profile', {access: access, boolean:bool, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, unstarred: items});
+        res.render('profile', {profpic:profpic, access: access, boolean:bool, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, unstarred: items});
       });
     };
   })
