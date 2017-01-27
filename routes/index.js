@@ -14,6 +14,19 @@ var GridFsStorage = require('multer-gridfs-storage');
 var User = require('../schemas/user');
 var Item = require('../schemas/item');
 
+/*sending user data as JSON to access on client side*/
+router.get('/api/user_data', function(req, res) {
+  if (req.user === undefined) {
+    // The user is not logged in
+    res.json({});
+  } else {
+    res.json({
+      username: req.user.username
+    });
+  }
+});
+
+
 // mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mlab.com:27429/heroku_vjphwnnq
 
 mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mlab.com:27429/heroku_vjphwnnq', function(err, db) {
