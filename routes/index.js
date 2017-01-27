@@ -124,7 +124,10 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
     var userid = req.user.id;
     var firstname = req.user.firstname;
     var lastname = req.user.lastname;
-    var picture = req.file.filename;
+    var picture = '';
+    if(req.file) {
+      picture = req.file.filename;
+    }
     //console.log(tags);
     console.log(req.file);
     var newItem = new Item({
