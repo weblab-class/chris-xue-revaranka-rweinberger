@@ -30,11 +30,12 @@ router.get('/api/user_data', function(req, res) {
 
 /*socket*/
 
+
 router.get('/general-chat', function(req, res){
   res.render('chat.hbs');
 });
 
-router.get('/newchat', function(req, res){
+router.get('/chat', function(req, res){
   if(req.isAuthenticated()) {
     User.find({}, function(err, users) {
       res.render('newconvo.hbs', {users:users});
@@ -68,7 +69,15 @@ router.post('/startchat', function (req, res, next) {
           newChat.save(function(err,chat) {
             id = chat.id;
             console.log("chat " +id+" successfully initiated");
-            res.redirect('/chat/'+id)
+            User.update({username:selecting},{$push:{conversations:id}}, function (err, raw) {
+              if (err) return handleError(err);
+              console.log('The raw response for selecting was ', raw);
+              User.update({username:target},{$push:{conversations:id}}, function (err, raw) {
+                if (err) return handleError(err);
+                console.log('The raw response for target was ', raw);
+                res.send('/chat/'+id)
+              });
+            });
           });
         };
       });
@@ -77,9 +86,19 @@ router.post('/startchat', function (req, res, next) {
 });
 
 
-router.get('/chat/:id', function(req, res) {  
-  var id = req.params.id;
-  res.render('chat.hbs', {id:id})
+router.get('/chat/:id', function(req, res) {
+  if(req.isAuthenticated()) {
+    var user = req.user.username;
+    var id = req.params.id;
+    var userConvos = req.user.conversations;
+    if (userConvos.indexOf(id) != -1) {
+      res.render('chat.hbs', {id:id})
+    } else {
+      res.send('you do not have access to this conversation!! go away')
+    } 
+  } else {
+    res.send('please <a href="/login">log in</a> to view ur conversations!')
+  };
 });
 /* IGNORE 
 var newItem = new Item({
@@ -501,12 +520,7 @@ router.get('/itemlist', function(req, res) {
 
 router.get('/userlist', function(req, res) {
   User.find({}, function(err, users) {
-    var userlist = [];
-    users.forEach(function(user) {
-      userlist.push({firstname:user.firstname, lastname:user.lastname, username: user.userneame, venmo:user.venmo, starred: user.starred});
-    });
-
-    res.send(userlist);  
+    res.render('userlist', {users:users});  
   });
 });
 
