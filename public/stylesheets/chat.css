@@ -1,0 +1,49 @@
+body { 
+  font: 13px Helvetica, Arial; 
+}
+
+form { 
+  padding: 10px; 
+  position: fixed; 
+  bottom: 0; 
+  width: 100%; 
+}
+
+form input { 
+  font-size: 14px;
+  height: 35px;
+  border: none;
+  border-bottom: solid 1px #ccc;
+  margin: 10px; 
+  width: 300px; 
+  display: inline-block;
+}
+form input:focus { 
+  outline:none;
+}
+
+form button { 
+  width: 50px; 
+  background: #ccc; 
+  border-radius: 7px;
+  border: none; 
+  padding: 10px; 
+  display: inline-block;
+}
+
+#messages { 
+  list-style-type: none; 
+  margin: 20px; 
+  margin-bottom: 60px;
+  position:fixed; 
+  bottom: 0;
+  padding: 0; 
+}
+
+#messages li { 
+  padding: 5px 10px; 
+}
+
+#messages li:nth-child(odd) { 
+  background: #eee; 
+}

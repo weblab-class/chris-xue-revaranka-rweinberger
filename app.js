@@ -27,17 +27,18 @@ var app = express();
 //SOCKET IO
 app.io = require('socket.io')();
 
-app.get('/chat', function(req, res){
-  res.render('chat.hbs');
-});
+// app.get('/chat', function(req, res){
+//   res.render('chat.hbs');
+// });
+
 
 app.io.on('connection', function(socket){
-  console.log('yo');
+  // console.log('yo');
   socket.on('connect', function (client) {
     console.log(client);
   });
   socket.on('disconnect', function(){
-    console.log('bai');
+    // console.log('bai');
   });
   socket.on('chat message', function(msg){
     console.log('message: ' + msg);
