@@ -46,11 +46,25 @@ body.modal-open div.modal-backdrop {
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
+    background-color: #E5E5E5;
     margin: 5px auto; /* 15% from the top and centered */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    border: .5px solid #47474C;
+    width: 60%; /* Could be more or less, depending on screen size */
 }
+
+.modal-header {
+  height: 20px;
+}
+
+.modal-title{
+  font: 5px;
+}
+
+.sellingproduct{
+  width: 50px;
+  height: 40px;
+}
+
 
 /* The Close Button */
 .close {
@@ -431,9 +445,25 @@ p{
     background-position: center;
 }
 
-#about{
-  /*height: 83.5%;*/
+#flexbox{
+
+  margin-top: 30px;
   width: 100%;
+  display: flex;
+  flex-direction: row ltr;
+  flex-wrap: nowrap ltr;
+  justify-content: center;
+
+
+  /* This aligns items to the end line on main-axis */
+/*  justify-content: flex-end;*/
+}
+
+#typeofsell{
+  color: #C2272D;
+  margin-top: 30px;
+  font-size: 50px;
+  position: absolute;
 }
 
 #products{
@@ -444,14 +474,23 @@ p{
   background-color: #F3F3F3;
   display: inline-block;
 }
+
+#forsale{
+  height: 140px;
+  width: 194px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+
+}
+
 .product{
   text-align: center;
   margin: 20px;
-  width: 194px;
-  height: 194px;
-  background-color: #C8C8C8;
-  border: solid 3px #878787;
-  border-radius: 15px;
+  width: 175px;
+  height: 175px;
+  background-color: #E5E5E5;
+  border: solid .5px #47474C;
+  border-radius: 3px;
   display: inline-block;
 }
 .product img {
@@ -459,8 +498,32 @@ p{
   max-height: 100%;
 }
 #productcontent{
-  /*line-height: 200px;*/
+  font-size: 15px;
+  color: #47474C;
+  margin-bottom:5px;
+  margin-left: 2px;
+  width: 100px;
+  float: left;
 }
+#productcontent2{
+  font-size: 10px;
+  color: #47474C;
+  margin-left: 2px;
+  width: 100px;
+  margin-right: 0px;
+  float:left;
+}
+#productcontent3{
+  font-size: 20px;
+  color: #47474C;
+  float: right;
+  bottom: 20px;
+  margin-right: 2px;
+  margin-top: 11px;
+/*  margin-left: 2px;*/
+}
+
+
 .contentbutton {
   margin-top: 10px;
   padding: 7px;
@@ -491,6 +554,7 @@ p{
 #itemname{
   width: 135px;
   margin-right: 20px;
+
 }
 #itemcontent{
   margin:auto;
@@ -557,10 +621,10 @@ p{
   border-radius: 15px;
 }
 .star {
-  font-size: 25px;
+  font-size: 30px;
   position: absolute;
-  top: 27px;
-  left: 30px;
+/*  top: 27px;
+  left: 30px;*/
 }
 .blankstar {
   font-size: 25px;

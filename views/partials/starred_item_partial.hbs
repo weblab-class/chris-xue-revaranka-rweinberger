@@ -2,10 +2,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 -->
-<div class="product">
-  <div>
-    <a id="productcontent" data-toggle="modal" data-target="#{{itemname}}">{{itemname}}</a>
-    <img src="/uploads/{{picture}}" />
+  <div class="product" data-toggle="modal" data-target="#{{itemname}}">
+<!--   <div class="productbox"> -->
+    <img id=forsale src="/uploads/{{picture}}" />
+    <div class='contentinbox'>
+      <p align="left" id="productcontent" >{{itemname}}</p>
+      <p align="right" id="productcontent3">${{price}}</p>
+      <p align="left" id="productcontent2">{{user}}</p>
+
+
+    </div>
+    
   </div>
 
   <!-- Modal -->
