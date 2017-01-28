@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var flash = require('express-flash');
 
 //STUFF I'M ADDING 
 var session = require('express-session');
@@ -24,6 +25,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var app = express();
 
+app.use(flash());
 //SOCKET IO
 app.io = require('socket.io')();
 
