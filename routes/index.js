@@ -32,7 +32,7 @@ router.get('/api/user_data', function(req, res) {
 
 
 router.get('/general-chat', function(req, res){
-  res.render('chat.hbs');
+  res.render('general-chat.hbs');
 });
 
 router.get('/chat', function(req, res){
