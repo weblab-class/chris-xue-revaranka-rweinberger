@@ -1,19 +1,52 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
   <link rel='stylesheet' href='/stylesheets/loginstyle.css' />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 
 <div>
+                  <div class="modal fade" id="newitem" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+<!--                           <h1>Post a new item</h1>
+ -->                          <div id="itemform">
+                            <form method="post" action="/uploaditem" enctype="multipart/form-data">
+                            <input id="itemname" class='inputbox' type='text' maxlength="15" placeholder='item name' name='itemname' required> 
+                            &#36;&#32;<input id='price' class='inputbox' type="number" placeholder='price' name='price' required>
+                            <br>
+                            <textarea id='description' rows="8" placeholder='description' name='description' cols="50" required></textarea> <br>
+                            
+                            <select id='category' name = 'category' required>
+                              <option value="clothes">Clothes</option>
+                              <option value="book">Books</option>
+                              <option value="tech">Tech</option>
+                              <option value="furniture">Furniture</option>
+                            </select>
+
+                            <input id="inserttag" class='inputbox' type='text' placeholder='add tags' name='inserttag'>
+                            <button id="addtag" class="contentbutton" type='button'>add</button><br>
+                            <div id="tags"></div>
+
+                            <input type="file" name="picture" />
+
+                            <button id="submititem" class="contentbutton" type = 'submit' >list it!</button>&#32;
+                            <button type="button" class="contentbutton" data-dismiss="modal">cancel</button><br>
+                            </form>
+                        </div>
+                        <script src="/scripts/addtag.js"></script>
+                      </div>
+                    </div>
+                    </div>
 
     {{#if boolean}}
-  <nav id='nav' class="navbar navbar-inverse navbar-fixed-top" style="background-color: #47474C">
+  <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #47474C;">
 
     <a class="navbar-brand navbar nav" href="/home"</a>
-      <img id='navlogo' src="/images/navbarlogo.png" height="40" class="d-inline-block" alt="">
+      <img src="/images/newbeaverlogo.png" width="40" height="40" style='margin-right: 10px' class="d-inline-block" alt="">
 
     </a>
 
@@ -24,7 +57,9 @@
     </button>
 
     <div class="collapse navbar-collapse navHeaderCollapse">
-        <ul class="nav navbar-nav navbar-right original">
+        <ul class="nav navbar-nav navbar-left original">
+          <!-- ******** NEW ITEM ********  -->
+            <!-- Trigger the modal with a button -->
           <li class="nav-item">
             <a class="nav-link" href="/clothes">Clothes</a>
           </li>
@@ -37,16 +72,19 @@
           <li class="nav-item">
             <a class="nav-link" href="/furniture">Furniture</a>
           </li>
-          <!-- ******** NEW ITEM ********  -->
           <li class="nav-item">
-            <!-- Trigger the modal with a button -->
-            <a data-toggle="modal" data-target="#newitem">List an Item</a>
+            <a class="nav-link" href="/home">Browse</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right original">
+
+           <!--  <a data-toggle="modal" data-target="#newitem">List an Item</a> -->
 
             <!-- Modal -->
-            <div class="modal fade" id="newitem" role="dialog">
-              <div class="modal-dialog">
+            <!-- <div class="modal fade" id="newitem" role="dialog">
+              <div class="modal-dialog"> -->
                 <!-- Modal content-->
-                <div class="modal-content">
+               <!--  <div class="modal-content">
                     <h1>Post a new item</h1>
                     <div id="itemform">
                       <form method="post" action="/uploaditem" enctype="multipart/form-data">
@@ -75,40 +113,33 @@
                   <script src="/scripts/addtag.js"></script>
                 </div>
               </div>
-            </div>
-          </li>
+              </div> -->
+
+
+
 
           <li class="nav-item">
-            <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Welcome, {{firstname}}!
-              <span class="caret"></span></button>
+             <a class="nav-link dropdown-toggle" tpe= "button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Welcome, {{firstname}}!</a>
+<!--               <button class="btn nav-link dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Welcome, {{firstname}}!
+              <span class="caret"></span></button> -->
               <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+<!--                  <a data-toggle="modal" data-target="#newitem">List an Item</a> -->
+                 <li role="presentation"><a data-toggle="modal" data-target="#newitem">List an Item</a></li>
+
+            <!-- Modal -->
+           
                 <li role="presentation"><a class="nav-link" href="/starreditems">Starred Items</a></li>
                 <li role="presentation"><a class="nav-link" href="/profile">Profile</a></li>
                 <li role="presentation"><a class="nav-link" href="/manageitems">Manage Items</a></li>
                 <li role="presentation" class="divider"></li>
                 <li role="presentation"><a class="nav-link" href="/logout">Logout</a></li>
               </ul>
-            </div>
+
+         
           </li>
         </ul>
       </div>
-      <!-- <div class="collapse navbar-collapse navHeaderCollapse textin">
-          <ul class="nav navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/clothes">Clothes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/books">Books</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/tech">Tech</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/furniture">Furniture</a>
-          </li>
-        </ul>
-      </div> -->
+
     </nav>
 
   {{else}}
@@ -116,7 +147,7 @@
   <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #47474C;">
 
     <a class="navbar-brand navbar nav" href="/"</a>
-      <img id='navlogo' src="/images/navbarlogo.png" height="40" class="d-inline-block" alt="">
+      <img src="/images/newbeaverlogo.png" width="40" height="40" style='margin-right: 10px' class="d-inline-block" alt="">
     </a>
 
     <button class = 'navbar-toggle' data-toggle = 'collapse' data-target = '.navHeaderCollapse'>
@@ -128,31 +159,32 @@
     <div class="collapse navbar-collapse navHeaderCollapse">
 
 
-<!--       <form class="navbar-form navbar-left" method="post" action="/searchresults">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="find items" name="term">
-        </div>
-        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-      </form>  -->
-
-
-      <ul class="nav navbar-nav navbar-right original">
-        <li class="nav-item">
-            <a class="nav-link" href="/clothes">Clothes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/books">Books</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/tech">Tech</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/furniture">Furniture</a>
-        </li>
+      <ul class="nav navbar-nav navbar-left original">
 
     <!-- ******** LOGIN ********  -->
         <li class="nav-item">
+          <a class="nav-link" href="/clothes">Clothes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/books">Books</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/tech">Tech</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/furniture">Furniture</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/home">Browse</a>
+        </li>
+      </ul>
       <!-- Trigger the modal with a button -->
+      <ul class="nav navbar-nav navbar-right original">
+
+        <li class="nav-item">
+          <a class="nav-link" href="#about">About Us</a>
+        </li> 
+        <li class="nav-item">
           <a data-toggle="modal" data-target="#login">Login</a>
 
       <!-- Modal -->
@@ -195,8 +227,9 @@
 
     <!-- ******** SIGN UP ********  -->
 
-            <li class="nav-item">
+          <!--   <li class="nav-item"> -->
       <!-- Trigger the modal with a button -->
+            <li class="nav-item">
               <a data-toggle="modal" data-target="#signup">Sign Up</a>
 
       <!-- Modal -->
@@ -247,11 +280,12 @@
                 </div>
               </div>
               </li>
+              
 
       </ul>
 
     </div>
-    <!-- <div class="collapse navbar-collapse navHeaderCollapse textin">
+<!--     <div class="collapse navbar-collapse navHeaderCollapse textin">
           <ul class="nav navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="/clothes">Clothes</a>
@@ -266,6 +300,7 @@
             <a class="nav-link" href="/furniture">Furniture</a>
           </li>
         </ul>
+
       </div> -->
 
 </nav>

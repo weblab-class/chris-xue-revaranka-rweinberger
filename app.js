@@ -29,15 +29,18 @@ app.use(flash());
 //SOCKET IO
 app.io = require('socket.io')();
 
-app.get('/chat', function(req, res){
-  res.render('chat.hbs');
+// app.get('/chat', function(req, res){
+//   res.render('chat.hbs');
+// });
+var test = app.io.of('/chat');
+
+test.on('connection', function(socket) {
+  console.log('someone connected to chat');
+  test.emit('chat message', 'someone connected');
 });
 
 app.io.on('connection', function(socket){
-  console.log('yo');
-  socket.on('connect', function (client) {
-    console.log(client);
-  });
+  // console.log('yo');
   socket.on('disconnect', function(){
     console.log('bai');
   });

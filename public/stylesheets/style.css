@@ -170,22 +170,100 @@ p{
 
 }
 
-#content {
-  background: url(../images/pretty.png) no-repeat center center fixed;
-/*  display: table;*/
+.centerline{
+  background: url(/images/long-background2.png) fixed;
+
+  display: table;
   height: 400px;
   position: relative;
   width: 100%;
 /*-webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;*/
-  background-size: cover;
+  background-size: 100% 450px;
+
 }
-#logo {
-  float:left;
-  padding: 10px;
-  display: inline-block;
+
+.content {
+
+    position: absolute;
+    width: 300px;
+    height: 200px;
+/*    top: 50%;*/
+    margin-top: 150px;
+/*    left: 50%;
+*/  margin-left: 0px;
 }
+/*  background-size: 100% 400px;
+*//*-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;*/
+
+
+/*#logohome {
+    position: absolute;
+    height: 142px;
+    width: 350px;
+    left: 15%;
+    top: 108px;
+    margin-left: 40px;
+}*/
+
+#logohome2 {
+    position: absolute;
+    height: 142px;
+    width: 118px;
+    left: 15%;
+    top: 108px;
+    margin-left: 40px;
+}
+
+#searchboxhome {
+    position: absolute;
+    color: #000;
+    width: 185px;
+    height: 23px;
+    top: 135px;
+    border: none;
+    border-bottom: solid 1px #6C6C6C;
+    background:transparent;
+    font-family: sans-serif;
+    font-size: 15.4px;
+    margin-left: -65px;
+}
+#searchboxhome:focus {
+  outline:none;
+}
+
+#welcomehome{
+  color: #C2272D;
+
+}
+
+
+.twobuttonshome {
+  border: none;
+    position: absolute;
+    width: 77px;
+    height: 23px;
+    background-color: #C1272D;
+    top: 200px;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    font-family: sans-serif;
+    border-radius: 20px;
+    margin-left: -48px;
+
+}
+.twobuttonshome:focus {
+  outline:none;
+
+}
+.twobuttonshome:hover {
+  background-color: #a1282d
+}
+
 #hometext{
   font-size: 200%;
   padding: 10px;
@@ -249,6 +327,7 @@ p{
 
 
 
+
 #habitat{
 
   height: 250px;
@@ -256,34 +335,6 @@ p{
   padding-right: 400px;
   font-size: 70px;
 }
-
-
-#searchbox {
-    position: absolute;
-    width: 400px;
-    height: 30px;
-    top: 70%;
-    color: black;
-    font-family: sans-serif;
-    font-size: 20px;
-    margin-left: -200px;
-}
-
-.twobuttons {
-    position: absolute;
-    width: 100px;
-    height: 30px;
-    background-color: #C1272D;
-    top: 87%;
-    text-align: center;
-    color: white;
-    font-size: 15px;
-    font-family: sans-serif;
-    border-radius: 20px;
-    margin-left: -60px;
-
-}
-
 
 
 .original li a {
@@ -564,3 +615,12 @@ p{
 .hiddenconfirm{
   padding: 7px;
 }
+/*
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}*/

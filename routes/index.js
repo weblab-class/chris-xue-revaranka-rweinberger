@@ -16,6 +16,7 @@ var flash = require('express-flash');
 /* GET the User Model */
 var User = require('../schemas/user');
 var Item = require('../schemas/item');
+var Chat = require('../schemas/chat');
 
 /*sending user data as JSON to access on client side*/
 router.get('/api/user_data', function(req, res) {
@@ -24,10 +25,133 @@ router.get('/api/user_data', function(req, res) {
     res.json({});
   } else {
     res.json({
-      username: req.user.username
+      username: req.user.username,
+      firstname: req.user.firstname
     });
   }
 });
+
+/*socket*/
+
+
+router.get('/general-chat', function(req, res){
+  res.render('general-chat.hbs');
+});
+
+router.get('/chat', function(req, res){
+  if(req.isAuthenticated()) {
+    var user = req.user.username;
+    var conversations = req.user.conversations;
+    var existing_users_set = new Set();
+    var new_users = [];
+    User.find({}, function(err, users) {
+      //for each convo ID of current user
+      for (i=0; i < conversations.length; i++) {
+        //for each user in userlist
+        for (j=0; j < users.length; j++) {
+          // get that user's convo IDs
+          var userConvos = users[j].conversations;
+          // if that user shares the current convo ID
+          if (userConvos.indexOf(conversations[i]) != -1) {
+            // put them in the list of already-initiated convo users
+            console.log("existing user found: "+users[j].username)
+            users[j].chatid = conversations[i];
+            existing_users_set.add(users[j])
+          }
+        }
+      }
+      var existing_users = Array.from(existing_users_set);
+      for (i=0; i < users.length; i++) {
+        if (existing_users.indexOf(users[i]) === -1) {
+          new_users.push(users[i])
+        }
+      }
+      // var new_users = Array.from(new_users_set);
+      res.render('newconvo.hbs', {new_users: new_users, existing_users: existing_users});
+      // res.render('newconvo.hbs', {new_users: new_users, existing_users: existing_users});
+    });
+  } else {
+    res.send('please <a href="/login">log in</a> to start a conversation!')
+  };
+});
+
+router.post('/startchat', function (req, res, next) {
+  var target = req.body.targetUser;
+  var selecting = req.body.selectingUser;
+  var users1 = [selecting,target];
+  var users2 = [target,selecting];
+  console.log(users1);
+  Chat.findOne({users:users1}, function(err, result) {
+    if (err) { /* handle err */
+      console.log('error1')
+    } if (result) {
+      console.log('ERROR: '+selecting+' attempted to start an existing conversation - 1')
+    } else {
+      Chat.findOne({users:users2}, function(err, result) {
+        if (err) {
+          console.log('error2')
+        } if (result) {
+          console.log('ERROR: '+selecting+' attempted to start an existing conversation - 2')
+        } else {
+          var newChat = new Chat({
+            'users': users1
+          });
+          newChat.save(function(err,chat) {
+            id = chat.id;
+            console.log("chat " +id+" successfully initiated");
+            User.update({username:selecting},{$push:{conversations:id}}, function (err, raw) {
+              if (err) return handleError(err);
+              console.log('The raw response for selecting was ', raw);
+              User.update({username:target},{$push:{conversations:id}}, function (err, raw) {
+                if (err) return handleError(err);
+                console.log('The raw response for target was ', raw);
+                res.send('/chat/'+id)
+              });
+            });
+          });
+        };
+      });
+    };
+  });
+});
+
+
+router.get('/chat/:id', function(req, res) {
+  if(req.isAuthenticated()) {
+    var user = req.user.username;
+    var id = req.params.id;
+    var userConvos = req.user.conversations;
+    if (userConvos.indexOf(id) != -1) {
+      Chat.findOne({'_id':id}, function(err, chat) {
+        if (err) {
+          console.log('error retrieving chat')
+        } else {
+          res.render('chat.hbs', {users:chat.users})
+        }
+      })
+    } else {
+      res.send('you do not have access to this conversation!! go away')
+    } 
+  } else {
+    res.send('please <a href="/login">log in</a> to view ur conversations!')
+  };
+});
+/* IGNORE 
+var newItem = new Item({
+  'itemname': itemname,
+  'price': price,
+  'description': description,
+  'tags':tags,
+  'category':category,
+  'user':user,
+  'firstname':firstname,
+  'lastname':lastname,
+  'userid': userid,
+  'picture': picture
+});
+newItem.save();
+res.redirect('/uploadsuccess');
+*/
 
 
 // mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mlab.com:27429/heroku_vjphwnnq
@@ -55,7 +179,10 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
     var userid = req.user.id;
     var firstname = req.user.firstname;
     var lastname = req.user.lastname;
-    var picture = req.file.filename;
+    var picture = '';
+    if(req.file) {
+      picture = req.file.filename;
+    }
     //console.log(tags);
     console.log(req.file);
     var newItem = new Item({
@@ -75,7 +202,7 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
   });
 
   router.post('/uploadpic', upload.single('profpic'), function(req, res, next){
-   if (req.isAuthenticated){
+   if (req.isAuthenticated()){
       User.update({username:req.user.username},{$set:{picture:req.file.filename}}, function(err, raw){
         if (err){ 
           return handleError(err);
@@ -508,12 +635,7 @@ router.get('/itemlist', function(req, res) {
 
 router.get('/userlist', function(req, res) {
   User.find({}, function(err, users) {
-    var userlist = [];
-    users.forEach(function(user) {
-      userlist.push({firstname:user.firstname, lastname:user.lastname, username: user.userneame, venmo:user.venmo, starred: user.starred});
-    });
-
-    res.send(userlist);  
+    res.render('userlist', {users:users});  
   });
 });
 

@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+  <head>
+    <title>userlist</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+  <h1 style='padding:10px'> All Users </h1>
+  {{#each users}}
+    {{> user_partial}}
+  {{/each}}
+  </body>
+</html>
