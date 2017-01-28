@@ -359,10 +359,10 @@ router.post('/forgot', function(req, res, next) {
       });
     },
     function(token, user, done) {
-      var smtpTransport = nodemailer.createTransport('smtps://chrisxue:@outgoing.mit.edu');
+      var smtpTransport = nodemailer.createTransport('smtps://beaverplus@yahoo.com:dank6148@smtp.mail.yahoo.com');
       var mailOptions = {
         to: user.username,
-        from: 'chrisxue@mit.edu',
+        from: 'beaverplus@yahoo.com',
         subject: 'Node.js Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
