@@ -37,8 +37,35 @@ router.get('/general-chat', function(req, res){
 
 router.get('/chat', function(req, res){
   if(req.isAuthenticated()) {
+    var user = req.user.username;
+    var conversations = req.user.conversations;
+    var existing_users_set = new Set();
+    var new_users = [];
     User.find({}, function(err, users) {
-      res.render('newconvo.hbs', {users:users});
+      //for each convo ID of current user
+      for (i=0; i < conversations.length; i++) {
+        //for each user in userlist
+        for (j=0; j < users.length; j++) {
+          // get that user's convo IDs
+          var userConvos = users[j].conversations;
+          // if that user shares the current convo ID
+          if (userConvos.indexOf(conversations[i]) != -1) {
+            // put them in the list of already-initiated convo users
+            console.log("existing user found: "+users[j].username)
+            users[j].chatid = conversations[i];
+            existing_users_set.add(users[j])
+          }
+        }
+      }
+      var existing_users = Array.from(existing_users_set);
+      for (i=0; i < users.length; i++) {
+        if (existing_users.indexOf(users[i]) === -1) {
+          new_users.push(users[i])
+        }
+      }
+      // var new_users = Array.from(new_users_set);
+      res.render('newconvo.hbs', {new_users: new_users, existing_users: existing_users});
+      // res.render('newconvo.hbs', {new_users: new_users, existing_users: existing_users});
     });
   } else {
     res.send('please <a href="/login">log in</a> to start a conversation!')
@@ -92,7 +119,13 @@ router.get('/chat/:id', function(req, res) {
     var id = req.params.id;
     var userConvos = req.user.conversations;
     if (userConvos.indexOf(id) != -1) {
-      res.render('chat.hbs', {id:id})
+      Chat.findOne({'_id':id}, function(err, chat) {
+        if (err) {
+          console.log('error retrieving chat')
+        } else {
+          res.render('chat.hbs', {users:chat.users})
+        }
+      })
     } else {
       res.send('you do not have access to this conversation!! go away')
     } 

@@ -10,8 +10,12 @@
   </head>
   <body>
   <h1 style='padding:10px'> start a convo with any of these lovely ppl </h1>
-  {{#each users}}
-    {{> chat_user}}
+  {{#each new_users}}
+    {{> new_chat_user}}
+  {{/each}}
+  <h1 style='padding:10px'> or continue an existing conversation </h1>
+  {{#each existing_users}}
+    {{> existing_chat_user}}
   {{/each}}
   </body>
   <script src='/scripts/selectuser.js'></script>
