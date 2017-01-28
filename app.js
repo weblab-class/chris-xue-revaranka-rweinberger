@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var flash = require('express-flash');
 
 //STUFF I'M ADDING 
 var session = require('express-session');
@@ -24,21 +25,24 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var app = express();
 
+app.use(flash());
 //SOCKET IO
 app.io = require('socket.io')();
 
 // app.get('/chat', function(req, res){
 //   res.render('chat.hbs');
 // });
+var test = app.io.of('/chat');
 
+test.on('connection', function(socket) {
+  console.log('someone connected to chat');
+  test.emit('chat message', 'someone connected');
+});
 
 app.io.on('connection', function(socket){
   // console.log('yo');
-  socket.on('connect', function (client) {
-    console.log(client);
-  });
   socket.on('disconnect', function(){
-    // console.log('bai');
+    console.log('bai');
   });
   socket.on('chat message', function(msg){
     console.log('message: ' + msg);

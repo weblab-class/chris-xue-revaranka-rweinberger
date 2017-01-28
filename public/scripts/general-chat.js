@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-  var socket = io();
+  var socket = io('/chat');
   $.getJSON("/api/user_data", function(data) {
     // Make sure the data contains the username as expected before using it
     if (data.hasOwnProperty('username')) {

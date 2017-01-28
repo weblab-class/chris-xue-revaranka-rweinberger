@@ -8,7 +8,10 @@ var crypto = require('crypto');
 var Grid = require('gridfs-stream');
 var mongo = require('mongodb');
 var GridFsStorage = require('multer-gridfs-storage');
-
+var bcrypt = require('bcrypt-nodejs');
+var async = require('async');
+var nodemailer = require('nodemailer');
+var flash = require('express-flash');
 
 /* GET the User Model */
 var User = require('../schemas/user');
@@ -32,13 +35,40 @@ router.get('/api/user_data', function(req, res) {
 
 
 router.get('/general-chat', function(req, res){
-  res.render('chat.hbs');
+  res.render('general-chat.hbs');
 });
 
 router.get('/chat', function(req, res){
   if(req.isAuthenticated()) {
+    var user = req.user.username;
+    var conversations = req.user.conversations;
+    var existing_users_set = new Set();
+    var new_users = [];
     User.find({}, function(err, users) {
-      res.render('newconvo.hbs', {users:users});
+      //for each convo ID of current user
+      for (i=0; i < conversations.length; i++) {
+        //for each user in userlist
+        for (j=0; j < users.length; j++) {
+          // get that user's convo IDs
+          var userConvos = users[j].conversations;
+          // if that user shares the current convo ID
+          if (userConvos.indexOf(conversations[i]) != -1) {
+            // put them in the list of already-initiated convo users
+            console.log("existing user found: "+users[j].username)
+            users[j].chatid = conversations[i];
+            existing_users_set.add(users[j])
+          }
+        }
+      }
+      var existing_users = Array.from(existing_users_set);
+      for (i=0; i < users.length; i++) {
+        if (existing_users.indexOf(users[i]) === -1) {
+          new_users.push(users[i])
+        }
+      }
+      // var new_users = Array.from(new_users_set);
+      res.render('newconvo.hbs', {new_users: new_users, existing_users: existing_users});
+      // res.render('newconvo.hbs', {new_users: new_users, existing_users: existing_users});
     });
   } else {
     res.send('please <a href="/login">log in</a> to start a conversation!')
@@ -92,7 +122,13 @@ router.get('/chat/:id', function(req, res) {
     var id = req.params.id;
     var userConvos = req.user.conversations;
     if (userConvos.indexOf(id) != -1) {
-      res.render('chat.hbs', {id:id})
+      Chat.findOne({'_id':id}, function(err, chat) {
+        if (err) {
+          console.log('error retrieving chat')
+        } else {
+          res.render('chat.hbs', {users:chat.users})
+        }
+      })
     } else {
       res.send('you do not have access to this conversation!! go away')
     } 
@@ -297,6 +333,85 @@ router.post('/login',
 router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
+});
+
+router.post('/forgot', function(req, res, next) {
+  async.waterfall([
+    function(done) {
+      crypto.randomBytes(20, function(err, buf) {
+        var token = buf.toString('hex');
+        done(err, token);
+      });
+    },
+    function(token, done) {
+      User.findOne({ 'username': req.body.recoveremail }, function(err, user) {
+        if (!user) {
+          //req.flash('error', 'No account with that email address exists.');
+          return res.redirect('/forgot');
+        }
+
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+        user.save(function(err) {
+          done(err, token, user);
+        });
+      });
+    },
+    function(token, user, done) {
+      var smtpTransport = nodemailer.createTransport('smtps://chrisxue:@outgoing.mit.edu');
+      var mailOptions = {
+        to: user.username,
+        from: 'chrisxue@mit.edu',
+        subject: 'Node.js Password Reset',
+        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+      };
+      smtpTransport.sendMail(mailOptions, function(err) {
+        req.flash('info', 'An e-mail has been sent to ' + user.username + ' with further instructions.');
+        done(err, 'done');
+      });
+    }
+  ], function(err) {
+    if (err) return next(err);
+    res.redirect('/forgot');
+  });
+});
+
+router.get('/reset/:token', function(req, res) {
+  User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+    if (!user) {
+      req.flash('error', 'Password reset token is invalid or has expired.');
+      return res.redirect('/forgot');
+    }
+    res.render('reset', {
+      user: req.user,
+      token: req.params.token
+    });
+  });
+});
+
+router.post('/reset/:token', function(req, res) {
+
+    User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+    if (!user) {
+      req.flash('error', 'Password reset token is invalid or has expired.');
+      return res.redirect('back');
+    }
+    user.setPassword(req.body.password, function(err) {
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpires = undefined;
+
+      user.save(function(err) {
+        req.logIn(user, function(err) {
+          res.redirect('/');
+        });
+      });
+    });
+
+  });
 });
 
 
