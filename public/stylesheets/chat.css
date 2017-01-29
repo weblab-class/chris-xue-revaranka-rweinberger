@@ -5,8 +5,8 @@ body {
 form { 
   padding: 10px; 
   position: fixed; 
-  bottom: 0; 
-  right: 15px; 
+  bottom: 40px; 
+  right: 165px; 
 }
 
 form input { 
@@ -34,32 +34,34 @@ form button {
   list-style-type: none; 
   overflow:   auto;
   position:   absolute;
-  right: 60px;
-  bottom: 60px;
-  width: 365px;
-  max-height: 85%;
+  right: 175px;
+  bottom: 100px;
+  width: 405px;
+  max-height: 72%;
 }
 
 
 #messages li { 
-  padding: 5px 10px; 
+  border-radius: 5px;
+  margin: 5px;
+  padding: 10px; 
   max-width: 365px;
   word-wrap: break-word;
 }
 
-#messages li:nth-child(odd) { 
-  background: #eee; 
-}
-
 #convos {
-  background-color: #ccc;
+  overflow: auto;
+  height: 630px;
+  border-radius: 10px;
+  background-color: #E1E0E0;
   width: 40%;
   padding: 15px;
+  margin-left: 60px;
 }
 #nochat {
   position: fixed;
-  right: 60px;
-  bottom: 60px;
+  top: 330px;
+  right: 160px;
   width: 365px;
   height: 85%;
 }
@@ -67,4 +69,20 @@ form button {
   position: fixed;
   right: 60px;
   top: 60px;
+}
+
+#content{
+  margin: 20px;
+  margin-top: 130px;
+}
+
+#from-user {
+  right: 0px;
+  text-align: right;
+  background: #E1E0E0;
+}
+
+#from-other {
+  text-align: left;
+  background: #F5F5F5;
 }

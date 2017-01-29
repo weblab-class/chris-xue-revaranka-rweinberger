@@ -30,6 +30,11 @@
 // });
 
 $( document ).ready(function() {
+  function updateScroll(){
+    var element = document.getElementById("messages");
+    element.scrollTop = element.scrollHeight;
+  };
+  updateScroll();
   $.getJSON("/api/user_data", function(data) {
     // $('#messages').append($('<li>').text(data.firstname+' ('+data.username+') connected'));
     $('form').submit(function() {
@@ -37,7 +42,8 @@ $( document ).ready(function() {
       var message = data.firstname + ': ' + $('#m').val();
       var sender = data.username;
       console.log(message);
-      $('#messages').append($('<li>').text(message));
+      $('#messages').append($('<li id="from-user">').text(message));
+      updateScroll();
       $('#m').val('');
       $.ajax({url:'/message', type: 'POST', data: {
         chatid: chatid,

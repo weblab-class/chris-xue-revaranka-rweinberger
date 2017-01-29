@@ -8,25 +8,27 @@
     <link rel="stylesheet" href='/stylesheets/chat.css'>
   </head>
   <body>
-    <div id='convos'>
-      <h1 style='padding:10px'> start a convo with any of these lovely ppl </h1>
-      {{#each new_users}}
-        {{> new_chat_user}}
-      {{/each}}
-      <h1 style='padding:10px'> or continue an existing conversation </h1>
-      {{#each existing_users}}
-        {{> existing_chat_user}}
-      {{/each}}
-    </div>
+    {{> navbar}}
+    <div id='content'>
+      <div id='convos'>
+        <h1 style='padding:10px'> continue an existing conversation </h1>
+        {{#each existing_users}}
+          {{> existing_chat_user}}
+        {{/each}}
+        <h1 style='padding:10px'> or start a convo with any of these lovely ppl </h1>
+        {{#each new_users}}
+          {{> new_chat_user}}
+        {{/each}}
+      </div>
 
-    <div id='chat'>
-    {{#if selected_chat}}
-      {{>chatbox}}
-    {{else}}
-      <div id='nochat'> no chat selected</div>
-    {{/if}}
+      <div id='chat'>
+      {{#if selected_chat}}
+        {{>chatbox}}
+      {{else}}
+        <div id='nochat'> no chat selected</div>
+      {{/if}}
+      </div>
     </div>
   </body>
   <script src='/scripts/selectuser.js'></script>
-  <script src='/scripts/chat.js'></script>
 </html>

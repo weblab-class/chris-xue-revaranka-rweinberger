@@ -118,7 +118,7 @@ router.get('/chat', function(req, res){
         };
       };
       // var new_users = Array.from(new_users_set);
-      res.render('chat_home.hbs', {selected_chat: false, new_users: new_users, existing_users: existing_users});
+      res.render('chat_home.hbs', {boolean: true, firstname: req.user.firstname, selected_chat: false, new_users: new_users, existing_users: existing_users});
       // res.render('newconvo.hbs', {new_users: new_users, existing_users: existing_users});
     });
   } else {
@@ -173,9 +173,31 @@ router.get('/chat/:id', function(req, res){
             console.log('error retrieving chat')
           } else {
             var messages = chat.messages;
-            res.render('chat_home.hbs', {selected_chat: true, users:chat.users, chatid: id, existing_messages: messages, new_users: new_users, existing_users: existing_users})
-          }
-        })
+            for (i=0; i < messages.length; i++) {
+              if (messages[i].sender === user) {
+                console.log('found a message from the current user!');
+                messages[i].from_current_user = true
+              } else {
+                messages[i].from_current_user = false
+              }
+            };
+            res.render('chat_home.hbs', {boolean: true, firstname: req.user.firstname, selected_chat: true, users:chat.users, chatid: id, existing_messages: messages, new_users: new_users, existing_users: existing_users, 
+              // helpers: {
+              //   from_current_user: function (message) { 
+              //     var attribs;
+              //     attribs = JSON.parse(message.hash.dataAttribs);
+              //     console.log(attribs.sender + " -- " + attribs.message);
+              //     var sender = attribs.sender;
+              //     if (user === sender) {
+              //       return true
+              //     } else {
+              //       return false
+              //     };
+              //   }
+              // }
+            });
+          };
+        });
       } else {
         res.send('you do not have access to this conversation!! go away')
       };
