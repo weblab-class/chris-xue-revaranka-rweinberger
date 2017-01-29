@@ -41,7 +41,7 @@ body.modal-open div.modal-backdrop {
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 15%;
+    padding-top: 5%;
 }
 
 /* Modal Content/Box */
@@ -76,6 +76,9 @@ body.modal-open div.modal-backdrop {
 
 }
 
+/*  height: 140px;
+  width: 194px;*/
+
 .modal-image{
   height:50px;
 
@@ -95,10 +98,10 @@ body.modal-open div.modal-backdrop {
 .close {
     /* Position it in the top right corner outside of the modal */
     position: absolute;
-    right: 25px;
+    right: 12px;
     top: 0; 
     color: #000;
-    font-size: 35px;
+    font-size: 45px;
     font-weight: bold;
 }
 
