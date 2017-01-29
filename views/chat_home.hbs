@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <title>chat</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href='/stylesheets/chat.css'>
+  </head>
+  <body>
+    {{> navbar}}
+    <div id='content'>
+      <div id='convos'>
+        <h3 style='padding:10px'> Continue an existing conversation... </h3>
+        {{#each existing_users}}
+          {{> existing_chat_user}}
+        {{/each}}
+        <h3 style='padding:10px'> ...or start a new one! </h3>
+        {{#each new_users}}
+          {{> new_chat_user}}
+        {{/each}}
+      </div>
+
+      <div id='chat'>
+      {{#if selected_chat}}
+        {{>chatbox}}
+      {{else}}
+        <div id='nochat'> no chat selected</div>
+      {{/if}}
+      </div>
+    </div>
+  </body>
+  <script src='/scripts/selectuser.js'></script>
+</html>

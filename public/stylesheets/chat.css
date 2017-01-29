@@ -5,8 +5,8 @@ body {
 form { 
   padding: 10px; 
   position: fixed; 
-  bottom: 0; 
-  width: 100%; 
+  bottom: 40px; 
+  right: 165px; 
 }
 
 form input { 
@@ -31,19 +31,68 @@ form button {
   display: inline-block;
 }
 
-#messages { 
-  list-style-type: none; 
-  margin: 20px; 
-  margin-bottom: 60px;
-  position:fixed; 
-  bottom: 0;
-  padding: 0; 
+.userbutton {
+  position: absolute;
+  left: 50px;
+  margin-bottom: 15px;
+  background-color: #A6A6A6;
+  border: none;
+  border-radius: 10px
 }
+#messages {
+  list-style-type: none; 
+  overflow:   auto;
+  position:   absolute;
+  right: 175px;
+  bottom: 100px;
+  width: 405px;
+  max-height: 72%;
+}
+
 
 #messages li { 
-  padding: 5px 10px; 
+  border-radius: 5px;
+  margin: 5px;
+  padding: 10px; 
+  max-width: 365px;
+  word-wrap: break-word;
 }
 
-#messages li:nth-child(odd) { 
-  background: #eee; 
+#convos {
+  position: relative;
+  overflow: auto;
+  height: 630px;
+  border-radius: 10px;
+  background-color: #E1E0E0;
+  width: 40%;
+  padding: 15px;
+  margin-left: 60px;
+}
+#nochat {
+  position: fixed;
+  top: 330px;
+  right: 160px;
+  width: 365px;
+  height: 85%;
+}
+#users {
+  position: fixed;
+  right: 60px;
+  top: 60px;
+}
+
+#content{
+  margin: 20px;
+  margin-top: 130px;
+}
+
+#from-user {
+  right: 0px;
+  text-align: right;
+  background: #E1E0E0;
+}
+
+#from-other {
+  text-align: left;
+  background: #F5F5F5;
 }

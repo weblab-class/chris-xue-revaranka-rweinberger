@@ -1,5 +1,9 @@
 $( document ).ready(function() {
-  var socket = io('/chat');
+  var socket = io('/general-chat');
+  function updateScroll(){
+    var element = document.getElementById("messages");
+    element.scrollTop = element.scrollHeight;
+  };
   $.getJSON("/api/user_data", function(data) {
     // Make sure the data contains the username as expected before using it
     if (data.hasOwnProperty('username')) {
@@ -26,5 +30,6 @@ $( document ).ready(function() {
   });
   socket.on('chat message', function(msg){
     $('#messages').append($('<li>').text(msg));
+    updateScroll();
   });
 });

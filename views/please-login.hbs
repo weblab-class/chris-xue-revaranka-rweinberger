@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Please Login</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+
+  <body>
+    {{> navbar}}
+
+    <div id="content" style='margin-top: 200px'>
+      <h1 id="title">Please 
+
+          <a data-toggle="modal" data-target="#login">log in</a>
+
+      <!-- Modal -->
+            <div class="modal fade" id="login" role="dialog">
+            <div class="modal-dialog">
+        
+          <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Login</h4>
+            </div>
+            <div class="modal-body">
+              <form name="sign in" method = 'post' action = '/login'>
+                <ul>
+                  <!-- <li style = 'position:relative; font-size:17pt''> Email: </li> -->
+                  <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'text' placeholder = 'Email' name = 'username'> </li>
+
+
+                  <!-- <li style = 'position:relative; font-size:17pt''> Password: </li> -->
+
+                  <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'password' placeholder= 'Password' name = 'password'> </li>
+
+                  <li><button class="btn btn-default" type = 'submit'>Login</button></li>
+
+                </ul>
+              </form>
+              <form name = 'forgotpassword' method = 'post' action = '/forgot'>
+                  <ul>
+                  <li> <button class = "btn btn-default" type = 'submit'> Forgot password? </button></li>
+                  <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'text' placeholder = 'recoveremail' name = 'recoveremail'> </li>
+                  </ul>
+              </form>
+            </div>
+            </div>
+          
+            </div>
+            </div>
+
+       to {{inorderto}} </h1>
+    </div>
+  </body>
+</html>
