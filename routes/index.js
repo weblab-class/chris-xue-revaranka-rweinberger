@@ -208,26 +208,46 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
           return handleError(err);
         }
       })
+      res.redirect('/profile')
    }
   })
-    router.post('/signup', upload.single('picture'), function (req, res, next) {
-  var file = req.file.filename;
-  console.log('signed up');
-  console.log(file);
-  var user = new User({picture: file, firstname: req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo, username: req.body.username});
-  User.register(user, req.body.password, function(registrationError) {
-    if(!registrationError) {
-      req.login(user, function(loginError)
-       {
-        if (loginError) { return next(loginError); }
-        return res.redirect('/home');
-      });
-    } else {
-      res.send(registrationError);
-    }
+  
+  router.post('/signup', upload.single('picture'), function (req, res, next) {
+    var file = req.file.filename;
+    console.log('signed up');
+    console.log(file);
+    var user = new User({picture: file, firstname: req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo, username: req.body.username});
+    User.register(user, req.body.password, function(registrationError) {
+      if(!registrationError) {
+        req.login(user, function(loginError)
+         {
+          if (loginError) { return next(loginError); }
+          return res.redirect('/home');
+        });
+      } else {
+        res.send(registrationError);
+      }
   });
-
 });
+router.post('/updateprofile',upload.single('picture'), function(req, res,next){
+  if(req.isAuthenticated()){
+    User.update({username:req.user.username}, {$set:{firstname:req.body.firstname, picture:req.file.filename, firstname:req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo}}, function(err,raw){
+        if (err){
+          return handleError(error);
+        }
+    })
+    
+  //  User.findOne({'username': req.user.username}, function(err, user){
+  //    user.setPassword(req.body.newpassword, function(err){})
+
+    //})
+    res.redirect('/');
+
+
+  }
+});
+
+
 
   router.get('/uploads/:filename', function(req, res) {
   // TODO: set proper mime type + filename, handle errors, etc...
@@ -722,6 +742,7 @@ router.get('/manageitems', function(req, res) {
     res.redirect('/');
   };
 });
+
 
 router.post('/deleteitem', function(req, res) {
   var user = req.user.username;
