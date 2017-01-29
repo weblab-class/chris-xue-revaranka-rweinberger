@@ -21,27 +21,27 @@
     
       <!-- Modal content-->
       <div class="modal-content">
-
         <div class="modal-header">
           <div class='blankstar' id='blankstar{{id}}'>&#9734;</div>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">{{itemname}}</h4>
-          &#36;&#32; {{price}}
+          <h5 class='modal-price'>${{price}}</h5>
+          <!-- &#36;&#32;  -->
         </div>
 
         <div class="modal-body">
-          {{description}}
-          <img src="/uploads/{{picture}}" />
-          <br><br>
-          posted by <a href='/profile/{{userid}}'> {{firstname}} {{lastname}} </a><br> <a href= 'mailto:{{user}}'> ({{user}})</a>
+          <img height='200px' width = '60%' id= 'model-image' src="/uploads/{{picture}}" />
+          <h6 class="modal-description">{{description}}</h6>
+          <div class='post-modal'
+            >Posted by: <a href='/profile/{{userid}}'> {{firstname}} {{lastname}} </a><br><a href= 'mailto:{{user}}'> ({{user}})</a>
+          </div>
         </div>
-
         <div style="display:none" class='id' id="{{id}}"></div>
-
+<!-- 
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
-
+ -->
       </div>
       
     </div>

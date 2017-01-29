@@ -41,7 +41,7 @@ body.modal-open div.modal-backdrop {
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px;
+    padding-top: 15%;
 }
 
 /* Modal Content/Box */
@@ -50,6 +50,7 @@ body.modal-open div.modal-backdrop {
     margin: 5px auto; /* 15% from the top and centered */
     border: .5px solid #47474C;
     width: 60%; /* Could be more or less, depending on screen size */
+    height: 400px;
 }
 
 .modal-header {
@@ -57,7 +58,31 @@ body.modal-open div.modal-backdrop {
 }
 
 .modal-title{
-  font: 5px;
+  font-size: 20px;
+}
+.modal-price{
+  font: 10px;
+}
+
+.modal-body{
+  height: 300px;
+  top: 50px;
+  padding-top: 0px;
+
+}
+
+.modal-description{
+  padding-top: 5px;
+
+}
+
+.modal-image{
+  height:50px;
+
+}
+
+.post-modal{
+  font-size: 10px;
 }
 
 .sellingproduct{
@@ -623,6 +648,7 @@ p{
 .star {
   font-size: 30px;
   position: absolute;
+
 /*  top: 27px;
   left: 30px;*/
 }

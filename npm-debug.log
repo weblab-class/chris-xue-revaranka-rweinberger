@@ -1,0 +1,103 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/7.4.0/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'git://github.com/RGBboy/express-flash.' ]
+2 info using npm@4.0.5
+3 info using node@v7.4.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData git://github.com/RGBboy/express-flash.
+8 silly fetchOtherPackageData git://github.com/RGBboy/express-flash.
+9 silly cache add args [ 'git://github.com/RGBboy/express-flash.', null ]
+10 verbose cache add spec git://github.com/RGBboy/express-flash.
+11 silly cache add parsed spec Result {
+11 silly cache add   raw: 'git://github.com/RGBboy/express-flash.',
+11 silly cache add   scope: null,
+11 silly cache add   escapedName: null,
+11 silly cache add   name: null,
+11 silly cache add   rawSpec: 'git://github.com/RGBboy/express-flash.',
+11 silly cache add   spec: 'git://github.com/RGBboy/express-flash..git',
+11 silly cache add   type: 'hosted',
+11 silly cache add   hosted:
+11 silly cache add    { type: 'github',
+11 silly cache add      ssh: 'git@github.com:RGBboy/express-flash..git',
+11 silly cache add      sshUrl: 'git+ssh://git@github.com/RGBboy/express-flash..git',
+11 silly cache add      httpsUrl: 'git+https://github.com/RGBboy/express-flash..git',
+11 silly cache add      gitUrl: 'git://github.com/RGBboy/express-flash..git',
+11 silly cache add      shortcut: 'github:RGBboy/express-flash.',
+11 silly cache add      directUrl: 'https://raw.githubusercontent.com/RGBboy/express-flash./master/package.json' } }
+12 verbose addRemoteGit caching git://github.com/RGBboy/express-flash.
+13 verbose addRemoteGit git://github.com/RGBboy/express-flash..git is a repository hosted by github
+14 silly tryClone cloning git://github.com/RGBboy/express-flash..git via git://github.com/RGBboy/express-flash..git
+15 verbose tryClone git-github-com-RGBboy-express-flash-git-035c1dfa not in flight; caching
+16 verbose correctMkdir /Users/revaranka/.npm/_git-remotes correctMkdir not in flight; initializing
+17 info git [ 'clone',
+17 info git   '--template=/Users/revaranka/.npm/_git-remotes/_templates',
+17 info git   '--mirror',
+17 info git   'git://github.com/RGBboy/express-flash..git',
+17 info git   '/Users/revaranka/.npm/_git-remotes/git-github-com-RGBboy-express-flash-git-035c1dfa' ]
+18 error git clone --template=/Users/revaranka/.npm/_git-remotes/_templates --mirror git://github.com/RGBboy/express-flash..git /Users/revaranka/.npm/_git-remotes/git-github-com-RGBboy-express-flash-git-035c1dfa: Cloning into bare repository '/Users/revaranka/.npm/_git-remotes/git-github-com-RGBboy-express-flash-git-035c1dfa'...
+18 error git clone --template=/Users/revaranka/.npm/_git-remotes/_templates --mirror git://github.com/RGBboy/express-flash..git /Users/revaranka/.npm/_git-remotes/git-github-com-RGBboy-express-flash-git-035c1dfa: fatal: remote error:
+18 error git clone --template=/Users/revaranka/.npm/_git-remotes/_templates --mirror git://github.com/RGBboy/express-flash..git /Users/revaranka/.npm/_git-remotes/git-github-com-RGBboy-express-flash-git-035c1dfa:   Repository not found.
+19 silly fetchPackageMetaData Error: Command failed: git clone --template=/Users/revaranka/.npm/_git-remotes/_templates --mirror git://github.com/RGBboy/express-flash..git /Users/revaranka/.npm/_git-remotes/git-github-com-RGBboy-express-flash-git-035c1dfa
+19 silly fetchPackageMetaData Cloning into bare repository '/Users/revaranka/.npm/_git-remotes/git-github-com-RGBboy-express-flash-git-035c1dfa'...
+19 silly fetchPackageMetaData fatal: remote error:
+19 silly fetchPackageMetaData   Repository not found.
+19 silly fetchPackageMetaData
+19 silly fetchPackageMetaData     at ChildProcess.exithandler (child_process.js:211:12)
+19 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+19 silly fetchPackageMetaData     at ChildProcess.emit (events.js:191:7)
+19 silly fetchPackageMetaData     at maybeClose (internal/child_process.js:885:16)
+19 silly fetchPackageMetaData     at Socket.<anonymous> (internal/child_process.js:334:11)
+19 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+19 silly fetchPackageMetaData     at Socket.emit (events.js:188:7)
+19 silly fetchPackageMetaData     at Pipe._handle.close [as _onclose] (net.js:501:12)
+19 silly fetchPackageMetaData  error for git://github.com/RGBboy/express-flash. { Error: Command failed: git clone --template=/Users/revaranka/.npm/_git-remotes/_templates --mirror git://github.com/RGBboy/express-flash..git /Users/revaranka/.npm/_git-remotes/git-github-com-RGBboy-express-flash-git-035c1dfa
+19 silly fetchPackageMetaData Cloning into bare repository '/Users/revaranka/.npm/_git-remotes/git-github-com-RGBboy-express-flash-git-035c1dfa'...
+19 silly fetchPackageMetaData fatal: remote error:
+19 silly fetchPackageMetaData   Repository not found.
+19 silly fetchPackageMetaData
+19 silly fetchPackageMetaData     at ChildProcess.exithandler (child_process.js:211:12)
+19 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+19 silly fetchPackageMetaData     at ChildProcess.emit (events.js:191:7)
+19 silly fetchPackageMetaData     at maybeClose (internal/child_process.js:885:16)
+19 silly fetchPackageMetaData     at Socket.<anonymous> (internal/child_process.js:334:11)
+19 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+19 silly fetchPackageMetaData     at Socket.emit (events.js:188:7)
+19 silly fetchPackageMetaData     at Pipe._handle.close [as _onclose] (net.js:501:12)
+19 silly fetchPackageMetaData   killed: false,
+19 silly fetchPackageMetaData   code: 128,
+19 silly fetchPackageMetaData   signal: null,
+19 silly fetchPackageMetaData   cmd: 'git clone --template=/Users/revaranka/.npm/_git-remotes/_templates --mirror git://github.com/RGBboy/express-flash..git /Users/revaranka/.npm/_git-remotes/git-github-com-RGBboy-express-flash-git-035c1dfa' }
+20 silly rollbackFailedOptional Starting
+21 silly rollbackFailedOptional Finishing
+22 silly runTopLevelLifecycles Finishing
+23 silly install printInstalled
+24 verbose stack Error: Command failed: git clone --template=/Users/revaranka/.npm/_git-remotes/_templates --mirror git://github.com/RGBboy/express-flash..git /Users/revaranka/.npm/_git-remotes/git-github-com-RGBboy-express-flash-git-035c1dfa
+24 verbose stack Cloning into bare repository '/Users/revaranka/.npm/_git-remotes/git-github-com-RGBboy-express-flash-git-035c1dfa'...
+24 verbose stack fatal: remote error:
+24 verbose stack   Repository not found.
+24 verbose stack
+24 verbose stack     at ChildProcess.exithandler (child_process.js:211:12)
+24 verbose stack     at emitTwo (events.js:106:13)
+24 verbose stack     at ChildProcess.emit (events.js:191:7)
+24 verbose stack     at maybeClose (internal/child_process.js:885:16)
+24 verbose stack     at Socket.<anonymous> (internal/child_process.js:334:11)
+24 verbose stack     at emitOne (events.js:96:13)
+24 verbose stack     at Socket.emit (events.js:188:7)
+24 verbose stack     at Pipe._handle.close [as _onclose] (net.js:501:12)
+25 verbose cwd /Users/revaranka/Documents/6.148/Project/chris-xue-revaranka-rweinberger
+26 error Darwin 15.3.0
+27 error argv "/usr/local/Cellar/node/7.4.0/bin/node" "/usr/local/bin/npm" "install" "git://github.com/RGBboy/express-flash."
+28 error node v7.4.0
+29 error npm  v4.0.5
+30 error code 128
+31 error Command failed: git clone --template=/Users/revaranka/.npm/_git-remotes/_templates --mirror git://github.com/RGBboy/express-flash..git /Users/revaranka/.npm/_git-remotes/git-github-com-RGBboy-express-flash-git-035c1dfa
+31 error Cloning into bare repository '/Users/revaranka/.npm/_git-remotes/git-github-com-RGBboy-express-flash-git-035c1dfa'...
+31 error fatal: remote error:
+31 error   Repository not found.
+32 error If you need help, you may report this error at:
+32 error     <https://github.com/npm/npm/issues>
+33 verbose exit [ 1, true ]
