@@ -12,8 +12,8 @@
                     <div class="modal-dialog">
                       <!-- Modal content-->
                       <div class="modal-content">
-<!--                           <h1>Post a new item</h1>
- -->                          <div id="itemform">
+
+                          <div id="itemform">
                             <form method="post" action="/uploaditem" enctype="multipart/form-data">
                             <input id="itemname" class='inputbox' type='text' maxlength="15" placeholder='item name' name='itemname' required> 
                             &#36;&#32;<input id='price' class='inputbox' type="number" placeholder='price' name='price' required>
@@ -85,8 +85,7 @@
 
     <div class="collapse navbar-collapse navHeaderCollapse">
         <ul class="nav navbar-nav navbar-left original">
-          <!-- ******** NEW ITEM ********  -->
-            <!-- Trigger the modal with a button -->
+
           <li class="nav-item">
             <a class="nav-link" href="/clothes">Clothes</a>
           </li>
@@ -105,52 +104,11 @@
         </ul>
         <ul class="nav navbar-nav navbar-right original">
 
-           <!--  <a data-toggle="modal" data-target="#newitem">List an Item</a> -->
-
-            <!-- Modal -->
-            <!-- <div class="modal fade" id="newitem" role="dialog">
-              <div class="modal-dialog"> -->
-                <!-- Modal content-->
-               <!--  <div class="modal-content">
-                    <h1>Post a new item</h1>
-                    <div id="itemform">
-                      <form method="post" action="/uploaditem" enctype="multipart/form-data">
-                      <input id="itemname" class='inputbox' type='text' maxlength="15" placeholder='item name' name='itemname' required> 
-                      &#36;&#32;<input id='price' class='inputbox' type="number" placeholder='price' name='price' required>
-                      <br>
-                      <textarea id='description' rows="8" placeholder='description' name='description' cols="50" required></textarea> <br>
-                      
-                      <select id='category' name = 'category' required>
-                        <option value="clothes">Clothes</option>
-                        <option value="book">Books</option>
-                        <option value="tech">Tech</option>
-                        <option value="furniture">Furniture</option>
-                      </select>
-
-                      <input id="inserttag" class='inputbox' type='text' placeholder='add tags' name='inserttag'>
-                      <button id="addtag" class="contentbutton" type='button'>add</button><br>
-                      <div id="tags"></div>
-
-                      <input type="file" name="picture" />
-
-                      <button id="submititem" class="contentbutton" type = 'submit'>list it!</button>&#32;
-                      <button type="button" class="contentbutton" onclick="location.href='/home'">cancel</button><br>
-                      </form>
-                  </div>
-                  <script src="/scripts/addtag.js"></script>
-                </div>
-              </div>
-              </div> -->
-
-
-
 
           <li class="nav-item">
              <a class="nav-link dropdown-toggle" type= "button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Welcome, {{firstname}}!</a>
-<!--               <button class="btn nav-link dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Welcome, {{firstname}}!
-              <span class="caret"></span></button> -->
+
               <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-<!--                  <a data-toggle="modal" data-target="#newitem">List an Item</a> -->
                  <li role="presentation"><a data-toggle="modal" data-target="#newitem">List an Item</a></li>
                  
 

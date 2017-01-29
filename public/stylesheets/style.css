@@ -502,7 +502,7 @@ p{
 }
 
 #forsale{
-  max-height: 140px;
+  max-height: 135px;
   max-width: 174px;
   flex:auto;
   border-top-left-radius: 3px;
@@ -551,7 +551,16 @@ p{
 }
 
 .contentinbox{
-  top:50px;
+  min-height: 100px;
+  margin-top: 4px;
+}
+
+.pictureinbox{
+  height: 135px;
+  width: 174px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 
