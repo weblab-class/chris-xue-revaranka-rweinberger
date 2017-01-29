@@ -3,7 +3,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 -->
   <div class="product" data-toggle="modal" data-target="#{{itemname}}">
-<!--   <div class="productbox"> -->
     <img id=forsale src="/uploads/{{picture}}" />
     <div class='contentinbox'>
       <p align="left" id="productcontent" >{{itemname}}</p>
@@ -31,7 +30,7 @@
 
 
         <div class="modal-body">
-          <img height='200px' width = '60%' id= 'model-image' src="/uploads/{{picture}}" />
+          <img class= 'model-image' src="/uploads/{{picture}}" />
           <h6 class="modal-description">{{description}}</h6>
           <div class='post-modal'
             >Posted by: <a href='/profile/{{userid}}'> {{firstname}} {{lastname}} </a><br><a href= 'mailto:{{user}}'> ({{user}})</a>
