@@ -42,6 +42,33 @@
                     </div>
                     </div>
 
+    <div class = 'modal fade' id = 'updateprofile' role = 'dialog'>
+    <div class = 'modal-dialog'>
+    <div class = 'modal-content'>
+    <div class = 'modal-header'>
+    <button type = 'button' class = 'close' data-dismiss='modal'>&times;</button>
+    
+    <h4 class = 'modal-title'>Update Profile</h4>
+    </div>
+    <div class = 'modal-body'>
+      <form name = 'updateprofile' method = 'post' action = '/updateprofile' enctype="multipart/form-data">
+      <ul>
+      <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'text' placeholder = 'First Name' name = 'firstname'> </li>
+      <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'text' placeholder = 'Last Name' name = 'lastname'> </li>
+      <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'text' placeholder = 'Venmo' name = 'venmo'> </li> 
+      <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'file' placeholder = 'picture' name = 'picture'> </li> 
+      <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'password' placeholder = 'new password' name = 'newpassword'> </li>   
+
+      <li> <button class = 'btn btn-default' type = 'submit'> Make Changes </button> </li>
+      <button type="button" class="contentbutton" data-dismiss="modal">cancel</button><br>
+      </ul>
+      </form>
+      </div>
+      </div>
+      </div>
+      </div>
+
+
     {{#if boolean}}
   <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #47474C;">
 
@@ -119,17 +146,19 @@
 
 
           <li class="nav-item">
-             <a class="nav-link dropdown-toggle" tpe= "button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Welcome, {{firstname}}!</a>
+             <a class="nav-link dropdown-toggle" type= "button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Welcome, {{firstname}}!</a>
 <!--               <button class="btn nav-link dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Welcome, {{firstname}}!
               <span class="caret"></span></button> -->
               <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
 <!--                  <a data-toggle="modal" data-target="#newitem">List an Item</a> -->
                  <li role="presentation"><a data-toggle="modal" data-target="#newitem">List an Item</a></li>
+                 <li role = 'presentation'><a data-toggle = 'modal' data-target = '#updateprofile'>Update Account</a></li>
 
             <!-- Modal -->
            
                 <li role="presentation"><a class="nav-link" href="/starreditems">Starred Items</a></li>
                 <li role="presentation"><a class="nav-link" href="/profile">Profile</a></li>
+                
                 <li role="presentation"><a class="nav-link" href="/manageitems">Manage Items</a></li>
                 <li role="presentation" class="divider"></li>
                 <li role="presentation"><a class="nav-link" href="/logout">Logout</a></li>
@@ -324,7 +353,6 @@
       </div> -->
 
 </nav>
-
 
 
    
