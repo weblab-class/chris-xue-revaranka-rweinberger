@@ -32,11 +32,14 @@ app.io = require('socket.io')();
 // app.get('/chat', function(req, res){
 //   res.render('chat.hbs');
 // });
-var test = app.io.of('/chat');
+var test = app.io.of('/general-chat');
 
 test.on('connection', function(socket) {
   console.log('someone connected to chat');
-  test.emit('chat message', 'someone connected');
+  socket.on('chat message', function(msg){
+    console.log('message: ' + msg);
+    test.emit('chat message', msg);
+  });
 });
 
 app.io.on('connection', function(socket){

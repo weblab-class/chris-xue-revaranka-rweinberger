@@ -4,11 +4,11 @@
     <title>chat</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src='/scripts/chat.js'></script>
+    <!-- <script src='/scripts/chat.js'></script> -->
     <link rel="stylesheet" href='/stylesheets/chat.css'>
   </head>
   <body>
-    <h1>{{users}}</h1>
+    <h1 id='users'>chat users: {{users}}</h1>
     <div class='chatid' id={{chatid}}></div>
     <ul id="messages">
       {{#each existing_messages}}
