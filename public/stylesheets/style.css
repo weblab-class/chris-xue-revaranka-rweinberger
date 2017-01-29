@@ -470,7 +470,10 @@ p{
 #flexbox{
 
   margin-top: 30px;
-  width: 100%;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+
   display: flex;
 /*  flex-flow: row wrap;*/
   flex-direction: row;
