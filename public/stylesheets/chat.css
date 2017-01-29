@@ -30,6 +30,15 @@ form button {
   padding: 10px; 
   display: inline-block;
 }
+
+.userbutton {
+  position: absolute;
+  left: 50px;
+  margin-bottom: 15px;
+  background-color: #A6A6A6;
+  border: none;
+  border-radius: 10px
+}
 #messages {
   list-style-type: none; 
   overflow:   auto;
@@ -50,6 +59,7 @@ form button {
 }
 
 #convos {
+  position: relative;
   overflow: auto;
   height: 630px;
   border-radius: 10px;

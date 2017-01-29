@@ -11,11 +11,11 @@
     {{> navbar}}
     <div id='content'>
       <div id='convos'>
-        <h1 style='padding:10px'> continue an existing conversation </h1>
+        <h3 style='padding:10px'> Continue an existing conversation... </h3>
         {{#each existing_users}}
           {{> existing_chat_user}}
         {{/each}}
-        <h1 style='padding:10px'> or start a convo with any of these lovely ppl </h1>
+        <h3 style='padding:10px'> ...or start a new one! </h3>
         {{#each new_users}}
           {{> new_chat_user}}
         {{/each}}
