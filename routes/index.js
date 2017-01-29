@@ -347,16 +347,18 @@ router.post('/forgot', function(req, res, next) {
       User.findOne({ 'username': req.body.recoveremail }, function(err, user) {
         if (!user) {
           //req.flash('error', 'No account with that email address exists.');
-          return res.redirect('/forgot');
+          res.send('That email does not exist!  Please try again.');
         }
+        else{
 
         user.resetPasswordToken = token;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
         user.save(function(err) {
           done(err, token, user);
-        });
+        });}
       });
+
     },
     function(token, user, done) {
       var smtpTransport = nodemailer.createTransport('smtps://beaverplus@yahoo.com:dank6148@smtp.mail.yahoo.com');
@@ -370,13 +372,13 @@ router.post('/forgot', function(req, res, next) {
           'If you did not request this, please ignore this email and your password will remain unchanged.\n'
       };
       smtpTransport.sendMail(mailOptions, function(err) {
-        req.flash('info', 'An e-mail has been sent to ' + user.username + ' with further instructions.');
+        //console.flash('info', 'An e-mail has been sent to ' + user.username + ' with further instructions.');
         done(err, 'done');
       });
     }
   ], function(err) {
     if (err) return next(err);
-    res.redirect('/forgot');
+    res.redirect('/');
   });
 });
 
