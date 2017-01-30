@@ -572,7 +572,7 @@ body.modal-open div.modal-backdrop {
     background-color: #E5E5E5;
     top: 180px;
     text-align: center;
-    color: #A9A9A9;
+    color: #a1282d;
     font-size: 15.6px;
     font-family: sans-serif;
 /*    border-radius: 20px;*/
@@ -584,7 +584,7 @@ body.modal-open div.modal-backdrop {
 
 }
 .twobuttonsfog:hover {
-  color: #a1282d
+  color: #A9A9A9
 }
 .signuppage{
     margin-right: 42px;
@@ -664,8 +664,7 @@ body.modal-open div.modal-backdrop {
 }
 
 
-.forgotpass{
-
+#forgotpass{
     margin-right: 42px;
     margin-top: 120px;
  
