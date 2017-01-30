@@ -17,6 +17,7 @@ var flash = require('express-flash');
 var User = require('../schemas/user');
 var Item = require('../schemas/item');
 var Chat = require('../schemas/chat');
+var Notification = require('../schemas/notification');
 
 /*sending user data as JSON to access on client side*/
 router.get('/api/user_data', function(req, res) {
@@ -101,7 +102,6 @@ router.get('/chat', function(req, res){
         }
       }
       var existing_users = Array.from(existing_users_set);
-      if (existing_users.indexOf())
       for (i=0; i < users.length; i++) {
         if (existing_users.indexOf(users[i]) === -1) {
           new_users.push(users[i])
@@ -117,8 +117,45 @@ router.get('/chat', function(req, res){
           new_users.splice(i, 1);
         };
       };
+      // console.log(existing_users);
+      Notification.find({'toWho': user}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          // var notification = true;
+          for (i=0; i < notifications.length; i++) {
+            console.log('notification found');
+            fromWho = notifications[i].fromWho;
+            console.log('FROM!!!! ' +fromWho);
+            var result = existing_users.filter(function( obj ) {
+              return obj.username === fromWho;
+            }); 
+            console.log(result);//rew@mit.edu
+            result[0].particular_notif = true
+          }
+        } else {
+          var notification = false;
+          for (i=0; i < existing_users.length; i++) {
+            existing_users[i].particular_notif = false
+          }
+        }
+        res.render('chat_home.hbs', {notification: notification, boolean: true, firstname: req.user.firstname, selected_chat: false, new_users: new_users, existing_users: existing_users});
+      })
+      // for (i=0; i< existing_users.length; i++) {
+      //   var existing_user = existing_users[i];
+      //   Notification.findOne({'toWho': user, 'fromWho':existing_user.username}, function(err, result) {
+      //     if (err) {
+      //       console.log('error from /chat route')
+      //     } else if (result) {
+      //       console.log('A RESULT');
+      //       existing_user.particular_notif = true
+      //     } else {
+      //       console.log('NOT A RESULT');
+      //       existing_user.particular_notif = false
+      //     }
+      //   });
+      // };
       // var new_users = Array.from(new_users_set);
-      res.render('chat_home.hbs', {boolean: true, firstname: req.user.firstname, selected_chat: false, new_users: new_users, existing_users: existing_users});
+      // res.render('chat_home.hbs', {boolean: true, firstname: req.user.firstname, selected_chat: false, new_users: new_users, existing_users: existing_users});
       // res.render('newconvo.hbs', {new_users: new_users, existing_users: existing_users});
     });
   } else {
@@ -132,6 +169,7 @@ router.get('/chat/:id', function(req, res){
     var id = req.params.id;
     var user = req.user.username;
     var conversations = req.user.conversations;
+    console.log(conversations);
     var existing_users_set = new Set();
     var new_users = [];
     User.find({}, function(err, users) {
@@ -168,34 +206,64 @@ router.get('/chat/:id', function(req, res){
         };
       };
       if (conversations.indexOf(id) != -1) {
+        // var convoId = conversations.indexOf(id);
+        // var foundConvo = conversations[convoId];
+        // console.log(foundConvo)
+        // var users = foundConvo.users;
+        // console.log(users);
+        // if (users[0] === user) {
+        //   var counterpart = users[1]
+        // } else {
+        //   var counterpart = users[0]
+        // };
+        // Notification.deleteOne( { 'fromWho': counterpart, 'toWho': user } );
         Chat.findOne({'_id':id}, function(err, chat) {
           if (err) {
             console.log('error retrieving chat')
           } else {
+            var users = chat.users;
+            if (users[0] === user) {
+              var counterpart = users[1]
+            } else {
+              var counterpart = users[0]
+            };
+            Notification.remove( { 'fromWho': counterpart, 'toWho': user }, function(err,raw){
+              if(err) {console.log('error from deleting notif')};
+              console.log('raw response: '+raw)
+            } );
             var messages = chat.messages;
             for (i=0; i < messages.length; i++) {
               if (messages[i].sender === user) {
-                console.log('found a message from the current user!');
+                // console.log('found a message from the current user!');
                 messages[i].from_current_user = true
               } else {
                 messages[i].from_current_user = false
               }
             };
-            res.render('chat_home.hbs', {boolean: true, firstname: req.user.firstname, selected_chat: true, users:chat.users, chatid: id, existing_messages: messages, new_users: new_users, existing_users: existing_users, 
-              // helpers: {
-              //   from_current_user: function (message) { 
-              //     var attribs;
-              //     attribs = JSON.parse(message.hash.dataAttribs);
-              //     console.log(attribs.sender + " -- " + attribs.message);
-              //     var sender = attribs.sender;
-              //     if (user === sender) {
-              //       return true
-              //     } else {
-              //       return false
-              //     };
-              //   }
-              // }
+            Notification.find({'toWho': user}, function (err, notifications) {
+              if (err) {console.log("error from /chat route")}
+              else if (notifications.length != 0) {
+                console.log(notifications);
+                // var notification = true;
+                for (i=0; i < notifications.length; i++) {
+                  // console.log('notification found');
+                  fromWho = notifications[i].fromWho;
+                  // console.log('FROM!!!! ' +fromWho);
+                  var result = existing_users.filter(function( obj ) {
+                    return obj.username === fromWho;
+                  }); 
+                  console.log(result);//rew@mit.edu
+                  result[0].particular_notif = true
+                }
+              } else {
+                var notification = false;
+                for (i=0; i < existing_users.length; i++) {
+                  existing_users[i].particular_notif = false
+                }
+              }
+              res.render('chat_home.hbs', {notification: notification, boolean: true, firstname: req.user.firstname, selected_chat: true, users:chat.users, chatid: id, existing_messages: messages, new_users: new_users, existing_users: existing_users});
             });
+            // res.render('chat_home.hbs', {boolean: true, firstname: req.user.firstname, selected_chat: true, users:chat.users, chatid: id, existing_messages: messages, new_users: new_users, existing_users: existing_users});
           };
         });
       } else {
@@ -209,7 +277,6 @@ router.get('/chat/:id', function(req, res){
     res.render('please-login', {inorderto: 'access your conversations!'});
   };
 });
-
 // router.get('/chat/:id', function(req, res) {
 //   if(req.isAuthenticated()) {
 //     var user = req.user.username;
@@ -236,10 +303,21 @@ router.post('/message', function (req, res, next) {
   var chatid = req.body.chatid;
   var message = req.body.message;
   var sender = req.body.sender;
+  var receiver = req.body.receiver;
   var newMessage = {sender: sender, message:message};
   Chat.update({'_id':chatid},{$push:{messages:newMessage}}, function (err, raw) {
     if (err) return handleError(err);
     console.log('The raw response from Mongo was ', raw);
+    Notification.findOne({'toWho': receiver, 'fromWho':sender}, function(err, result) {
+      if (err) {console.log('error at /message route')};
+      if (result) {
+        console.log('a notification already exists for that receiver, from that sender')
+      } else {
+        var notif = new Notification({'toWho': receiver, 'fromWho':sender});
+        notif.save();
+        console.log('notification saved')
+      }
+    });
   });
 });
 
@@ -399,7 +477,6 @@ router.post('/updateprofile',upload.single('picture'), function(req, res,next){
 //   res.render('index')
 // });
 
-/* GET signup page. */
 router.get('/', function(req, res, next) {
 
   Item.find({}, function(err, items) {
@@ -422,7 +499,17 @@ router.get('/', function(req, res, next) {
           console.log('starred: ' +starredItemIds);
           console.log('other: ' +otherItems);
           bool = true;
-          res.render('slashscreen', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+          // res.render('slashscreen', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+          // });
+          Notification.find({'toWho': username}, function (err, notifications) {
+            if (err) {console.log("error from /chat route")}
+            else if (notifications.length != 0) {
+              var notification = true
+            } else {
+              var notification = false
+            }
+            res.render('slashscreen', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+            });
           });
         }
       });
@@ -436,7 +523,7 @@ router.get('/', function(req, res, next) {
         }
       });
     };
-});
+  });
 });
 
 
@@ -585,7 +672,15 @@ router.get('/home', function (req, res, next) {
           console.log('starred: ' +starredItemIds);
           console.log('other: ' +otherItems);
           bool = true;
-          res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+          Notification.find({'toWho': username}, function (err, notifications) {
+            if (err) {console.log("error from /chat route")}
+            else if (notifications.length != 0) {
+              var notification = true
+            } else {
+              var notification = false
+            }
+            res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+            });
           });
         }
       });
@@ -675,7 +770,16 @@ router.get('/starreditems', function(req, res) {
         res.render('error')
       } else {
         bool = true;
-        res.render('starred', {boolean:bool, starred: starredItems, firstname: firstname});
+        Notification.find({'toWho': username}, function (err, notifications) {
+          if (err) {console.log("error from /chat route")}
+          else if (notifications.length != 0) {
+            var notification = true
+          } else {
+            var notification = false
+          }
+          res.render('starred', {notification: notification, boolean: bool, starred: starredItems, firstname: firstname
+          });
+        });
       }
     });
   } else {
@@ -742,7 +846,15 @@ router.get('/uploadsuccess', function(req, res) {
   if(req.isAuthenticated()) {
     bool = true;
     var firstname = req.user.firstname;
-    res.render('uploadsuccess', {boolean: bool, firstname: firstname});
+    Notification.find({'toWho': username}, function (err, notifications) {
+      if (err) {console.log("error from /chat route")}
+      else if (notifications.length != 0) {
+        var notification = true
+      } else {
+        var notification = false
+      }
+      res.render('uploadsuccess', {notification: notification, boolean: bool, firstname: firstname});
+    });
   } else {
     bool = false;
     res.redirect('/');
@@ -768,7 +880,6 @@ router.get('/userlist', function(req, res) {
   });
 });
 
-/*user profile page*/
 router.get('/profile', function(req, res) {
   if(req.isAuthenticated()) {
     var email = req.user.username;
@@ -789,7 +900,15 @@ router.get('/profile', function(req, res) {
           starredItems.push(items[i]);
         };
       };
-      res.render('profile', {access: access, profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: firstname, profilelastname:lastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+      Notification.find({'toWho': email}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        res.render('profile', {notification: notification, access: access, profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: firstname, profilelastname:lastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+      });
     });
   } else {
     bool = false;
@@ -813,6 +932,7 @@ router.get('/profile/:id', function(req, res, next) {
     var access= false;
     if(req.isAuthenticated()) {
       var firstname = req.user.firstname;
+      var username = req.user.username;
       if (id == req.user.id){
         access= true;
       }
@@ -825,7 +945,15 @@ router.get('/profile/:id', function(req, res, next) {
             starredItems.push(items[i]);
           };
         };
-        res.render('profile', {access: access, profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+        Notification.find({'toWho': username}, function (err, notifications) {
+          if (err) {console.log("error from /chat route")}
+          else if (notifications.length != 0) {
+            var notification = true
+          } else {
+            var notification = false
+          }
+          res.render('profile', {notification: notification, access: access, profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+        });
       });
     } else {
       bool = false;
@@ -843,12 +971,21 @@ router.get('/manageitems', function(req, res) {
     var bool = true;
     var firstname = req.user.firstname;
     Item.find({'user':user}, function(err, items) {
-      res.render('manageitems', {boolean:bool, firstname: firstname, items:items, user:user});
+      Notification.find({'toWho': user}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        res.render('manageitems', {notification: notification, boolean:bool, firstname: firstname, items:items, user:user});
+      });
     });
   } else {
     res.redirect('/');
   };
 });
+
 
 
 router.post('/deleteitem', function(req, res) {
@@ -897,6 +1034,7 @@ router.post('/searchresults', function(req, res) {
     var bool = true;
     if(req.isAuthenticated()) {
       bool = true;
+      var username = req.user.username;
       var firstname = req.user.firstname;
       var starredItemIds = req.user.starred;
       var otherItems = [];
@@ -908,7 +1046,15 @@ router.post('/searchresults', function(req, res) {
           starredItems.push(items[i]);
         };
       };
-      res.render('searchresults', {boolean: bool, term:term,starred: starredItems, unstarred: otherItems, firstname: firstname});
+      Notification.find({'toWho': username}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        res.render('searchresults', {notification: notification, boolean: bool, term:term,starred: starredItems, unstarred: otherItems, firstname: firstname});
+      });
     } else {
       bool = false;
       res.render('searchresults', {boolean: bool, term:term, unstarred: items});
@@ -953,7 +1099,14 @@ router.get('/clothes', function(req,res){
           starredItems.push(items[i])
         };
       };
-      res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+      Notification.find({'toWho': username}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
       });
     } else {
       var bool = false;
@@ -984,7 +1137,14 @@ router.get('/books', function(req,res){
           starredItems.push(items[i])
         };
       };
-      res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+      Notification.find({'toWho': username}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
       });
     } else {
       var bool = false;
@@ -1015,7 +1175,14 @@ router.get('/tech', function(req,res){
           starredItems.push(items[i])
         };
       };
-      res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+      Notification.find({'toWho': username}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
       });
     } else {
       var bool = false;
@@ -1046,7 +1213,14 @@ router.get('/furniture', function(req,res){
           starredItems.push(items[i])
         };
       };
-      res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+      Notification.find({'toWho': username}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
       });
     } else {
       var bool = false;

@@ -1,5 +1,15 @@
-body { 
-  font: 13px Helvetica, Arial; 
+@font-face {
+  font-family: raleway;
+  src: url(/fonts/Raleway/Raleway-Regular.ttf);
+}
+@font-face {
+  font-family: ralewayMed;
+  src: url(/fonts/Raleway/Raleway-Medium.ttf);
+}
+
+body {
+  padding: ;
+  font-family: raleway;
 }
 
 form { 

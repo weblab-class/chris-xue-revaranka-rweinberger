@@ -41,6 +41,14 @@ $( document ).ready(function() {
       var chatid = $('.chatid').attr('id');
       var message = data.firstname + ': ' + $('#m').val();
       var sender = data.username;
+      var users = $('.users').attr('id').split(',');
+      console.log(users);
+      if (users[0] === sender) {
+        var receiver = users[1]
+      } else {
+        var receiver = users[0]
+      };
+      console.log('message sent to ' +receiver);
       console.log(message);
       $('#messages').append($('<li id="from-user">').text(message));
       updateScroll();
@@ -48,7 +56,8 @@ $( document ).ready(function() {
       $.ajax({url:'/message', type: 'POST', data: {
         chatid: chatid,
         message: message,
-        sender: sender
+        sender: sender,
+        receiver: receiver
         }, success: function(data) {
           window.location.href = data
         }

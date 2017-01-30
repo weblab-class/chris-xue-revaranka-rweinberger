@@ -71,7 +71,9 @@
 
     {{#if boolean}}
   <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #47474C;">
-
+    {{#if notification}}
+    <div class='notification' style='position: fixed; right: 10px; top: 10px; z-index: 1; background-color: #c2272d; color: white; border-radius: 20px; width: 20px; height: 20px'>!</div>
+    {{/if}}
     <a class="navbar-brand navbar nav" href="/home"</a>
       <img src="/images/newbeaverlogo.png" width="40" height="40" style='margin-right: 10px' class="d-inline-block" alt="">
 
@@ -116,7 +118,11 @@
            
                 <li role="presentation"><a class="nav-link" href="/starreditems">Starred Items</a></li>
                 <li role="presentation"><a class="nav-link" href="/profile">Profile</a></li>
+                {{#if notification}}
+                <li role="presentation"><a class="nav-link" style='background-color: #E4A3A3' href="/chat">Messages</a></li>
+                {{else}}
                 <li role="presentation"><a class="nav-link" href="/chat">Messages</a></li>
+                {{/if}}
                 <li role="presentation"><a class="nav-link" href="/manageitems">Manage Items</a></li>
                 <li role = 'presentation'><a data-toggle = 'modal' data-target = '#updateprofile'>Update Account</a></li>
                 <li role="presentation" class="divider"></li>
