@@ -408,14 +408,35 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
 });
 router.post('/updateprofile',upload.single('picture'), function(req, res,next){
   if(req.isAuthenticated()){
-    User.update({username:req.user.username}, {$set:{firstname:req.body.firstname, picture:req.file.filename, firstname:req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo}}, function(err,raw){
+    var firstname = req.user.firstname;
+    var lastname = req.user.lastname;
+    var venmo = req.user.venmo;
+    var picture = req.user.picture;
+    var password = req.user.password;
+    if (req.body.firstname != ''){
+      firstname = req.body.firstname;
+    }
+    if (req.body.lastname != ''){
+      lastname = req.body.lastname;
+    }
+    if (req.body.venmo != ''){
+      vemo = req.body.venmo;
+    }
+    if (req.file){
+      picture = req.file.filename;
+    }
+    if (req.body.newpassword != ''){
+      password = req.body.newpassword
+    }
+
+    User.update({username:req.user.username}, {$set:{picture:picture, firstname:firstname, lastname: lastname, venmo: venmo}}, function(err,raw){
         if (err){
           return handleError(error);
         }
     })
     
   User.findOne({'username': req.user.username}, function(err, user){
-     user.setPassword(req.body.newpassword, function(err){
+     user.setPassword(password, function(err){
       user.save(function(err) {
         req.logIn(user, function(err) {
           res.redirect('/profile');
@@ -500,8 +521,8 @@ router.get('/', function(req, res, next) {
           console.log('error getting starred item');
           res.render('error')
         } else {
-          console.log('starred: ' +starredItemIds);
-          console.log('other: ' +otherItems);
+          console.log('starred: ' + starredItemIds);
+          console.log('other: ' + otherItems);
           bool = true;
           // res.render('slashscreen', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
           // });
