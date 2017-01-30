@@ -1,5 +1,5 @@
 $("#scrolltoabout").click(function() {
   $('html, body').animate({
       scrollTop: $("#about").offset().top
-  }, 1000);
+  }, 1500);
 });
