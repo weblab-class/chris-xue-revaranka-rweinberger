@@ -35,6 +35,7 @@
 
           <div id="itemform">
             <form method="post" action="/uploaditem" enctype="multipart/form-data">
+            
             <input id="itemname" class='inputbox' type='text' maxlength="15" placeholder='item name' name='itemname' required> 
             &#36;&#32;<input id='price' class='inputbox' type="number" placeholder='price' name='price' required>
             <br>
@@ -223,36 +224,43 @@
             <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Login</h4>
+              <h4 class="modal-title">LOGIN</h4>
             </div>
             <div class="modal-body">
               <form name="sign in" method = 'post' id="login-form" action = '/login'>
                 <ul>
+                <div class = 'signuppage'>
                   <!-- <li style = 'position:relative; font-size:17pt''> Email: </li> -->
-                  <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'text' placeholder = 'Email' name = 'username'> </li>
+                   <li><input class="inputbox" id="login1" type="text" placeholder="Email" name="username" ></li>
 
 
                   <!-- <li style = 'position:relative; font-size:17pt''> Password: </li> -->
 
-                  <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'password' placeholder= 'Password' name = 'password'> </li>
+                  <li><input class="inputbox" id="login1" type="text" placeholder="Password" name="password" ></li>
 
-                  <li><button class="btn btn-default" type = 'submit'>Login</button></li>
+                  <li><input class="twobuttonslog" id="go" type="submit" value="+ +" style="left: 300px;"></li>
 
                   <li id="login-flash" style="display: none; color: red;">Username or Password incorrect</li>
+                  </div>
                 </ul>
               </form>
               
               <form id = 'forgot-pass-form'>
               <ul>
-              <li><button class = 'btn btn-default' type = 'submit'>Forgot Password?</button></li>
+              <li><input class="twobuttonsfog" id="go" type="submit" value="Forgot Password?" style="left: 300px;"></li>
               </ul>
               </form>
               
               <div id = 'forgotpassword' style = 'display:none'>
               <form name = 'passwordreset' method = 'post' id = 'forgot-pass' action= '/forgot'>
               <ul>
-              <li><input style  = 'font-size:14pt; padding: 4px; margin:7px' type = 'text' placeholder = 'recovery email' name = 'recoveremail'></li>
-              <li><button class = 'btn btn-default' type = 'submit'>Reset Password</button></li>
+
+              <div class = 'forgotpass'>
+
+                <li><input class="inputbox" id="login1" type="text" placeholder="Email" name="recoveremail" ></li>
+
+                <li><input class="twobuttonsforgot" id="go" type="submit" value="+ +" style="left: 300px;"></li>
+              </div>
               </ul>
               </form>
               </div>
@@ -282,38 +290,49 @@
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
-                     <h4 class="modal-title">Sign Up</h4>
+                     <h4 class="modal-title" >SIGN UP</h4>
                     </div>
                   <div class="modal-body">
                   <form name="signup" method="post" action="/signup" enctype="multipart/form-data">
                     <ul>
+                    <div class = 'signuppage'>
                   <!-- <li>First name</li> -->
-
-                      <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="First name" name="firstname" required></li>
+                      <li><input class="inputbox" id="signup1" type="text" placeholder="First Name" name="firstname" required></li>
+<!-- 
+                      <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="First name" name="firstname" required></li> -->
 
                   <!-- <li>Last name</li> -->
+                      <li><input class="inputbox" id="signup1" type="text" placeholder="Last Name" name="lastname" required></li>
 
 
-                      <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Last name" name="lastname" required></li>
+                      <!-- <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Last name" name="lastname" required></li> -->
 
                   <!-- <li>Venmo</li> -->
 
-                      <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Venmo" name="venmo"></li>
+                     <!--  <li><input type="text" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Venmo" name="venmo"></li> -->
+                      <li><input class="inputbox" id="signup1" type="text" placeholder="Venmo" name="venmo" ></li>
 
                   <!-- <li>Email</li> -->
 
 
-                      <li><input type="email" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Email" name="username" required></li>
+                      <!-- <li><input type="email" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Email" name="username" required></li> -->
+                      <li><input class="inputbox" id="signup1" type="email" placeholder="Email" name="username" required></li>
 
                   <!-- <li>Password</li> -->
 
-                      <li><input type="password" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Password" name="password" required></li>
+                      <!-- <li><input type="password" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Password" name="password" required></li> -->
+                       <li><input class="inputbox" id="signup1" type="password" placeholder="Password" name="password" required></li>
 
                       <li> <input type='password' style = 'font-size:14pt; padding: 4px; margin:7px' placeholder ="Confirm Password" id = 'password' required></li>
+                      <!-- <li><input class="inputbox" id="signup1" type="password" placeholder="Confirm Password" name="password" required></li> -->
+
                       <script src="/scripts/confirmpass.js"></script>
+
                       <li> <input type = 'file' style = 'font-size:14pt; padding:4px; margin:7px' placeholder = 'Upload photo (optional)' name ='picture'></li>
-                      <li><button class="btn btn-default" type="submit" style='margin:4px;'>Sign Up</button>
-                      <button type="button" class="btn btn-default" data-dismiss="modal" style='margin:4px;'>Cancel</button></li>
+
+
+                      <li><input class="twobuttonssign" id="go" type="submit" value="+ +" style="left: 300px;"></li>
+                    </div>
                     </ul>
                   </form>
                   </div>  

@@ -73,6 +73,7 @@ body.modal-open div.modal-backdrop {
 
 .modal-title{
   font-size: 20px;
+  color: #C1272D;
 }
 .modal-price{
   font: 10px;
@@ -324,8 +325,159 @@ body.modal-open div.modal-backdrop {
     width: 118px;
     left: 15%;
     top: 108px;
+
     margin-left: 20px;
 }
+
+#signup1 {
+    position: absolute center;
+    color: #000;
+    width: 185px;
+    height: 23px;
+/*    top: 125px;*/
+    border: none;
+    border-bottom: solid 1px #6C6C6C;
+    background:transparent;
+    font-family: sans-serif;
+    font-size: 15.6px;
+    text-align: center;
+
+    margin-top: 20px;
+  /*    margin-left: -85px;*/
+}
+#signup1:focus {
+  outline:none;
+}
+
+
+#login1 {
+    position: absolute center;
+    color: #000;
+    width: 185px;
+    height: 23px;
+/*    top: 125px;*/
+    border: none;
+    border-bottom: solid 1px #6C6C6C;
+    background:transparent;
+    font-family: sans-serif;
+    font-size: 15.6px;
+    text-align: center;
+
+    margin-top: 20px;
+  /*    margin-left: -85px;*/
+}
+#login1:focus {
+  outline:none;
+}
+
+
+.twobuttonslog {
+  border: none;
+    position: absolute;
+    width: 77px;
+    height: 23px;
+    background-color: #C1272D;
+    top: 110px;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    font-family: sans-serif;
+    border-radius: 20px;
+    margin-left: -160px;
+
+}
+.twobuttonslog:focus {
+  outline:none;
+
+}
+.twobuttonslog:hover {
+  background-color: #a1282d
+}
+
+.twobuttonssign {
+  border: none;
+    position: absolute;
+    width: 77px;
+    height: 23px;
+    background-color: #C1272D;
+    top: 400px;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    font-family: sans-serif;
+    border-radius: 20px;
+    margin-left: -162px;
+
+}
+.twobuttonssign:focus {
+  outline:none;
+
+}
+.twobuttonssign:hover {
+  background-color: #a1282d
+
+}
+.twobuttonsfog {
+  border: none;
+    position: absolute;
+    width: 140px;
+    height: 23px;
+    background-color: #E5E5E5;
+    top: 180px;
+    text-align: center;
+    color: #A9A9A9;
+    font-size: 15.6px;
+    font-family: sans-serif;
+/*    border-radius: 20px;*/
+    margin-left: -192px;
+
+}
+.twobuttonsfog:focus {
+  outline:none;
+
+}
+.twobuttonsfog:hover {
+  background-color: #a1282d
+}
+.signuppage{
+    margin-right: 42px;
+    margin-top: -40px;
+ 
+
+}
+
+
+.twobuttonsforgot{
+  border: none;
+    position: absolute;
+    width: 77px;
+    height: 23px;
+    background-color: #C1272D;
+    top: 270px;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    font-family: sans-serif;
+    border-radius: 20px;
+    margin-left: -160px;
+
+}
+.twobuttonsforgot:focus {
+  outline:none;
+
+}
+.twobuttonsforgot:hover {
+  background-color: #a1282d
+}
+
+.forgotpass{
+    margin-right: 42px;
+    margin-top: 120px;
+ 
+
+}
+
+
 
 #searchboxhome {
     position: absolute;
@@ -356,6 +508,29 @@ body.modal-open div.modal-backdrop {
   position: absolute;
 }
 
+.twobuttonssign {
+  border: none;
+    position: absolute;
+    width: 77px;
+    height: 23px;
+    background-color: #C1272D;
+    top: 322px;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    font-family: sans-serif;
+    border-radius: 20px;
+    margin-left: -158px;
+
+}
+.twobuttonshome:focus {
+  outline:none;
+
+}
+.twobuttonshome:hover {
+  background-color: #a1282d
+
+}
 
 .twobuttonshome {
   border: none;
@@ -372,6 +547,7 @@ body.modal-open div.modal-backdrop {
     margin-left: -70px;
 
 }
+
 .twobuttonshome:focus {
   outline:none;
 
