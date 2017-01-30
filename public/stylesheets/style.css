@@ -16,13 +16,18 @@ a:visited {
 a:hover {
   color: #D3D3D3;
 }
+
+.dropdown-toggle:active, .open .dropdown-toggle {background:#47474C !important; }
+
+
 #verticalbar:hover{
   color:#9d9d9d;
 }
 
-#welcomedropdown:focus {
-  background-color: #9d9d9d;
+#welcomedropdown:active {
+  background-color: #47474C;
 }
+
 
 #welcomedropdown:hover {
   cursor: pointer;
@@ -186,6 +191,24 @@ body.modal-open div.modal-backdrop {
   height: 120px;
   overflow: auto
 }
+#aboutme::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+#aboutme::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+#aboutme::-webkit-scrollbar:horizontal {
+    height: 11px;
+}
+#aboutme::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white; /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+#aboutme::-webkit-scrollbar-track { 
+    background-color: #fff; 
+    border-radius: 8px; 
+} 
 /*ITEM MANAGER STUFF*/
 
 #managecontent {
@@ -634,6 +657,9 @@ body.modal-open div.modal-backdrop {
     right: 25px;
 }
 
+.navbar-fixed-top {
+  border-bottom: solid 7px #A83838;
+}
 .navbar-form{
 
     line-height: 50px;
@@ -686,7 +712,9 @@ body.modal-open div.modal-backdrop {
 
 #profpic{
   max-width: 300px;
-  max-height: 300px;
+  min-height: 250px;
+  max-height: 250px;
+  object-fit: cover;
 }
 
 #categories{
@@ -729,23 +757,15 @@ body.modal-open div.modal-backdrop {
 }
 
 #typeofsell{
+  border-top: solid 7px #cac9c9;
   color: #C2272D;
-  margin-top: 30px;
+  padding-top: 30px;
   font-size: 50px;
   position: absolute center;
   background-color: #F3F3F3;
   margin-background-color: #F3F3F3;
 }
 
-#products{
-  border-radius: 20px;
-  padding: 10px;
-  margin-left: 40px;
-  margin-top: 20px;
-  background-color: #F3F3F3;
-/*  #F3F3F3*/
-  display: inline-block;
-}
 
 #forsale{
   max-height: 135px;

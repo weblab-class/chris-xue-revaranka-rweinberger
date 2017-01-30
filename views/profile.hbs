@@ -15,6 +15,11 @@
         <h1 id='profilename'> {{profilefirstname}} {{profilelastname}} </h1>
         Venmo: {{venmo}} <br> 
         Email: <a href = 'mailto:{{email}}'>{{email}} </a><br><br>
+        {{#if notOwnProfile}}
+        <form action="/chat">
+          <input id='{{email}}' class='msgProf' type="submit" value="message {{profilefirstname}}" style='background-color: #F0F0F0; border: none; display: block; margin-top: -13px; margin-bottom: 10px;'/>
+        </form>
+        {{/if}}
         <div id='aboutme'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -43,5 +48,6 @@
       </div>
 
     <script src="/scripts/staritem.js"></script>
+    <script src="/scripts/chatFromProfile.js"></script>
   </body>
 </html>
