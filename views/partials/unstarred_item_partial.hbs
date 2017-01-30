@@ -1,9 +1,8 @@
-
-
   <div class="product" data-toggle="modal" data-target="#{{itemname}}">
-    <div class="pictureinbox">
+<!--     <div class="pictureinbox">
       <img id='forsale' src="/uploads/{{picture}}" />
-    </div>
+    </div> -->
+       <div class="col-s-6 " style="background-image:url('/uploads/{{picture}}');height:210px;width:249.5px; background-size: cover; background-position: center; "></div> 
     <div class='contentinbox'>
       <p align="left" id="productcontent" >{{itemname}}</p>
       <p align="right" id="productcontent3">${{price}}</p>
@@ -28,7 +27,9 @@
         </div>
 
         <div class="modal-body">
-          <img class= 'model-image' src="/uploads/{{picture}}" />
+          <div class='imageresize'>
+            <img class= 'model-image' src="/uploads/{{picture}}" />
+          </div>
           <h6 class="modal-description">{{description}}</h6>
           <div class='post-modal'
             >Posted by: <a href='/profile/{{userid}}'> {{firstname}} {{lastname}} </a><br><a href= 'mailto:{{user}}'> ({{user}})</a>
@@ -40,5 +41,3 @@
       
     </div>
   </div>
-  
-

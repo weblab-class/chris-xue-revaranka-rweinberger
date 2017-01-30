@@ -93,10 +93,7 @@ body.modal-open div.modal-backdrop {
 /*  height: 140px;
   width: 194px;*/
 
-.model-image{
-  max-width: 300px;
-  max-height: 230px;
-}
+
 
 .post-modal{
   font-size: 10px;
@@ -560,6 +557,8 @@ body.modal-open div.modal-backdrop {
   margin-top: 30px;
   font-size: 50px;
   position: absolute center;
+  background-color: #F3F3F3;
+  margin-background-color: #F3F3F3;
 }
 
 #products{
@@ -568,27 +567,52 @@ body.modal-open div.modal-backdrop {
   margin-left: 40px;
   margin-top: 20px;
   background-color: #F3F3F3;
+/*  #F3F3F3*/
   display: inline-block;
 }
 
 #forsale{
   max-height: 135px;
-  max-width: 174px;
+  max-width: 172.5px;
   flex:auto;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 
 }
 
+.hatethisshit{
+  display: table;
+  width: 100%;
+  height: auto;
+  padding: 100px 0;
+  text-align: center;
+  background-position: center;
+  min-height: 720px;
+
+
+
+ /*justify-content: center;
+   position: absolute center;*/
+/*  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;*/
+}
 .product{
   text-align: center;
-  margin: 20px;
-  width: 175px;
-  height: 175px;
-  background-color: #E5E5E5;
-  border: solid .5px #47474C;
-  border-radius: 3px;
+/*  margin: 20px;*/
+  width: 250px;
+  height: 250px;
+  background-color: white;
+/*  border: solid .3px #47474C;*/
+  margin-right: 20px;
+  margin-bottom: 30px;
+
+/*  border-radius: 3px;*/
   display: inline-block;
+}
+
+#typeofsell{
+  background-color: white;
 }
 .product img {
   max-width: 100%;
@@ -629,8 +653,28 @@ body.modal-open div.modal-backdrop {
   height: 135px;
   width: 174px;
   align-items: center;
-  justify-content: center;
+ justify-content: center;
   display: flex;
+}
+.pictureinbox img {
+  flex: 0 !important;
+}
+
+.model-image{
+  max-width: 300px;
+  max-height: 230px;
+}
+
+.imageresize{
+  width: 300px;
+  height: 230px;
+  align-items: center;
+  justify-content: center;
+  display: flex;  
+}
+
+.imageresize img{
+  flex: 0 !important;
 }
 
 
@@ -736,7 +780,7 @@ body.modal-open div.modal-backdrop {
   position: absolute;
 
 /*  top: 27px;
-  left: 30px;*/
+  left: 30px;
 }
 .blankstar {
   font-size: 25px;

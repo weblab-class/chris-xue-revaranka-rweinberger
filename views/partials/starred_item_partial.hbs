@@ -1,11 +1,8 @@
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- -->
   <div class="product" data-toggle="modal" data-target="#{{itemname}}">
-    <div class="pictureinbox">
-      <img id=forsale src="/uploads/{{picture}}" />
-    </div>
+<!--     <div class="pictureinbox">
+      <img id='forsale' src="/uploads/{{picture}}" />
+    </div> -->
+       <div class="col-s-6 " style="background-image:url('/uploads/{{picture}}');height:210px;width:249.5px; background-size: cover; background-position: center; "></div> 
     <div class='contentinbox'>
       <p align="left" id="productcontent" >{{itemname}}</p>
       <p align="right" id="productcontent3">${{price}}</p>
@@ -15,7 +12,6 @@
     </div>
     
   </div>
-
   <!-- Modal -->
   <div class="modal fade" id="{{itemname}}" role="dialog">
     <div class="modal-dialog">
@@ -23,56 +19,26 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <div class='star' id='star{{id}}'>&#9733;</div>
+          <div class='blankstar' id='blankstar{{id}}'>&#9734;</div>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">{{itemname}}</h4>
           <h5 class='modal-price'>${{price}}</h5>
           <!-- &#36;&#32;  -->
         </div>
 
-
         <div class="modal-body">
-          <img class= 'model-image' src="/uploads/{{picture}}" />
+          <div class='imageresize'>
+            <img class= 'model-image' src="/uploads/{{picture}}" />
+          </div>
           <h6 class="modal-description">{{description}}</h6>
           <div class='post-modal'
             >Posted by: <a href='/profile/{{userid}}'> {{firstname}} {{lastname}} </a><br><a href= 'mailto:{{user}}'> ({{user}})</a>
           </div>
         </div>
-
         <div style="display:none" class='id' id="{{id}}"></div>
-<!-- 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-        </div>
 
       </div>
       
     </div>
-<!--   </div>
+  </div>
   
-</div> -->
-
-<!-- 
-<div class="product">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <div>
-    <a id="productcontent" href="#{{itemname}}"> {{itemname}}</a>
-    <img src="/uploads/{{picture}}" />
-  </div>
-
-  <div id="{{itemname}}" class="overlay">
-    <div class="popup">
-      <div class='star' id='star{{id}}'>&#9733;</div>
-      <h2>{{itemname}}</h2>
-      &#36;&#32; {{price}}
-      <a class="close" href="#">&times;</a>
-      <div class="popupcontent">
-        {{description}}
-        <img src="/uploads/{{picture}}" />
-        <br><br>
-        posted by <a href='/profile/{{userid}}'> {{firstname}} {{lastname}} </a><br> ({{user}})
-      </div>
-      <div style="display:none" class='id' id="{{id}}"></div>
-    </div>
-  </div>
-</div> 
