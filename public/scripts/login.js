@@ -16,4 +16,9 @@ $(function() {
 		});
 		return false;
 	});
+
+	$("#forgot-pass-form").submit(function(e) {
+		e.preventDefault();
+		$('#forgotpassword').show();
+	});
 });

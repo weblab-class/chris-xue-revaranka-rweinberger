@@ -207,6 +207,21 @@
                   <li id="login-flash" style="display: none; color: red;">Username or Password incorrect</li>
                 </ul>
               </form>
+              
+              <form id = 'forgot-pass-form'>
+              <ul>
+              <li><button class = 'btn btn-default' type = 'submit'>Forgot Password?</button></li>
+              </ul>
+              </form>
+              
+              <div id = 'forgotpassword' style = 'display:none'>
+              <form name = 'passwordreset' method = 'post' id = 'forgot-pass' action= '/forgot'>
+              <ul>
+              <li><input style  = 'font-size:14pt; padding: 4px; margin:7px' type = 'text' placeholder = 'recovery email' name = 'recoveremail'></li>
+              <li><button class = 'btn btn-default' type = 'submit'>Reset Password</button></li>
+              </ul>
+              </form>
+              </div>
 
             </div>
             </div>
@@ -274,27 +289,6 @@
               </div>
               </li>
 
-              <li class="nav-item">
-    <a data-toggle="modal" data-target="#forgotpassword">Forgot Password</a>
-    <div class = 'modal fade' id = 'forgotpassword' role = 'dialog' tabindex = '-1' aria-hidden = 'true'>
-    <div class = 'modal-dialog'>
-    <div class = 'modal-content'>
-    <div class = 'modal-header'>
-    <button type = 'button' class = 'close' data-dismiss='modal'>&times;</button>
-    <h4 class = 'modal-title'>Forgot Password</h4>
-    </div>
-    <div class = 'modal-body'>
-      <form name = 'forgotpassord' method = 'post' action = '/forgot'>
-      <ul>
-      <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'text' placeholder = 'recovery email' name = 'recoveremail'> </li> 
-      <li> <button class = 'btn btn-default' type = 'submit'> Send Email </button> </li>
-      </ul>
-      </form>
-      </div>
-      </div>
-      </div>
-      </div>
-      </li>
               
 
       </ul>
