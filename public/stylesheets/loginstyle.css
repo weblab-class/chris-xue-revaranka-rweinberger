@@ -1,11 +1,12 @@
 @font-face {
-  font-family: raleway;
+  font-family: custom;
   src: url(/fonts/Raleway/Raleway-Regular.ttf);
 }
-@font-face {
-  font-family: ralewayMed;
-  src: url(/fonts/Raleway/Raleway-Medium.ttf);
+
+body {
+  font-family: custom;
 }
+
 head{
 
 }
@@ -13,7 +14,7 @@ body {
 
 	list-style-type: none;
 	margin-top: -20px;
-  	font-family: raleway;
+  	font-family: custom;
   	text-align: center;
   	display: block;
 }
@@ -36,7 +37,7 @@ ul{
 
 }
 .button{
-	font-family: raleway;
+	font-family: custom;
 	font-size: 14pt;
 	height:40px;
 	width:80px;
@@ -52,7 +53,7 @@ ul{
 	float:right;
 	height:40px;
 	width:90px;
-	font-family: raleway;
+	font-family: custom;
 	font-size: 14pt;
 	background-color: #D3D3D3;
   	border-radius: 15px;

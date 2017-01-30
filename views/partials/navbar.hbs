@@ -75,7 +75,7 @@
     <div class='notification' style='position: fixed; right: 10px; top: 10px; z-index: 1; background-color: #c2272d; color: white; border-radius: 20px; width: 20px; height: 20px'>!</div>
     {{/if}}
     <a class="navbar-brand navbar nav" href="/home"</a>
-      <img src="/images/newbeaverlogo.png" width="40" height="40" style='margin-right: 10px' class="d-inline-block" alt="">
+      <img src="/images/newbeaverlogo.png" width="40" height="40" style='margin-right: 20px' class="d-inline-block" alt="">
 
     </a>
 
@@ -89,6 +89,12 @@
         <ul class="nav navbar-nav navbar-left original">
 
           <li class="nav-item">
+            <a class="nav-link" href="/home">Browse All</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id='verticalbar'>|</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/clothes">Clothes</a>
           </li>
           <li class="nav-item">
@@ -100,15 +106,13 @@
           <li class="nav-item">
             <a class="nav-link" href="/furniture">Furniture</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/home">Browse</a>
-          </li>
+
         </ul>
         <ul class="nav navbar-nav navbar-right original">
 
 
           <li class="nav-item">
-             <a class="nav-link dropdown-toggle" type= "button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Welcome, {{firstname}}!</a>
+             <a class="nav-link dropdown-toggle" type= "button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id='welcomedropdown'> Welcome, {{firstname}}! &nbsp; &#9662; </a>
 
               <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                  <li role="presentation"><a data-toggle="modal" data-target="#newitem">List an Item</a></li>
@@ -157,6 +161,12 @@
 
     <!-- ******** LOGIN ********  -->
         <li class="nav-item">
+          <a class="nav-link" href="/home">Browse All</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id='verticalbar'>|</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/clothes">Clothes</a>
         </li>
         <li class="nav-item">
@@ -167,9 +177,6 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/furniture">Furniture</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/home">Browse</a>
         </li>
       </ul>
       <!-- Trigger the modal with a button -->
