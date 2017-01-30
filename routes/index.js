@@ -364,12 +364,12 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
     var userid = req.user.id;
     var firstname = req.user.firstname;
     var lastname = req.user.lastname;
-    var picture = '';
+    var picture = 'product.jpg';
     if(req.file) {
       picture = req.file.filename;
     }
     //console.log(tags);
-    console.log(req.file);
+    //console.log(req.file);
     var newItem = new Item({
       'itemname': itemname,
       'price': price,
@@ -385,20 +385,12 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
     newItem.save();
     res.redirect('/uploadsuccess');
   });
-
-  router.post('/uploadpic', upload.single('profpic'), function(req, res, next){
-   if (req.isAuthenticated()){
-      User.update({username:req.user.username},{$set:{picture:req.file.filename}}, function(err, raw){
-        if (err){ 
-          return handleError(err);
-        }
-      })
-      res.redirect('/profile')
-   }
-  })
   
   router.post('/signup', upload.single('picture'), function (req, res, next) {
-    var file = req.file.filename;
+    var file = 'default.jpg';
+    if (req.file){
+      file = req.file.filename;
+    }
     console.log('signed up');
     console.log(file);
     var user = new User({picture: file, firstname: req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo, username: req.body.username});
@@ -426,7 +418,7 @@ router.post('/updateprofile',upload.single('picture'), function(req, res,next){
      user.setPassword(req.body.newpassword, function(err){
       user.save(function(err) {
         req.logIn(user, function(err) {
-          res.redirect('/');
+          res.redirect('/profile');
         });
       });
      })
@@ -443,6 +435,12 @@ router.post('/updateprofile',upload.single('picture'), function(req, res,next){
   router.get('/uploads/:filename', function(req, res) {
   // TODO: set proper mime type + filename, handle errors, etc...
   var filename = req.params.filename;
+  if(filename == 'default.jpg') {
+    res.redirect('http://i.imgur.com/axIkONx.jpg');
+  }
+  if (filename=='product.jpg'){
+    res.redirect('http://i.imgur.com/KVT7nxV.jpg');
+  }
   mongo.GridStore.exist(db, filename, function(err, exists){
     if(exists) {
             gfs
@@ -537,7 +535,7 @@ router.get('/login', function(req, res, next) {
   if(req.isAuthenticated()) {
     res.redirect('/home');
   } else {
-    res.render('login', {});
+    res.render('login', {error:req.flash('error')});
   }
 });
 
@@ -545,8 +543,14 @@ router.get('/login', function(req, res, next) {
 router.post('/login',
     passport.authenticate('local', { successRedirect: '/home',
       failureRedirect: '/login',
-      failureFlash: false })
+      failureFlash: true })
     );
+
+router.post('/login.json', passport.authenticate('local'), 
+    function(req, res){
+        if (req.user) { res.send(200); }
+        else { res.send(401); }
+    });
 
 
 
@@ -855,7 +859,7 @@ router.get('/uploadsuccess', function(req, res) {
   if(req.isAuthenticated()) {
     bool = true;
     var firstname = req.user.firstname;
-    Notification.find({'toWho': username}, function (err, notifications) {
+    Notification.find({'toWho': req.user.username}, function (err, notifications) {
       if (err) {console.log("error from /chat route")}
       else if (notifications.length != 0) {
         var notification = true
