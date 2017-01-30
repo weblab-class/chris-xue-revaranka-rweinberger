@@ -390,8 +390,8 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
     if (req.file){
       file = req.file.filename;
     }
-    console.log('signed up');
-    console.log(file);
+    //console.log('signed up');
+    //console.log(file);
     var user = new User({picture: file, firstname: req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo, username: req.body.username});
     User.register(user, req.body.password, function(registrationError) {
       if(!registrationError) {
@@ -456,10 +456,10 @@ router.post('/updateprofile',upload.single('picture'), function(req, res,next){
   // TODO: set proper mime type + filename, handle errors, etc...
   var filename = req.params.filename;
   if(filename == 'default.jpg') {
-    res.redirect('http://i.imgur.com/axIkONx.jpg');
+    res.redirect('https://s30.postimg.org/bviipu66p/default.png');
   }
   if (filename=='product.jpg'){
-    res.redirect('http://i.imgur.com/KVT7nxV.jpg');
+    res.redirect('https://s24.postimg.org/vmq9io7lh/no_image.png');
   }
   mongo.GridStore.exist(db, filename, function(err, exists){
     if(exists) {
