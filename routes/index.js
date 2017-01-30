@@ -422,11 +422,17 @@ router.post('/updateprofile',upload.single('picture'), function(req, res,next){
         }
     })
     
-  //  User.findOne({'username': req.user.username}, function(err, user){
-  //    user.setPassword(req.body.newpassword, function(err){})
+  User.findOne({'username': req.user.username}, function(err, user){
+     user.setPassword(req.body.newpassword, function(err){
+      user.save(function(err) {
+        req.logIn(user, function(err) {
+          res.redirect('/');
+        });
+      });
+     })
 
-    //})
-    res.redirect('/');
+    })
+    //res.redirect('/');
 
 
   }
