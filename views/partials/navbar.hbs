@@ -238,15 +238,16 @@
 
       <!-- Modal -->
             <div class="modal fade" id="login" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog" style='height:20px'>
         
           <!-- Modal content-->
-            <div class="modal-content">
+            <div class="modal-content" style='height: 320px'>
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">LOGIN</h4>
             </div>
             <div class="modal-body">
+            <br>
               <form name="sign in" method = 'post' id="login-form" action = '/login'>
                 <ul>
                 <div class = 'signuppage'>
@@ -266,20 +267,18 @@
               </form>
               
               <form id = 'forgot-pass-form'>
-              <ul>
-              <li><input class="twobuttonsfog" id="go" type="submit" value="Forgot Password?" style="left: 300px;"></li>
-              </ul>
+              <input class="twobuttonsfog" id="go" type="submit" value="Forgot Password?" style="left: 300px;">
               </form>
               
               <div id = 'forgotpassword' style = 'display:none'>
+              <br>
               <form name = 'passwordreset' method = 'post' id = 'forgot-pass' action= '/forgot'>
               <ul>
 
-              <div class = 'forgotpass'>
+              <div id = 'forgotpass'>
 
                 <li><input class="inputbox" id="login1" type="text" placeholder="Email" name="recoveremail" ></li>
-
-                <li><input class="twobuttonsforgot" id="go" type="submit" value="+ +" style="left: 300px;"></li>
+                <li><input class="twobuttonsforgot" id="go" type="submit" value="+ +" style="left: 300px; margin-bottom: 180px;"></li>
               </div>
               </ul>
               </form>
