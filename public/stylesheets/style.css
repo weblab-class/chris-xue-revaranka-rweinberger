@@ -1,15 +1,10 @@
 @font-face {
-  font-family: raleway;
-  src: url(/fonts/Raleway/Raleway-Regular.ttf);
-}
-@font-face {
-  font-family: ralewayMed;
+  font-family: custom;
   src: url(/fonts/Raleway/Raleway-Medium.ttf);
 }
 
 body {
-  padding: ;
-  font-family: raleway;
+  font-family: custom;
 }
 a{
   font-weight: bold;
@@ -20,6 +15,25 @@ a:visited {
 }
 a:hover {
   color: #D3D3D3;
+}
+#verticalbar:hover{
+  color:#9d9d9d;
+}
+
+#welcomedropdown:focus {
+  background-color: #9d9d9d;
+}
+
+#welcomedropdown:hover {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  margin-right: 25px;
+}
+
+.dropdown-menu li {
+  width: 178px;
 }
 
 .dropdown {
@@ -216,7 +230,7 @@ p{
   float: right;
   margin-right: 45px;
   margin-top: 20px;
-  font-family: ralewayMed;
+  font-family: custom;
   padding: 0;
   border: none;
   background: none;
@@ -226,7 +240,7 @@ p{
   float: right;
   margin-right: 0px;
   margin-top: px;
-  font-family: ralewayMed;
+  font-family: custom;
   font-size: 15px;
   padding: 26px;
   border: none;
@@ -595,7 +609,7 @@ p{
 .contentbutton {
   margin-top: 10px;
   padding: 7px;
-  font-family: ralewayMed;
+  font-family: custom;
   background-color: #D3D3D3;
   border-radius: 15px;
   border: none;
