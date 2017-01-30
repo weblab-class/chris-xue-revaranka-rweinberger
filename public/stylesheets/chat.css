@@ -49,6 +49,16 @@ form button {
   border: none;
   border-radius: 10px
 }
+
+.selectuser {
+  position: absolute;
+  left: 50px;
+  margin-bottom: 15px;
+  background-color: #A6A6A6;
+  border: none;
+  border-radius: 10px
+}
+
 #messages {
   list-style-type: none; 
   overflow:   auto;
