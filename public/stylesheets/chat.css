@@ -1,5 +1,15 @@
-body { 
-  font: 13px Helvetica, Arial; 
+@font-face {
+  font-family: raleway;
+  src: url(/fonts/Raleway/Raleway-Regular.ttf);
+}
+@font-face {
+  font-family: ralewayMed;
+  src: url(/fonts/Raleway/Raleway-Medium.ttf);
+}
+
+body {
+  padding: ;
+  font-family: raleway;
 }
 
 form { 
@@ -35,10 +45,20 @@ form button {
   position: absolute;
   left: 50px;
   margin-bottom: 15px;
-  background-color: #A6A6A6;
+  background-color: #fff;
   border: none;
   border-radius: 10px
 }
+
+.selectuser {
+  position: absolute;
+  left: 50px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  border: none;
+  border-radius: 10px
+}
+
 #messages {
   list-style-type: none; 
   overflow:   auto;
@@ -46,7 +66,7 @@ form button {
   right: 175px;
   bottom: 100px;
   width: 405px;
-  max-height: 72%;
+  max-height: 65%;
 }
 
 
@@ -58,10 +78,19 @@ form button {
   word-wrap: break-word;
 }
 
+#msgtitle {
+  text-align: left;
+  position: relative;
+  margin-left: 90px;
+  top: -2px;
+}
+
 #convos {
+  text-align: left;
   position: relative;
   overflow: auto;
-  height: 630px;
+  top: 7px;
+  height: 570px;
   border-radius: 10px;
   background-color: #E1E0E0;
   width: 40%;
@@ -95,4 +124,11 @@ form button {
 #from-other {
   text-align: left;
   background: #F5F5F5;
+}
+
+#receiver {
+  position: absolute;
+  right: 178px;
+  top: 100px;
+  z-index: 1;
 }

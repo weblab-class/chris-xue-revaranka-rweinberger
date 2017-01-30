@@ -1,5 +1,5 @@
 $(".selectuser").on("click", function() {
-  console.log('hi');
+  console.log('HELLO');
   var targetUser = $(this).attr('id');
   $.getJSON("/api/user_data", function(data) {
     var selectingUser = data.username;

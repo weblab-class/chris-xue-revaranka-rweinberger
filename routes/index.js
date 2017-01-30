@@ -17,6 +17,7 @@ var flash = require('express-flash');
 var User = require('../schemas/user');
 var Item = require('../schemas/item');
 var Chat = require('../schemas/chat');
+var Notification = require('../schemas/notification');
 
 /*sending user data as JSON to access on client side*/
 router.get('/api/user_data', function(req, res) {
@@ -101,7 +102,6 @@ router.get('/chat', function(req, res){
         }
       }
       var existing_users = Array.from(existing_users_set);
-      if (existing_users.indexOf())
       for (i=0; i < users.length; i++) {
         if (existing_users.indexOf(users[i]) === -1) {
           new_users.push(users[i])
@@ -117,8 +117,45 @@ router.get('/chat', function(req, res){
           new_users.splice(i, 1);
         };
       };
+      // console.log(existing_users);
+      Notification.find({'toWho': user}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          // var notification = true;
+          for (i=0; i < notifications.length; i++) {
+            console.log('notification found');
+            fromWho = notifications[i].fromWho;
+            console.log('FROM!!!! ' +fromWho);
+            var result = existing_users.filter(function( obj ) {
+              return obj.username === fromWho;
+            }); 
+            console.log(result);//rew@mit.edu
+            result[0].particular_notif = true
+          }
+        } else {
+          var notification = false;
+          for (i=0; i < existing_users.length; i++) {
+            existing_users[i].particular_notif = false
+          }
+        }
+        res.render('chat_home.hbs', {notification: notification, boolean: true, firstname: req.user.firstname, selected_chat: false, new_users: new_users, existing_users: existing_users});
+      })
+      // for (i=0; i< existing_users.length; i++) {
+      //   var existing_user = existing_users[i];
+      //   Notification.findOne({'toWho': user, 'fromWho':existing_user.username}, function(err, result) {
+      //     if (err) {
+      //       console.log('error from /chat route')
+      //     } else if (result) {
+      //       console.log('A RESULT');
+      //       existing_user.particular_notif = true
+      //     } else {
+      //       console.log('NOT A RESULT');
+      //       existing_user.particular_notif = false
+      //     }
+      //   });
+      // };
       // var new_users = Array.from(new_users_set);
-      res.render('chat_home.hbs', {boolean: true, firstname: req.user.firstname, selected_chat: false, new_users: new_users, existing_users: existing_users});
+      // res.render('chat_home.hbs', {boolean: true, firstname: req.user.firstname, selected_chat: false, new_users: new_users, existing_users: existing_users});
       // res.render('newconvo.hbs', {new_users: new_users, existing_users: existing_users});
     });
   } else {
@@ -132,6 +169,7 @@ router.get('/chat/:id', function(req, res){
     var id = req.params.id;
     var user = req.user.username;
     var conversations = req.user.conversations;
+    console.log(conversations);
     var existing_users_set = new Set();
     var new_users = [];
     User.find({}, function(err, users) {
@@ -172,30 +210,53 @@ router.get('/chat/:id', function(req, res){
           if (err) {
             console.log('error retrieving chat')
           } else {
+            var users = chat.users;
+            if (users[0] === user) {
+              var counterpart = users[1]
+            } else {
+              var counterpart = users[0]
+            };
+            Notification.remove( { 'fromWho': counterpart, 'toWho': user }, function(err,raw){
+              if(err) {console.log('error from deleting notif')};
+              console.log('raw response: '+raw)
+            } );
             var messages = chat.messages;
             for (i=0; i < messages.length; i++) {
               if (messages[i].sender === user) {
-                console.log('found a message from the current user!');
+                // console.log('found a message from the current user!');
                 messages[i].from_current_user = true
               } else {
                 messages[i].from_current_user = false
               }
             };
-            res.render('chat_home.hbs', {boolean: true, firstname: req.user.firstname, selected_chat: true, users:chat.users, chatid: id, existing_messages: messages, new_users: new_users, existing_users: existing_users, 
-              // helpers: {
-              //   from_current_user: function (message) { 
-              //     var attribs;
-              //     attribs = JSON.parse(message.hash.dataAttribs);
-              //     console.log(attribs.sender + " -- " + attribs.message);
-              //     var sender = attribs.sender;
-              //     if (user === sender) {
-              //       return true
-              //     } else {
-              //       return false
-              //     };
-              //   }
-              // }
+            Notification.find({'toWho': user}, function (err, notifications) {
+              if (err) {console.log("error from /chat route")}
+              else if (notifications.length != 0) {
+                console.log(notifications);
+                // var notification = true;
+                for (i=0; i < notifications.length; i++) {
+                  // console.log('notification found');
+                  fromWho = notifications[i].fromWho;
+                  // console.log('FROM!!!! ' +fromWho);
+                  var result = existing_users.filter(function( obj ) {
+                    return obj.username === fromWho;
+                  }); 
+                  console.log(result);//rew@mit.edu
+                  result[0].particular_notif = true
+                }
+              } else {
+                var notification = false;
+                for (i=0; i < existing_users.length; i++) {
+                  existing_users[i].particular_notif = false
+                }
+              }
+              User.findOne({'username': counterpart}, function(err, user) {
+                var selectedfirstname = user.firstname;
+                var selectedlastname = user.lastname;
+                res.render('chat_home.hbs', {selectedfirstname:selectedfirstname, selectedlastname: selectedlastname, notification: notification, boolean: true, firstname: req.user.firstname, selected_chat: true, users:chat.users, chatid: id, existing_messages: messages, new_users: new_users, existing_users: existing_users});
+              })
             });
+            // res.render('chat_home.hbs', {boolean: true, firstname: req.user.firstname, selected_chat: true, users:chat.users, chatid: id, existing_messages: messages, new_users: new_users, existing_users: existing_users});
           };
         });
       } else {
@@ -209,7 +270,6 @@ router.get('/chat/:id', function(req, res){
     res.render('please-login', {inorderto: 'access your conversations!'});
   };
 });
-
 // router.get('/chat/:id', function(req, res) {
 //   if(req.isAuthenticated()) {
 //     var user = req.user.username;
@@ -236,10 +296,21 @@ router.post('/message', function (req, res, next) {
   var chatid = req.body.chatid;
   var message = req.body.message;
   var sender = req.body.sender;
+  var receiver = req.body.receiver;
   var newMessage = {sender: sender, message:message};
   Chat.update({'_id':chatid},{$push:{messages:newMessage}}, function (err, raw) {
     if (err) return handleError(err);
     console.log('The raw response from Mongo was ', raw);
+    Notification.findOne({'toWho': receiver, 'fromWho':sender}, function(err, result) {
+      if (err) {console.log('error at /message route')};
+      if (result) {
+        console.log('a notification already exists for that receiver, from that sender')
+      } else {
+        var notif = new Notification({'toWho': receiver, 'fromWho':sender});
+        notif.save();
+        console.log('notification saved')
+      }
+    });
   });
 });
 
@@ -286,12 +357,12 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
     var userid = req.user.id;
     var firstname = req.user.firstname;
     var lastname = req.user.lastname;
-    var picture = '';
+    var picture = 'product.jpg';
     if(req.file) {
       picture = req.file.filename;
     }
     //console.log(tags);
-    console.log(req.file);
+    //console.log(req.file);
     var newItem = new Item({
       'itemname': itemname,
       'price': price,
@@ -307,20 +378,12 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
     newItem.save();
     res.redirect('/uploadsuccess');
   });
-
-  router.post('/uploadpic', upload.single('profpic'), function(req, res, next){
-   if (req.isAuthenticated()){
-      User.update({username:req.user.username},{$set:{picture:req.file.filename}}, function(err, raw){
-        if (err){ 
-          return handleError(err);
-        }
-      })
-      res.redirect('/profile')
-   }
-  })
   
   router.post('/signup', upload.single('picture'), function (req, res, next) {
-    var file = req.file.filename;
+    var file = 'default.jpg';
+    if (req.file){
+      file = req.file.filename;
+    }
     console.log('signed up');
     console.log(file);
     var user = new User({picture: file, firstname: req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo, username: req.body.username});
@@ -338,17 +401,44 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
 });
 router.post('/updateprofile',upload.single('picture'), function(req, res,next){
   if(req.isAuthenticated()){
-    User.update({username:req.user.username}, {$set:{firstname:req.body.firstname, picture:req.file.filename, firstname:req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo}}, function(err,raw){
+    var firstname = req.user.firstname;
+    var lastname = req.user.lastname;
+    var venmo = req.user.venmo;
+    var picture = req.user.picture;
+    var password = req.user.password;
+    if (req.body.firstname != ''){
+      firstname = req.body.firstname;
+    }
+    if (req.body.lastname != ''){
+      lastname = req.body.lastname;
+    }
+    if (req.body.venmo != ''){
+      vemo = req.body.venmo;
+    }
+    if (req.file){
+      picture = req.file.filename;
+    }
+    if (req.body.newpassword != ''){
+      password = req.body.newpassword
+    }
+
+    User.update({username:req.user.username}, {$set:{picture:picture, firstname:firstname, lastname: lastname, venmo: venmo}}, function(err,raw){
         if (err){
           return handleError(error);
         }
     })
     
-  //  User.findOne({'username': req.user.username}, function(err, user){
-  //    user.setPassword(req.body.newpassword, function(err){})
+  User.findOne({'username': req.user.username}, function(err, user){
+     user.setPassword(password, function(err){
+      user.save(function(err) {
+        req.logIn(user, function(err) {
+          res.redirect('/profile');
+        });
+      });
+     })
 
-    //})
-    res.redirect('/');
+    })
+    //res.redirect('/');
 
 
   }
@@ -359,6 +449,12 @@ router.post('/updateprofile',upload.single('picture'), function(req, res,next){
   router.get('/uploads/:filename', function(req, res) {
   // TODO: set proper mime type + filename, handle errors, etc...
   var filename = req.params.filename;
+  if(filename == 'default.jpg') {
+    res.redirect('http://i.imgur.com/axIkONx.jpg');
+  }
+  if (filename=='product.jpg'){
+    res.redirect('http://i.imgur.com/KVT7nxV.jpg');
+  }
   mongo.GridStore.exist(db, filename, function(err, exists){
     if(exists) {
             gfs
@@ -399,7 +495,6 @@ router.post('/updateprofile',upload.single('picture'), function(req, res,next){
 //   res.render('index')
 // });
 
-/* GET signup page. */
 router.get('/', function(req, res, next) {
 
   Item.find({}, function(err, items) {
@@ -419,10 +514,20 @@ router.get('/', function(req, res, next) {
           console.log('error getting starred item');
           res.render('error')
         } else {
-          console.log('starred: ' +starredItemIds);
-          console.log('other: ' +otherItems);
+          console.log('starred: ' + starredItemIds);
+          console.log('other: ' + otherItems);
           bool = true;
-          res.render('slashscreen', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+          // res.render('slashscreen', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+          // });
+          Notification.find({'toWho': username}, function (err, notifications) {
+            if (err) {console.log("error from /chat route")}
+            else if (notifications.length != 0) {
+              var notification = true
+            } else {
+              var notification = false
+            }
+            res.render('slashscreen', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+            });
           });
         }
       });
@@ -436,7 +541,7 @@ router.get('/', function(req, res, next) {
         }
       });
     };
-});
+  });
 });
 
 
@@ -444,7 +549,7 @@ router.get('/login', function(req, res, next) {
   if(req.isAuthenticated()) {
     res.redirect('/home');
   } else {
-    res.render('login', {});
+    res.render('login', {error:req.flash('error')});
   }
 });
 
@@ -452,8 +557,14 @@ router.get('/login', function(req, res, next) {
 router.post('/login',
     passport.authenticate('local', { successRedirect: '/home',
       failureRedirect: '/login',
-      failureFlash: false })
+      failureFlash: true })
     );
+
+router.post('/login.json', passport.authenticate('local'), 
+    function(req, res){
+        if (req.user) { res.send(200); }
+        else { res.send(401); }
+    });
 
 
 
@@ -585,7 +696,15 @@ router.get('/home', function (req, res, next) {
           console.log('starred: ' +starredItemIds);
           console.log('other: ' +otherItems);
           bool = true;
-          res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+          Notification.find({'toWho': username}, function (err, notifications) {
+            if (err) {console.log("error from /chat route")}
+            else if (notifications.length != 0) {
+              var notification = true
+            } else {
+              var notification = false
+            }
+            res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+            });
           });
         }
       });
@@ -656,7 +775,10 @@ router.post('/unstar', function (req, res, next) {
     console.log(user);
     console.log(index);
     console.log(starredIds);
-    f
+    User.update({username:user},{$set:{starred:starredIds}}, function (err, raw) {
+      if (err) return handleError(err);
+      console.log('The raw response from Mongo was ', raw);
+    });
   } else {
     console.log('unregistered user attempted to unstar ' + starred);
   };
@@ -675,7 +797,16 @@ router.get('/starreditems', function(req, res) {
         res.render('error')
       } else {
         bool = true;
-        res.render('starred', {boolean:bool, starred: starredItems, firstname: firstname});
+        Notification.find({'toWho': username}, function (err, notifications) {
+          if (err) {console.log("error from /chat route")}
+          else if (notifications.length != 0) {
+            var notification = true
+          } else {
+            var notification = false
+          }
+          res.render('starred', {notification: notification, boolean: bool, starred: starredItems, firstname: firstname
+          });
+        });
       }
     });
   } else {
@@ -742,7 +873,15 @@ router.get('/uploadsuccess', function(req, res) {
   if(req.isAuthenticated()) {
     bool = true;
     var firstname = req.user.firstname;
-    res.render('uploadsuccess', {boolean: bool, firstname: firstname});
+    Notification.find({'toWho': req.user.username}, function (err, notifications) {
+      if (err) {console.log("error from /chat route")}
+      else if (notifications.length != 0) {
+        var notification = true
+      } else {
+        var notification = false
+      }
+      res.render('uploadsuccess', {notification: notification, boolean: bool, firstname: firstname});
+    });
   } else {
     bool = false;
     res.redirect('/');
@@ -768,7 +907,6 @@ router.get('/userlist', function(req, res) {
   });
 });
 
-/*user profile page*/
 router.get('/profile', function(req, res) {
   if(req.isAuthenticated()) {
     var email = req.user.username;
@@ -789,7 +927,15 @@ router.get('/profile', function(req, res) {
           starredItems.push(items[i]);
         };
       };
-      res.render('profile', {access: access, profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: firstname, profilelastname:lastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+      Notification.find({'toWho': email}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        res.render('profile', {notification: notification, access: access, profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: firstname, profilelastname:lastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+      });
     });
   } else {
     bool = false;
@@ -813,6 +959,7 @@ router.get('/profile/:id', function(req, res, next) {
     var access= false;
     if(req.isAuthenticated()) {
       var firstname = req.user.firstname;
+      var username = req.user.username;
       if (id == req.user.id){
         access= true;
       }
@@ -825,7 +972,15 @@ router.get('/profile/:id', function(req, res, next) {
             starredItems.push(items[i]);
           };
         };
-        res.render('profile', {access: access, profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+        Notification.find({'toWho': username}, function (err, notifications) {
+          if (err) {console.log("error from /chat route")}
+          else if (notifications.length != 0) {
+            var notification = true
+          } else {
+            var notification = false
+          }
+          res.render('profile', {notification: notification, access: access, profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+        });
       });
     } else {
       bool = false;
@@ -843,12 +998,21 @@ router.get('/manageitems', function(req, res) {
     var bool = true;
     var firstname = req.user.firstname;
     Item.find({'user':user}, function(err, items) {
-      res.render('manageitems', {boolean:bool, firstname: firstname, items:items, user:user});
+      Notification.find({'toWho': user}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        res.render('manageitems', {notification: notification, boolean:bool, firstname: firstname, items:items, user:user});
+      });
     });
   } else {
     res.redirect('/');
   };
 });
+
 
 
 router.post('/deleteitem', function(req, res) {
@@ -897,6 +1061,7 @@ router.post('/searchresults', function(req, res) {
     var bool = true;
     if(req.isAuthenticated()) {
       bool = true;
+      var username = req.user.username;
       var firstname = req.user.firstname;
       var starredItemIds = req.user.starred;
       var otherItems = [];
@@ -908,7 +1073,15 @@ router.post('/searchresults', function(req, res) {
           starredItems.push(items[i]);
         };
       };
-      res.render('searchresults', {boolean: bool, term:term,starred: starredItems, unstarred: otherItems, firstname: firstname});
+      Notification.find({'toWho': username}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        res.render('searchresults', {notification: notification, boolean: bool, term:term,starred: starredItems, unstarred: otherItems, firstname: firstname});
+      });
     } else {
       bool = false;
       res.render('searchresults', {boolean: bool, term:term, unstarred: items});
@@ -953,7 +1126,14 @@ router.get('/clothes', function(req,res){
           starredItems.push(items[i])
         };
       };
-      res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+      Notification.find({'toWho': username}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
       });
     } else {
       var bool = false;
@@ -984,7 +1164,14 @@ router.get('/books', function(req,res){
           starredItems.push(items[i])
         };
       };
-      res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+      Notification.find({'toWho': username}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
       });
     } else {
       var bool = false;
@@ -1015,7 +1202,14 @@ router.get('/tech', function(req,res){
           starredItems.push(items[i])
         };
       };
-      res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+      Notification.find({'toWho': username}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
       });
     } else {
       var bool = false;
@@ -1046,7 +1240,14 @@ router.get('/furniture', function(req,res){
           starredItems.push(items[i])
         };
       };
-      res.render('home', {boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+      Notification.find({'toWho': username}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
       });
     } else {
       var bool = false;

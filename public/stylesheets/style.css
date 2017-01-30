@@ -1,15 +1,10 @@
 @font-face {
-  font-family: raleway;
-  src: url(/fonts/Raleway/Raleway-Regular.ttf);
-}
-@font-face {
-  font-family: ralewayMed;
+  font-family: custom;
   src: url(/fonts/Raleway/Raleway-Medium.ttf);
 }
 
 body {
-  padding: ;
-  font-family: raleway;
+  font-family: custom;
 }
 a{
   font-weight: bold;
@@ -20,6 +15,25 @@ a:visited {
 }
 a:hover {
   color: #D3D3D3;
+}
+#verticalbar:hover{
+  color:#9d9d9d;
+}
+
+#welcomedropdown:focus {
+  background-color: #9d9d9d;
+}
+
+#welcomedropdown:hover {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  margin-right: 25px;
+}
+
+.dropdown-menu li {
+  width: 160px;
 }
 
 .dropdown {
@@ -143,22 +157,78 @@ body.modal-open div.modal-backdrop {
   background-color: purple;
 }
 
-/*#nav {
-=======
-p{
-  margin-left: 40px;
-}
-#nav {
->>>>>>> 6fc630f3a1f73006ff74c8e239084e11b6b2f2cf
-  position: fixed;
-  background-color: #999898;
-  width: 100%;
-  border-bottom: solid 1px #ccc;
-  margin-top: -10px;
-  margin-left: -10px;
-}
-*/
 
+/*PROFILE STUFF*/
+#profilecontent {
+  text-align: left;
+  width: 1000px;
+  height: 300px;
+  /*background-color: #F3F3F3;*/
+  margin-top: 150px;
+  margin-left: 170px;
+}
+#profpic {
+  z-index: 20;
+  margin: 30px;
+  background-color: #ccc;
+  width: 100%;
+}
+#profilebox {
+  margin-top: -285px;
+  /*background-color: red;*/
+  width: 500px;
+  height: 250px;
+  margin-left: 400px;
+}
+#aboutme {
+  /*background-color: red;*/
+  height: 120px;
+  overflow: auto
+}
+/*ITEM MANAGER STUFF*/
+
+#managecontent {
+  margin-top: 130px;
+}
+
+#managercontainer {
+  text-align: left;
+  width: 600px;
+  margin: auto;
+  padding: 15px;
+  background-color: #F3F3F3
+}
+
+.managerdeletebtn {
+  padding-left: 7px;
+  padding-right: 7px;
+  margin-right: 10px;
+  background-color: #C8C8C8;
+  border: none;
+  border-radius: 20px;
+}
+
+.managerdeletebtn:focus {
+  outline: none;
+}
+
+#managerdeletebtn {
+  padding-left: 7px;
+  padding-right: 7px;
+  margin-right: 10px;
+  background-color: #C8C8C8;
+  border: none;
+  border-radius: 20px;
+}
+
+.manage_elt button {
+  padding-left: 7px;
+  padding-right: 7px;
+  margin-right: 10px;
+  background-color: #C8C8C8;
+  border: none;
+  border-radius: 20px;
+}
 .categories{
   margin-top: 70px;
   text-align:center;
@@ -185,7 +255,7 @@ p{
   float: right;
   margin-right: 45px;
   margin-top: 20px;
-  font-family: ralewayMed;
+  font-family: custom;
   padding: 0;
   border: none;
   background: none;
@@ -195,7 +265,7 @@ p{
   float: right;
   margin-right: 0px;
   margin-top: px;
-  font-family: ralewayMed;
+  font-family: custom;
   font-size: 15px;
   padding: 26px;
   border: none;
@@ -611,7 +681,7 @@ p{
 .contentbutton {
   margin-top: 10px;
   padding: 7px;
-  font-family: ralewayMed;
+  font-family: custom;
   background-color: #D3D3D3;
   border-radius: 15px;
   border: none;
@@ -634,6 +704,7 @@ p{
   margin-top: 25px;
   padding: 7px;
   border-radius: 7px;
+  width:100%;
 }
 #itemname{
   width: 135px;

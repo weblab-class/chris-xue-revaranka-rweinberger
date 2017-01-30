@@ -3,6 +3,7 @@
   <head>
     <title>chat</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <script src="/socket.io/socket.io.js"></script>
     <!-- <script src='/scripts/chat.js'></script> -->
     <link rel="stylesheet" href='/stylesheets/chat.css'>
@@ -10,6 +11,8 @@
   <body>
     <!-- <h1 id='users'>chat users: {{users}}</h1> -->
     <div class='chatid' id={{chatid}}></div>
+    <div class='users' id={{users}}></div>
+    <div id='receiver'><h3>{{selectedfirstname}} {{selectedlastname}}</h3></div>
     <ul id="messages">
       {{#each existing_messages}}
         {{#if from_current_user}}

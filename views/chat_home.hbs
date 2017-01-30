@@ -1,21 +1,23 @@
 <!doctype html>
 <html>
   <head>
-    <title>chat</title>
+    <title>Messages</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href='/stylesheets/chat.css'>
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
   </head>
   <body>
     {{> navbar}}
     <div id='content'>
+      <div id='msgtitle'><h1>Messages</h1></div>
       <div id='convos'>
-        <h3 style='padding:10px'> Continue an existing conversation... </h3>
+        <h3 style='margin-left:30px'>Continue an existing conversation... </h3><br>
         {{#each existing_users}}
           {{> existing_chat_user}}
         {{/each}}
-        <h3 style='padding:10px'> ...or start a new one! </h3>
+        <h3 style='margin-left:30px'> ...or start a new one! </h3><br>
         {{#each new_users}}
           {{> new_chat_user}}
         {{/each}}
@@ -29,6 +31,6 @@
       {{/if}}
       </div>
     </div>
-  </body>
   <script src='/scripts/selectuser.js'></script>
+  </body>
 </html>

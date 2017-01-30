@@ -1,4 +1,4 @@
-$(".deletebtn").on("click", function() {
+$(".managerdeletebtn").on("click", function() {
   var id = $(this).attr('id');
   var itemid = id.substring(9);
   console.log(itemid);
