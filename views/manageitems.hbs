@@ -1,17 +1,18 @@
 <!doctype html>
 <html>
   <head>
-    <title>Manage items</title>
+    <title>Manage Items</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
   </head>
 
   <body>
     {{> navbar}}
 
-    <div id="content">
+    <div id="managecontent">
       <h1 id="title">Item Manager for {{user}}</h1>
       <p> Delete any of your posted items.</p>
-      <div id="products">
+      <div id="managercontainer">
         {{#each items}}
           {{> item_manager_partial}}
         {{/each }}

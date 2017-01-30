@@ -12,6 +12,7 @@
     <!-- <h1 id='users'>chat users: {{users}}</h1> -->
     <div class='chatid' id={{chatid}}></div>
     <div class='users' id={{users}}></div>
+    <div id='receiver'><h3>{{selectedfirstname}} {{selectedlastname}}</h3></div>
     <ul id="messages">
       {{#each existing_messages}}
         {{#if from_current_user}}

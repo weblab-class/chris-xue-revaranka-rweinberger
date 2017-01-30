@@ -206,17 +206,6 @@ router.get('/chat/:id', function(req, res){
         };
       };
       if (conversations.indexOf(id) != -1) {
-        // var convoId = conversations.indexOf(id);
-        // var foundConvo = conversations[convoId];
-        // console.log(foundConvo)
-        // var users = foundConvo.users;
-        // console.log(users);
-        // if (users[0] === user) {
-        //   var counterpart = users[1]
-        // } else {
-        //   var counterpart = users[0]
-        // };
-        // Notification.deleteOne( { 'fromWho': counterpart, 'toWho': user } );
         Chat.findOne({'_id':id}, function(err, chat) {
           if (err) {
             console.log('error retrieving chat')
@@ -261,7 +250,11 @@ router.get('/chat/:id', function(req, res){
                   existing_users[i].particular_notif = false
                 }
               }
-              res.render('chat_home.hbs', {notification: notification, boolean: true, firstname: req.user.firstname, selected_chat: true, users:chat.users, chatid: id, existing_messages: messages, new_users: new_users, existing_users: existing_users});
+              User.findOne({'username': counterpart}, function(err, user) {
+                var selectedfirstname = user.firstname;
+                var selectedlastname = user.lastname;
+                res.render('chat_home.hbs', {selectedfirstname:selectedfirstname, selectedlastname: selectedlastname, notification: notification, boolean: true, firstname: req.user.firstname, selected_chat: true, users:chat.users, chatid: id, existing_messages: messages, new_users: new_users, existing_users: existing_users});
+              })
             });
             // res.render('chat_home.hbs', {boolean: true, firstname: req.user.firstname, selected_chat: true, users:chat.users, chatid: id, existing_messages: messages, new_users: new_users, existing_users: existing_users});
           };

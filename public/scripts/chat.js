@@ -39,7 +39,7 @@ $( document ).ready(function() {
     // $('#messages').append($('<li>').text(data.firstname+' ('+data.username+') connected'));
     $('form').submit(function() {
       var chatid = $('.chatid').attr('id');
-      var message = data.firstname + ': ' + $('#m').val();
+      var message = $('#m').val();
       var sender = data.username;
       var users = $('.users').attr('id').split(',');
       console.log(users);

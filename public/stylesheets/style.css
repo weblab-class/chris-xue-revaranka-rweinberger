@@ -33,7 +33,7 @@ a:hover {
 }
 
 .dropdown-menu li {
-  width: 178px;
+  width: 160px;
 }
 
 .dropdown {
@@ -188,22 +188,50 @@ body.modal-open div.modal-backdrop {
   height: 120px;
   overflow: auto
 }
-/*#nav {
-=======
-p{
-  margin-left: 40px;
-}
-#nav {
->>>>>>> 6fc630f3a1f73006ff74c8e239084e11b6b2f2cf
-  position: fixed;
-  background-color: #999898;
-  width: 100%;
-  border-bottom: solid 1px #ccc;
-  margin-top: -10px;
-  margin-left: -10px;
-}
-*/
+/*ITEM MANAGER STUFF*/
 
+#managecontent {
+  margin-top: 130px;
+}
+
+#managercontainer {
+  text-align: left;
+  width: 600px;
+  margin: auto;
+  padding: 15px;
+  background-color: #F3F3F3
+}
+
+.managerdeletebtn {
+  padding-left: 7px;
+  padding-right: 7px;
+  margin-right: 10px;
+  background-color: #C8C8C8;
+  border: none;
+  border-radius: 20px;
+}
+
+.managerdeletebtn:focus {
+  outline: none;
+}
+
+#managerdeletebtn {
+  padding-left: 7px;
+  padding-right: 7px;
+  margin-right: 10px;
+  background-color: #C8C8C8;
+  border: none;
+  border-radius: 20px;
+}
+
+.manage_elt button {
+  padding-left: 7px;
+  padding-right: 7px;
+  margin-right: 10px;
+  background-color: #C8C8C8;
+  border: none;
+  border-radius: 20px;
+}
 .categories{
   margin-top: 70px;
   text-align:center;

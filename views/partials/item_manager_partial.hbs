@@ -1,16 +1,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <div class="manageritem">
-  <button class='deletebtn' id='deletebtn{{id}}'>&#10005;</button>
-  <div class='manage_elt'>item: <b>{{itemname}}</b>, </div>
+  <button class='managerdeletebtn' id='deletebtn{{id}}'>&#10005;</button>
+  <div class='manage_elt'><b>{{itemname}}</b>, </div>
   <div class='manage_elt'>ID: <b>{{id}}</b></div> <br>
 </div>
 
 <div class= 'hiddenconfirm' id='hiddenconfirm{{id}}' style='display:none'>
   To confirm deletion of <b>{{itemname}}</b>, enter the item's ID as displayed above: <br>
   <form class = 'manage_elt' name="manageitem" method='post' action='/deleteitem'>
-    <input class = 'manage_elt' type='text' name ='itemid' placeholder='item ID'>
-    <input class='manage_elt' id='deletebtn' type='submit' value='confirm'>
+    <input  type='text' name ='itemid' placeholder='item ID'>
+    <input  id='managerdeletebtn' type='submit' value='confirm'>
     <button type='button' class='canceldelete' id='canceldelete{{id}}'>cancel</button><br>
   </form>
 </div>
