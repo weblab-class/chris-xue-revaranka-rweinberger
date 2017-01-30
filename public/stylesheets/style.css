@@ -16,13 +16,18 @@ a:visited {
 a:hover {
   color: #D3D3D3;
 }
+
+.dropdown-toggle:active, .open .dropdown-toggle {background:#47474C !important; }
+
+
 #verticalbar:hover{
   color:#9d9d9d;
 }
 
-#welcomedropdown:focus {
-  background-color: #9d9d9d;
+#welcomedropdown:active {
+  background-color: #47474C;
 }
+
 
 #welcomedropdown:hover {
   cursor: pointer;
