@@ -146,6 +146,34 @@ body.modal-open div.modal-backdrop {
   background-color: purple;
 }
 
+
+/*PROFILE STUFF*/
+#profilecontent {
+  text-align: left;
+  width: 1000px;
+  height: 300px;
+  /*background-color: #F3F3F3;*/
+  margin-top: 150px;
+  margin-left: 170px;
+}
+#profpic {
+  z-index: 20;
+  margin: 30px;
+  background-color: #ccc;
+  width: 100%;
+}
+#profilebox {
+  margin-top: -285px;
+  /*background-color: red;*/
+  width: 500px;
+  height: 250px;
+  margin-left: 400px;
+}
+#aboutme {
+  /*background-color: red;*/
+  height: 120px;
+  overflow: auto
+}
 /*#nav {
 =======
 p{
