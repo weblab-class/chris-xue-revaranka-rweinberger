@@ -49,13 +49,19 @@ router.post('/startchat', function (req, res, next) {
     if (err) { /* handle err */
       console.log('error1')
     } if (result) {
-      console.log('ERROR: '+selecting+' attempted to start an existing conversation - 1')
+      console.log(selecting+' attempted to start an existing conversation - 1; redirecting to conversation');
+      console.log(result.id);
+      id=result.id;
+      res.send('/chat/'+id)
     } else {
       Chat.findOne({users:users2}, function(err, result) {
         if (err) {
           console.log('error2')
         } if (result) {
-          console.log('ERROR: '+selecting+' attempted to start an existing conversation - 2')
+          console.log('ERROR: '+selecting+' attempted to start an existing conversation - 2');
+          console.log(result.id);
+          id=result.id;
+          res.send('/chat/'+result.id)
         } else {
           var newChat = new Chat({
             'users': users1
@@ -979,7 +985,11 @@ router.get('/profile/:id', function(req, res, next) {
           } else {
             var notification = false
           }
-          res.render('profile', {notification: notification, access: access, profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+          if (req.user.id === id) {
+            res.render('profile', {notOwnProfile:false, notification: notification, access: access, profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+          } else {
+            res.render('profile', {notOwnProfile:true, notification: notification, access: access, profpic: profpic, boolean:bool, firstname: firstname, profilefirstname: profilefirstname, profilelastname:profilelastname, email: email, venmo: venmo, starred: starredItems, unstarred: otherItems});
+          };
         });
       });
     } else {
