@@ -526,14 +526,14 @@ router.get('/', function(req, res, next) {
             } else {
               var notification = false
             }
-            res.render('slashscreen', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+            res.render('slashscreen', {onIndex: true, notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
             });
           });
         }
       });
     } else {
       var bool = false;
-      res.render('slashscreen', {boolean: bool, otherItems: items, helpers: {
+      res.render('slashscreen', {onIndex: true, boolean: bool, otherItems: items, helpers: {
         starred: function () {
           console.log('doing starred function for unregistered user');
           return "&#9734;"

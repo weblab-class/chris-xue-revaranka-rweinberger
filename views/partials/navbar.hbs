@@ -7,41 +7,60 @@
   <script src="/scripts/login.js" type="text/javascript"></script>
 </head>
 
+<!-- About Us Modal -->
+<div class="modal fade" id="about-us" role="dialog">
+  <div class="modal-dialog">
+
+<!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">About Us</h4>
+      </div>
+      <div class="modal-body">
+        
+        A site to buy, sell, trade, or just give away items - created by MIT students for MIT students!
+
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <div>
-                  <div class="modal fade" id="newitem" role="dialog">
-                    <div class="modal-dialog">
-                      <!-- Modal content-->
-                      <div class="modal-content">
+  <div class="modal fade" id="newitem" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
 
-                          <div id="itemform">
-                            <form method="post" action="/uploaditem" enctype="multipart/form-data">
-                            <input id="itemname" class='inputbox' type='text' maxlength="15" placeholder='item name' name='itemname' required> 
-                            &#36;&#32;<input id='price' class='inputbox' type="number" placeholder='price' name='price' required>
-                            <br>
-                            <textarea id='description' rows="8" placeholder='description' name='description' cols="50" required></textarea> <br>
-                            
-                            <select id='category' name = 'category' required>
-                              <option value="clothes">Clothes</option>
-                              <option value="book">Books</option>
-                              <option value="tech">Tech</option>
-                              <option value="furniture">Furniture</option>
-                            </select>
+          <div id="itemform">
+            <form method="post" action="/uploaditem" enctype="multipart/form-data">
+            <input id="itemname" class='inputbox' type='text' maxlength="15" placeholder='item name' name='itemname' required> 
+            &#36;&#32;<input id='price' class='inputbox' type="number" placeholder='price' name='price' required>
+            <br>
+            <textarea id='description' rows="8" placeholder='description' name='description' cols="50" required></textarea> <br>
+            
+            <select id='category' name = 'category' required>
+              <option value="clothes">Clothes</option>
+              <option value="book">Books</option>
+              <option value="tech">Tech</option>
+              <option value="furniture">Furniture</option>
+            </select>
 
-                            <input id="inserttag" class='inputbox' type='text' placeholder='add tags' name='inserttag'>
-                            <button id="addtag" class="btn btn-default" type='button'>add</button><br>
-                            <div id="tags"></div>
+            <input id="inserttag" class='inputbox' type='text' placeholder='add tags' name='inserttag'>
+            <button id="addtag" class="btn btn-default" type='button'>add</button><br>
+            <div id="tags"></div>
 
-                            <input type="file" name="picture" />
+            <input type="file" name="picture" />
 
-                            <button id="submititem" class="btn btn-default"type = 'submit' >list it!</button>&#32;
-                            <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button><br>
-                            </form>
-                        </div>
-                        <script src="/scripts/addtag.js"></script>
-                      </div>
-                    </div>
-                    </div>
+            <button id="submititem" class="btn btn-default"type = 'submit' >list it!</button>&#32;
+            <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button><br>
+            </form>
+        </div>
+        <script src="/scripts/addtag.js"></script>
+      </div>
+    </div>
+    </div>
 
     <div class = 'modal fade' id = 'updateprofile' role = 'dialog'>
     <div class = 'modal-dialog'>
@@ -130,6 +149,9 @@
                 <li role="presentation"><a class="nav-link" href="/manageitems">Manage Items</a></li>
                 <li role = 'presentation'><a data-toggle = 'modal' data-target = '#updateprofile'>Update Account</a></li>
                 <li role="presentation" class="divider"></li>
+                <li role="presentation">
+                  <a data-toggle="modal" data-target="#about-us">About Us</a>
+                </li>
                 <li role="presentation"><a class="nav-link" href="/logout">Logout</a></li>
               </ul>
 
@@ -181,10 +203,15 @@
       </ul>
       <!-- Trigger the modal with a button -->
       <ul class="nav navbar-nav navbar-right original">
-
+      {{#if onIndex}}
         <li class="nav-item">
-          <a class="nav-link" href="#about">About Us</a>
+          <a class="nav-link" id='scrolltoabout'>About Us</a>
         </li> 
+      {{else}}
+        <li class="nav-item">
+          <a data-toggle="modal" data-target="#about-us">About Us</a>
+        </li>
+      {{/if}}
         <li class="nav-item">
           <a data-toggle="modal" data-target="#login">Login</a>
 
@@ -299,7 +326,7 @@
               
 
       </ul>
-
+      <script src="/scripts/scroll.js" type="text/javascript"></script>
     </div>
 <!--     <div class="collapse navbar-collapse navHeaderCollapse textin">
           <ul class="nav navbar-nav">
