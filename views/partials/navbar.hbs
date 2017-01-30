@@ -249,15 +249,16 @@
 
       <!-- Modal -->
             <div class="modal fade" id="login" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog" style='height:20px'>
         
           <!-- Modal content-->
-            <div class="modal-content">
+            <div class="modal-content" style='height: 320px'>
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">LOGIN</h4>
             </div>
             <div class="modal-body">
+            <br>
               <form name="sign in" method = 'post' id="login-form" action = '/login'>
                 <ul>
                 <div class = 'signuppage'>
@@ -277,20 +278,18 @@
               </form>
               
               <form id = 'forgot-pass-form'>
-              <ul>
-              <li><input class="twobuttonsfog" id="go" type="submit" value="Forgot Password?" style="left: 300px;"></li>
-              </ul>
+              <input class="twobuttonsfog" id="go" type="submit" value="Forgot Password?" style="left: 300px;">
               </form>
               
               <div id = 'forgotpassword' style = 'display:none'>
+              <br>
               <form name = 'passwordreset' method = 'post' id = 'forgot-pass' action= '/forgot'>
               <ul>
 
-              <div class = 'forgotpass'>
+              <div id = 'forgotpass'>
 
                 <li><input class="inputbox" id="login1" type="text" placeholder="Email" name="recoveremail" ></li>
-
-                <li><input class="twobuttonsforgot" id="go" type="submit" value="+ +" style="left: 300px;"></li>
+                <li><input class="twobuttonsforgot" id="go" type="submit" value="+ +" style="left: 300px; margin-bottom: 180px;"></li>
               </div>
               </ul>
               </form>
@@ -352,9 +351,9 @@
                   <!-- <li>Password</li> -->
 
                       <!-- <li><input type="password" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Password" name="password" required></li> -->
-                       <li><input class="inputbox" id="signup1" type="password" placeholder="Password" name="password" required></li>
+                       <li><input class="inputbox" id="password" type="password" placeholder="Password" name="password" required></li>
 
-                      <li> <input type='password' style = 'font-size:14pt; padding: 4px; margin:7px' placeholder ="Confirm Password" id = 'password' required></li>
+                      <li> <input type='password' style = 'font-size:14pt; padding: 4px; margin:7px' placeholder ="Confirm Password" id = 'confirm_password' name = 'confirm_password' required><span id='message'></span></li>
                       <!-- <li><input class="inputbox" id="signup1" type="password" placeholder="Confirm Password" name="password" required></li> -->
 
                       <script src="/scripts/confirmpass.js"></script>
@@ -362,7 +361,7 @@
                       <li> <input type = 'file' style = 'font-size:14pt; padding:4px; margin:7px' placeholder = 'Upload photo (optional)' name ='picture'></li>
 
 
-                      <li><input class="twobuttonssign" id="go" type="submit" value="+ +" style="left: 300px;"></li>
+                      <li><input name = 'signupbutton' class="twobuttonssign" id="go" type="submit" value="+ +" style="left: 300px;"></li>
                     </div>
                     </ul>
                   </form>
@@ -372,8 +371,6 @@
                 </div>
               </div>
               </li>
-
-              
 
       </ul>
       <script src="/scripts/scroll.js" type="text/javascript"></script>
