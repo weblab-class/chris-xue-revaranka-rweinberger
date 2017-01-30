@@ -1,19 +1,36 @@
+
+
 <!DOCTYPE html>
 <html>
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  <link rel='stylesheet' href='/stylesheets/loginstyle.css' />
-	<title> Welcome to Password Recovery</title>
-</head>
+    <head>
+        <title>beaver++</title>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet" />
+        <link rel="stylesheet" href='/stylesheets/slashscreen.css'>
+
+    </head>
 <body>
-<form name = 'resetpassword' action = '/reset/{{ token }}' method = 'post'>
-<ul>
-<li>
-<input type = 'password' name = 'password' placeholder = 'password'>
-</li>
-<li><button class="button" type = 'submit'>Reset Password</button></li>
-</ul>
-</form>
+    {{> navbar }}
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
+
+
+<!--First Page-->
+<div id="home" class="home">
+    <div id="center-divs">
+        <img src="/images/webbeaver-newfont.png" id="logos" />
+        <form name = 'resetpassword' action = '/reset/{{ token }}' method = 'post'>
+		<input class = 'inputbox' id= 'searchbox' type = 'password' name = 'password' placeholder = 'new password'>
+		<button class="btn btn-default" style = 'margin-top:160px;margin-left:80px;' type = 'submit'>Reset Password</button></li>
+		</form>
+    </div>
+
+</div>
+
+
