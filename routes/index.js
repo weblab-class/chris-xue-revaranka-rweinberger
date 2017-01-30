@@ -751,7 +751,10 @@ router.post('/unstar', function (req, res, next) {
     console.log(user);
     console.log(index);
     console.log(starredIds);
-    f
+    User.update({username:user},{$set:{starred:starredIds}}, function (err, raw) {
+      if (err) return handleError(err);
+      console.log('The raw response from Mongo was ', raw);
+    });
   } else {
     console.log('unregistered user attempted to unstar ' + starred);
   };
