@@ -224,7 +224,16 @@ body.modal-open div.modal-backdrop {
 
 #beaverbubble{
 
-  margin-left: 48%;
+  margin-left: 52%;
+  margin-top: 55px;
+  position: absolute;
+
+
+}
+
+#beaverscarf{
+
+  margin-left: 8%;
   margin-top: 55px;
   position: absolute;
 
@@ -247,29 +256,29 @@ body.modal-open div.modal-backdrop {
 }
 
 #profpic {
-  min-height: 200px;
-  max-height: 200px;
-  object-fit: cover;
-  z-index: 20;
-  margin: 30px;
-  width: 100%;
-  margin-top: 100px;
-  margin-left: 300px;
-  max-height: 200px;
-  max-width: 200px;
-  position: absolute;
-
-
-/*  border: solid 5px #C2373C;*/
-
+    width: 267px;
+    height: 210px;
+    /* min-height: 200px; */
+    /* max-height: 200px; */
+    object-fit: cover;
+    z-index: 20;
+    margin: 30px;
+    /* width: 100%; */
+    margin-top: 110px;
+    margin-left: 23%;
+    border-radius: 20px;
+    padding: 10px;
+    position: absolute;
+    align-items: center;
 }
+
 #profilebox {
   overflow: auto;
   margin-top: 105px;
   /*background-color: red;*/
   width: 267px;
   height: 220px;
-  margin-left: 50%;
+  margin-left: 54%;
   position: absolute;
 
 }
