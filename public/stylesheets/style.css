@@ -231,6 +231,8 @@ body.modal-open div.modal-backdrop {
 
 }
 #profilecontent {
+  background-image: url('/images/clouds.png');
+  background-size: cover;
   text-align: left;
   width: 100%;
   height: 360px;
@@ -243,13 +245,18 @@ body.modal-open div.modal-backdrop {
 
 
 }
+
 #profpic {
+  min-height: 200px;
+  max-height: 200px;
+  object-fit: cover;
   z-index: 20;
   margin: 30px;
-  background-color: #ccc;
   width: 100%;
-  margin-top: 50px;
-  margin-left: 90px;
+  margin-top: 100px;
+  margin-left: 300px;
+  max-height: 200px;
+  max-width: 200px;
   position: absolute;
 
 
@@ -292,6 +299,18 @@ body.modal-open div.modal-backdrop {
 
 #profileitems{
   margin-top: 450px;
+}
+
+.msgProf {
+  border-radius: 7px;
+  background-color: #fff;
+  border: solid 1px #E1E1E1; 
+  display: block; 
+  margin-top: -13px; 
+  margin-bottom: 10px;'
+}
+.msgProf:hover {
+  background-color: #E1E1E1
 }
 /*ITEM MANAGER STUFF*/
 
@@ -943,12 +962,7 @@ body.modal-open div.modal-backdrop {
   
 }
 
-#profpic{
-  max-width: 300px;
-  min-height: 250px;
-  max-height: 250px;
-  object-fit: cover;
-}
+
 
 #categories{
   line-height: 24px;
@@ -1316,6 +1330,12 @@ body.modal-open div.modal-backdrop {
   border: none;
   background-color: #fff;
   border-radius: 15px;
+}
+.closetag:hover {
+  cursor: pointer;
+}
+.closetag:focus {
+  outline:none;
 }
 .star {
   font-size: 30px;
