@@ -387,7 +387,7 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
   
   router.post('/signup', upload.single('picture'), function (req, res, next) {
     var file = 'default.jpg';
-    var aboutme = 'Hi!  My name is ' + req.body.firstname +'.';
+    var aboutme = 'Hi!  My name is';
     //console.log('signed up');
     //console.log(file);
     var user = new User({aboutme: aboutme, picture: file, firstname: req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo, username: req.body.username});
@@ -435,8 +435,15 @@ router.post('/updateprofile',upload.single('picture'), function(req, res,next){
           return handleError(error);
         }
     })
-    
-  User.findOne({'username': req.user.username}, function(err, user){
+Item.find({'userid':req.user.id},function(err,items){
+
+  for (i=0;i < items.length;i++){
+    var id = items[i].id
+    Item.update({'_id':id},{$set:{firstname:firstname,lastname:lastname}}, function(err,raw){})
+  }
+
+
+    User.findOne({'username': req.user.username}, function(err, user){
      user.setPassword(password, function(err){
       user.save(function(err) {
         req.logIn(user, function(err) {
@@ -446,12 +453,60 @@ router.post('/updateprofile',upload.single('picture'), function(req, res,next){
      })
 
     })
+  })  
+
     //res.redirect('/');
 
 
   }
 });
 
+router.post('/updateitem', upload.single('picture'),function(req, res, next){
+  if (req.isAuthenticated()){
+    Item.findOne({'_id':req.body.itemid},function(err,item){
+      console.log('this is the item ' + item);
+      var itemname = item.itemname
+      var price = item.itemprice
+      var description = item.description
+      var category = item.category
+      var picture = item.picture
+      var firstname = item.firstname;
+
+    if (req.body.newname != ''){
+      itemname = req.body.newname;
+    }
+
+    if (req.body.description != ''){
+      description = req.body.description;
+    }
+
+    if(req.body.price != ''){
+      price = req.body.price;
+    }
+
+    if (req.file){
+      picture = req.file.filename;
+    }
+    if (req.body.category != ''){
+      category = req.body.category;
+    }
+    Item.update({'_id':req.body.itemid},{$set:{picture:picture,itemname:itemname,price:price,description:description,category:category}},function(err,raw){
+      if (err){
+      }
+        else{
+        }
+      
+    });
+    res.render('deletesuccess', {boolean:true, firstname: firstname});
+    })
+
+    
+
+  }
+
+
+
+});
 
 
   router.get('/uploads/:filename', function(req, res) {

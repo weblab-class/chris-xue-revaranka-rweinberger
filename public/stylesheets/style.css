@@ -224,7 +224,7 @@ body.modal-open div.modal-backdrop {
 
 #beaverbubble{
 
-  margin-left: 500px;
+  margin-left: 48%;
   margin-top: 55px;
   position: absolute;
 
@@ -258,11 +258,11 @@ body.modal-open div.modal-backdrop {
 }
 #profilebox {
   overflow: auto;
-  margin-top: 106px;
+  margin-top: 105px;
   /*background-color: red;*/
-  width: 262px;
-  height: 212px;
-  margin-left: 528px;
+  width: 267px;
+  height: 220px;
+  margin-left: 50%;
   position: absolute;
 
 }
@@ -281,14 +281,18 @@ body.modal-open div.modal-backdrop {
     height: 11px;
 }
 #profilebox::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    border: 2px solid white; /* should match background, can't be transparent */
+    border-radius: 4px;
+    border: 3px solid white; /* should match background, can't be transparent */
     background-color: rgba(0, 0, 0, .5);
 }
 #profilebox::-webkit-scrollbar-track { 
     background-color: #fff; 
     border-radius: 8px; 
 } 
+
+#profileitems{
+  margin-top: 450px;
+}
 /*ITEM MANAGER STUFF*/
 
 #managecontent {
@@ -385,8 +389,8 @@ body.modal-open div.modal-backdrop {
 
 #typeofbrowse{
   color: black;
-  margin-left: 145px;
-  font-size: 30px;
+  margin-left: 15%;
+  font-size: 36px;
   position: absolute;
 
 }
