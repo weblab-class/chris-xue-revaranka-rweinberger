@@ -11,16 +11,13 @@
   <body>
     {{> navbar}}
     <div id='content'>
-      <div id='msgtitle'><h1 style='text-align: center; font-size: 25px;'>Messages</h1></div>
-
+      <div id='msgtitle'><h1>Messages</h1></div>
       <div id='convos'>
-        <div>
-          <h3 style='text-align: center; font-size: 15px;'>Continue an existing conversation... </h3><br>
-        </div>
+        <h3 style='margin-left:30px'>Continue an existing conversation... </h3><br>
         {{#each existing_users}}
           {{> existing_chat_user}}
         {{/each}}
-        <h3 style='text-align: center; font-size: 15px;'> ...or start a new one! </h3><br>
+        <h3 style='margin-left:30px'> ...or start a new one! </h3><br>
         {{#each new_users}}
           {{> new_chat_user}}
         {{/each}}
@@ -36,6 +33,4 @@
     </div>
   <script src='/scripts/selectuser.js'></script>
   </body>
-  <div id='padding' style='width: 100%; height:50px;'></div>
-  {{>about}}
 </html>

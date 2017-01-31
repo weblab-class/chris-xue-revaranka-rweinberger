@@ -8,34 +8,33 @@
 }
 
 body {
-  height: 100%;
+  padding: ;
   font-family: raleway;
 }
 
-form#sendmsg { 
-/*  padding: 10px; */
-  position: relative; 
-  height: 100%
-/*  bottom: 50px; */
-  width: 65%;
-  right: 0px; 
-  margin-left: 35%;
+form { 
+  padding: 10px; 
+/*  position: fixed; */
+  bottom: 0px; 
+  position: absolute;
+  right: 160px;
+  bottom: -140px;
 }
 
-form#sendmsg input { 
+form input { 
   font-size: 14px;
   height: 35px;
   border: none;
   border-bottom: solid 1px #ccc;
   margin: 10px; 
-  width: 65%; 
+  width: 300px; 
   display: inline-block;
 }
-form#sendmsg input:focus { 
+form input:focus { 
   outline:none;
 }
 
-form#sendmsg button { 
+form button { 
   width: 50px; 
   background: #ccc; 
   border-radius: 7px;
@@ -46,20 +45,11 @@ form#sendmsg button {
 
 .userbutton {
   position: absolute;
-/*  left: 50px;*/
-  margin: 0px;
-  text-align: center;
-/*  margin-bottom: 15px;*/
+  left: 50px;
+  margin-bottom: 15px;
   background-color: #fff;
-/*  border-bottom: 1px solid black !important;*/
   border: none;
-  width: 100%;
-  height: 60px;
-/*  border-radius: 10px*/
-}
-
-.userbutton:hover{
-  background-color: #E1E0E0;
+  border-radius: 10px
 }
 
 .selectuser {
@@ -76,7 +66,7 @@ form#sendmsg button {
   overflow:   auto;
   position:   absolute;
   right: 175px;
-  bottom: 100px;
+  bottom: 0px;
   width: 405px;
   max-height: 65%;
 }
@@ -93,37 +83,27 @@ form#sendmsg button {
 #msgtitle {
   text-align: left;
   position: relative;
-  margin-left: 30px;
-  width: 30px;
-  top: -20px;
-  font-size: 20px;
-  left: 6%;
+  margin-left: 90px;
+  top: -2px;
 }
 
 #convos {
   text-align: left;
   position: relative;
   overflow: auto;
-/*  top: 7px;*/
-  height: 100%;
-/*  border-radius: 10px;*/
+  top: 7px;
+  height: 570px;
+  border-radius: 10px;
   background-color: #E1E0E0;
-  width: 35%;
-  margin-left: -20px;
-  margin-top: -14px;
-  border-left: 0px !important;
-  border: 2px solid black;
-
-
-
-/*  padding: 15px;*/
-/*  margin-left: 60px;*/
+  width: 40%;
+  padding: 15px;
+  margin-left: 60px;
 }
 #nochat {
-  position: relative;
-  top: -400px;
-  right: -300px;
-  /*width: 365px;*/
+  position: fixed;
+  top: 330px;
+  right: 160px;
+  width: 365px;
   height: 85%;
 }
 #users {
@@ -147,8 +127,6 @@ form#sendmsg button {
   text-align: left;
   background: #F5F5F5;
 }
-
-
 
 #receiver {
   position: absolute;

@@ -261,12 +261,12 @@ body.modal-open div.modal-backdrop {
     height: 210px;
     /* min-height: 200px; */
     /* max-height: 200px; */
-    object-fit: cover;
-    z-index: 20;
+/*    object-fit: cover;*/
+/*    z-index: 20;*/
     margin: 30px;
     /* width: 100%; */
     margin-top: 110px;
-    margin-left: 23%;
+    margin-left: 21%;
     border-radius: 20px;
     padding: 10px;
     position: absolute;
@@ -1161,7 +1161,8 @@ body.modal-open div.modal-backdrop {
   height: 200px;
   background-color: white;
 /*  border: solid .3px #47474C;*/
-  margin-right: 50px;
+  margin-right: 25px;
+  margin-left: 25px;
   margin-bottom: 50px;
 
 /*  border-radius: 3px;*/
