@@ -20,7 +20,11 @@
         <input id='{{email}}' class='msgProf' type="button" value="message {{profilefirstname}}" />
         {{/if}}
         <div id='aboutme'>
+          {{#if real}}
+          <b>About Me:</b> <br>{{aboutme}}
+          {{else}}
           <b>About Me:</b> <br>{{aboutme}} {{profilefirstname}}!
+          {{/if}}
         </div>
       </div>
     </div>
