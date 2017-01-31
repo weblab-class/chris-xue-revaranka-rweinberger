@@ -151,10 +151,11 @@ body.modal-open div.modal-backdrop {
 /*  height: 140px;
   width: 194px;*/
 
-
+#modal-body-product {
+  margin-top: -30px;
+}
 
 .post-modal{
-  font-size: 10px;
   color: black;
 }
 
@@ -561,6 +562,14 @@ body.modal-open div.modal-backdrop {
   outline:none;
 }
 
+<<<<<<< HEAD
+#login-form input {
+  font-family: custom;
+}
+
+#modalsignup input {
+  font-family: custom;
+=======
 
 #confirm_password1 {
     position: absolute center;
@@ -580,6 +589,7 @@ body.modal-open div.modal-backdrop {
 }
 #confirm_password1:focus {
   outline:none;
+>>>>>>> 2f711234c1a8d2faee7cf4416453b16e3a10cae9
 }
 
 #login1 {
@@ -1091,6 +1101,23 @@ body.modal-open div.modal-backdrop {
   opacity: 0.4;
   cursor: pointer
 }
+
+#heartcover {
+  color:red;
+  width: 200px; 
+  height:155px; 
+  background-color: transparent; 
+  opacity: 1; 
+  margin-top: -155px;
+  text-align: center;
+  display:none;
+}
+#heartcover #heart {
+  margin-top: 35px;
+}
+#heartcover #emptyheart {
+  margin-top: 35px;
+}
 .contentinbox:hover {
   cursor: pointer;
 }
@@ -1412,6 +1439,7 @@ body.modal-open div.modal-backdrop {
   outline:none;
 }
 .star {
+  color: #C2272D;
   font-size: 30px;
   position: absolute;
   top: 27px;
@@ -1419,6 +1447,7 @@ body.modal-open div.modal-backdrop {
 }
 
 .blankstar {
+  color: #C2272D;
   font-size: 30px;
   position: absolute;
   top: 27px;
