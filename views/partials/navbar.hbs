@@ -220,7 +220,7 @@
 
       <ul class="nav navbar-nav navbar-left original">
 
-    <!-- ******** LOGIN ********  -->
+
         <li class="nav-item">
           <a class="nav-link" href="/home">Browse All</a>
         </li>
@@ -294,6 +294,7 @@
                 <br>
                 
                 <li><input class="twobuttonsforgot" id="go" type="submit" value="+ +" style="left: 300px; margin-bottom: 180px;"></li>
+                 <li id="forgot-flash" style="display: none; color: red;">That email does not exist!</li>
               </div>
               </ul>
               </form>
@@ -327,7 +328,7 @@
                      <h4 class="modal-title" >SIGN UP</h4>
                     </div>
                   <div class="modal-body">
-                  <form name="signup" method="post" action="/signup" enctype="multipart/form-data">
+                  <form id='modalsignup' name="signup" method="post" action="/signup" enctype="multipart/form-data">
                     <ul>
                     <div class = 'signuppage'>
                   <!-- <li>First name</li> -->
@@ -356,21 +357,21 @@
 
                       <!-- <li><input type="password" style = 'font-size:14pt; padding: 4px; margin:7px' placeholder="Password" name="password" required></li> -->
                       <!--<li><textarea rows = 2 cols = 30 name = 'aboutme' id = 'aboutme' required></textarea> </li>-->
-                       <li><input class="inputbox" id="password" type="password" placeholder="Password" name="password" required></li>
+                       <li><input class="inputbox" id="password1" type="password" placeholder="Password" name="password" required></li>
 
-                      <li> <input type='password' class="inputbox" placeholder ="Confirm Password" id = 'confirm_password' name = 'confirm_password' required>
+                      <li> <input type='password' class="inputbox" placeholder ="Confirm Password" id = 'confirm_password1' name = 'confirm_password' required>
                       <br>
                       <br>
 
-                      <span id='message'></span></li>
+                      <span id='message1'></span></li>
                       <!-- <li><input class="inputbox" id="signup1" type="password" placeholder="Confirm Password" name="password" required></li> -->
 
-                      <script src="/scripts/confirmpass.js"></script>
+                      <script src="/scripts/confirmpass1.js"></script>
 
                       <!--<li> <input type = 'file' style = 'font-size:14pt; padding:4px; margin:7px' placeholder = 'Upload photo (optional)' name ='picture'></li>-->
 
 
-                      <li><input name = 'signupbutton' class="twobuttonssign" id="signupbutton" type="submit" value="+ +" style="left: 300px;"></li>
+                      <li><input name = 'signupbutton' class="twobuttonssign" id="signupbutton1" type="submit" value="+ +" style="left: 300px;"></li>
                     </div>
                     </ul>
                   </form>

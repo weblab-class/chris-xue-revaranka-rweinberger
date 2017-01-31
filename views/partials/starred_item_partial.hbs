@@ -2,7 +2,11 @@
 <!--     <div class="pictureinbox">
       <img id='forsale' src="/uploads/{{picture}}" />
     </div> -->
-       <div class="col-s-6 " style="background-image:url('/uploads/{{picture}}');min-height:155px; min-width:199.5px; background-size: cover; background-position: center; "></div> 
+      <div class="col-s-6 " style="background-image:url('/uploads/{{picture}}');min-height:155px; min-width:200px; background-size: cover; background-position: center; ">
+      </div>
+       <div id='heartcover'>
+         <div id='heart'>&#9829;</div>
+       </div>
     <div class='contentinbox'>
       <p align="left" id="productcontent" >{{itemname}}</p>
       <p align="right" id="productcontent3">${{price}}</p>
@@ -26,16 +30,17 @@
           <!-- &#36;&#32;  -->
         </div>
 
-        <div class="modal-body">
+        <div class="modal-body" id='modal-body-product'>
           <center>
           <div class='imageresize'>
             <img class= 'model-image' src="/uploads/{{picture}}" />
           </div>
+          
+          <h4 class="modal-description">{{description}}</h4>
+          <h5 class='post-modal'>
+            Posted by: <a href='/profile/{{userid}}'> {{firstname}} {{lastname}} </a><br><a href= 'mailto:{{user}}'> ({{user}})</a>
+          </h5>
           </center>
-          <h6 class="modal-description">{{description}}</h6>
-          <div class='post-modal'
-            >Posted by: <a href='/profile/{{userid}}'> {{firstname}} {{lastname}} </a><br><a href= 'mailto:{{user}}'> ({{user}})</a>
-          </div>
         </div>
         <div style="display:none" class='id' id="{{id}}"></div>
 
@@ -43,4 +48,4 @@
       
     </div>
   </div>
-  
+<!-- <script src='/scripts/heart.js'></script> -->

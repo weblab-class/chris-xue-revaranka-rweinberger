@@ -151,10 +151,11 @@ body.modal-open div.modal-backdrop {
 /*  height: 140px;
   width: 194px;*/
 
-
+#modal-body-product {
+  margin-top: -30px;
+}
 
 .post-modal{
-  font-size: 10px;
   color: black;
 }
 
@@ -530,6 +531,26 @@ body.modal-open div.modal-backdrop {
   outline:none;
 }
 
+#password1 {
+    position: absolute center;
+    color: #000;
+    width: 185px;
+    height: 23px;
+/*    top: 125px;*/
+    border: none;
+    border-bottom: solid 1px #6C6C6C;
+    background:transparent;
+    font-family: sans-serif;
+    font-size: 15.6px;
+    text-align: center;
+
+    margin-top: 20px;
+  /*    margin-left: -85px;*/
+}
+#password1:focus {
+  outline:none;
+}
+
 #confirm_password {
     position: absolute center;
     color: #000;
@@ -547,6 +568,34 @@ body.modal-open div.modal-backdrop {
   /*    margin-left: -85px;*/
 }
 #confirm_password:focus {
+  outline:none;
+}
+
+#login-form input {
+  font-family: custom;
+}
+
+#modalsignup input {
+  font-family: custom;
+}
+
+#confirm_password1 {
+    position: absolute center;
+    color: #000;
+    width: 185px;
+    height: 23px;
+/*    top: 125px;*/
+    border: none;
+    border-bottom: solid 1px #6C6C6C;
+    background:transparent;
+    font-family: sans-serif;
+    font-size: 15.6px;
+    text-align: center;
+
+    margin-top: 20px;
+  /*    margin-left: -85px;*/
+}
+#confirm_password1:focus {
   outline:none;
 }
 
@@ -774,6 +823,39 @@ body.modal-open div.modal-backdrop {
   margin-left: -65px;
 }
 #searchboxhome:focus {
+  outline:none;
+}
+
+#newpass{
+  position: absolute;
+  color: #000;
+  width: 305px;
+  height: 40px;
+  top: 85px;
+  border: none;
+  border-bottom: solid 1px #6C6C6C;
+  background:transparent;
+  font-family: sans-serif;
+  font-size: 19px;
+  margin-left: -65px;
+}
+#newpass:focus {
+  outline:none;
+}
+#newpassconfirm{
+  position: absolute;
+  color: #000;
+  width: 305px;
+  height: 40px;
+  top: 120px;
+  border: none;
+  border-bottom: solid 1px #6C6C6C;
+  background:transparent;
+  font-family: sans-serif;
+  font-size: 19px;
+  margin-left: -65px;
+}
+#newpassconfirm:focus {
   outline:none;
 }
 
@@ -1025,6 +1107,23 @@ body.modal-open div.modal-backdrop {
 .col-s-6:hover {
   opacity: 0.4;
   cursor: pointer
+}
+
+#heartcover {
+  color:red;
+  width: 200px; 
+  height:155px; 
+  background-color: transparent; 
+  opacity: 1; 
+  margin-top: -155px;
+  text-align: center;
+  display:none;
+}
+#heartcover #heart {
+  margin-top: 35px;
+}
+#heartcover #emptyheart {
+  margin-top: 35px;
 }
 .contentinbox:hover {
   cursor: pointer;
@@ -1347,6 +1446,7 @@ body.modal-open div.modal-backdrop {
   outline:none;
 }
 .star {
+  color: #C2272D;
   font-size: 30px;
   position: absolute;
   top: 27px;
@@ -1354,6 +1454,7 @@ body.modal-open div.modal-backdrop {
 }
 
 .blankstar {
+  color: #C2272D;
   font-size: 30px;
   position: absolute;
   top: 27px;

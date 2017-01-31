@@ -521,7 +521,7 @@ router.post('/updateitem', upload.single('picture'),function(req, res, next){
   // TODO: set proper mime type + filename, handle errors, etc...
   var filename = req.params.filename;
   if(filename == 'default.jpg') {
-    res.redirect('https://s30.postimg.org/bviipu66p/default.png');
+    res.redirect('http://i.imgur.com/oeQGiBw.png');
   }
   if (filename=='product.jpg'){
     res.redirect('https://s24.postimg.org/vmq9io7lh/no_image.png');
