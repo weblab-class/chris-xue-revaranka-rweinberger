@@ -1,4 +1,5 @@
 $("#scrolltoabout").click(function() {
+  $('#about').css('display', 'block');
   $('html, body').animate({
       scrollTop: $("#about").offset().top
   }, 1500);

@@ -8,6 +8,7 @@ $(".msgProf").on("click", function() {
       selectingUser: selectingUser
       }, success: function(data) {
         window.location.href = data
+
       }
     });
   });
