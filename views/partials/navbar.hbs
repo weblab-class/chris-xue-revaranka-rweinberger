@@ -87,7 +87,7 @@
     <h4 class = 'modal-title'>Update Account</h4>
     </div>
     <div class = 'modal-body'>
-      <form name = 'updateprofile' method = 'post' action = '/updateprofile' enctype="multipart/form-data" novalidate>
+      <form id = 'update-profile' name = 'updateprofile' method = 'post' action = '/updateprofile' enctype="multipart/form-data" novalidate>
       <ul>
       <li> <button class = 'btn btn-default' id = 'open-display'>Update Display Name</button></li>
       <li><button class = 'btn btn-default' id = 'open-venmo'>Update Venmo</button></li>
@@ -113,10 +113,13 @@
       </div>
 
       <div id = 'display-pass' style = 'display:none;'>
-      <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'password' placeholder = 'new password' name = 'newpassword'></li>   
+      <li> <input id = 'password' style = 'font-size:14pt; padding: 4px; margin:7px' type = 'password' placeholder = 'new password' name = 'newpassword'></li>  
+      <li><input id = 'confirm_password' style = 'font-size:14pt; padding:4px; margin:7px' type = 'password' placeholder = 'confirm new password' name = 'confirm_newpassword'></li>
+      <span id='message'></span></li>
       </div>
+      <script src="/scripts/confirmpass.js"></script>
       <br><br>
-      <li> <button class = 'twobuttonslog' id = 'makechanges' type = 'submit'> Make Changes </button> </li>
+      <li> <button class = 'twobuttonslog' id = 'signupbutton' type = 'submit'> Make Changes </button> </li>
       </ul>
       </form>
       </div>
