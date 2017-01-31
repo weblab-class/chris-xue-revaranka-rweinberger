@@ -27,6 +27,11 @@ a:hover {
   color: #A83838;
   text-decoration: none;
 }
+.uploadsuccesslink:hover {
+  color: #000;
+  background-color: #ccc !important;
+  cursor: pointer;
+}
 
 #scrolltoabout:hover {
   cursor: pointer;

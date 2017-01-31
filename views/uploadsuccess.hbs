@@ -10,9 +10,62 @@
     {{> navbar}}
     <div id='content' style='height: 100%; margin-top: 175px'>
       <h1>Success!</h1>
-      <p>Your item is now live.</p>
-      <button class="contentbutton" type="button" onclick="location.href='/home'">return home</button>&#32;
-      <button class="contentbutton" type="button" onclick="location.href='/newitem'">list another item</button>
+      <p>Your item is now live.</p> <br>
+      <a class='uploadsuccesslink' style='background-color: #fff; border: solid 1px #ccc; padding: 7px; border-radius: 10px; margin-right: 10px' data-toggle="modal" data-target="#newitem">list another item</a>
+      <div class="modal fade" id="newitem" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content" id='newitemmodal'>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class='modal-header'>
+            <h4 class="modal-titlelist" >LIST AN ITEM</h4>
+          </div>
+          <div id="itemform">
+            <form id='submititemform' method="post" action="/uploaditem" enctype="multipart/form-data">
+            
+            <li><input class="inputbox" id="additem" type="text" maxlength='30' placeholder="item name" name="itemname" required></li>
+            <li><input class="inputbox" id="additemprice" type="number" maxlength="15" placeholder="price ($)" name="price" required></li>
+
+            <!-- <input id="itemname" class='inputbox' type='text' maxlength="15" placeholder='item name' name='itemname' required>  -->
+            
+
+            <!-- <input id='price' class='inputbox' type="number" placeholder='price' name='price' required> -->
+            <br>
+
+            <textarea class="inputbox" id='description' rows="6" placeholder='Please write a description of your item here.' name='description' cols="50" required></textarea>
+
+<!--             <textarea id='description' rows="8" placeholder='description' name='description' cols="50" required></textarea> --> <br>
+            
+            <select id='category' class = id='category' name = 'category' required>
+              <option selected='selected'>select a category</option>
+              <option value="clothes">Clothes</option>
+              <option value="books">Books</option>
+              <option value="tech">Tech</option>
+              <option value="furniture">Furniture</option>
+              <option value="outdoors">Outdoors</option>
+              <option value="kitchen">Kitchen</option>
+              <option value="other">Other</option>
+            </select>
+            <input id="inserttag" class='addtags' type='text' placeholder='add tag' name='inserttag'>
+
+            <input class="twobuttonsaddtag" id="addtag" type="button" value="+ +">
+
+<!--             <button id="addtag" class="btn btn-default" type='button'>add</button><br> -->
+            <div id="tags"></div>
+            <br>
+            <div id='uploadphoto'>upload a photo:</div> 
+            <input type="file" name="picture" id='submititempic'/>
+
+            <input class="twobuttonsadditem" id="submititem" type="submit" value="+ +" style="left: 300px;">
+
+            </form>
+        </div>
+      </div>
+    </div>
+    </div>
+
+      <a href='/home' class='uploadsuccesslink' style='background-color: #fff; border: solid 1px #ccc; padding: 7px; border-radius: 10px; margin-right: 10px'>return home</a>&#32;
+      <!-- <button class="contentbutton" type="button" onclick="location.href='/newitem'">list another item</button> -->
     </div>
   </body>
   {{>about}}
