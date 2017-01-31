@@ -387,13 +387,7 @@ mongo.connect('mongodb://heroku_vjphwnnq:psa8d92epggk9s8acu3ipfel2n@ds127429.mla
   
   router.post('/signup', upload.single('picture'), function (req, res, next) {
     var file = 'default.jpg';
-    var aboutme = 'Hi my name is' 
-    if (req.body.aboutme!=''){
-      aboutme = req.body.aboutme;
-    }
-    if (req.file){
-      file = req.file.filename;
-    }
+    var aboutme = 'Hi!  My name is ' + req.body.firstname +'.';
     //console.log('signed up');
     //console.log(file);
     var user = new User({aboutme: aboutme, picture: file, firstname: req.body.firstname, lastname: req.body.lastname, venmo: req.body.venmo, username: req.body.username});
