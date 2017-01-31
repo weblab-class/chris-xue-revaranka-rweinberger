@@ -171,47 +171,63 @@ body.modal-open div.modal-backdrop {
 
 
 /*PROFILE STUFF*/
+
+#beaverbubble{
+
+  margin-left: 80px;
+  margin-top: 55px;
+
+}
 #profilecontent {
   text-align: left;
-  width: 1000px;
-  height: 300px;
+  width: 100%;
+  height: 360px;
   /*background-color: #F3F3F3;*/
-  margin-top: 150px;
-  margin-left: 170px;
+  margin-top: 94px;
+/*  margin-left: 170px;*/
+  border-bottom: solid 5px black;
+  background-color: #c9c9c9;
+
+
 }
 #profpic {
   z-index: 20;
   margin: 30px;
   background-color: #ccc;
   width: 100%;
+  margin-top: -20px;
+  margin-left: 90px;
+/*  border: solid 5px #C2373C;*/
+
 }
 #profilebox {
-  margin-top: -285px;
+  overflow: auto;
+  margin-top: -300px;
   /*background-color: red;*/
-  width: 500px;
-  height: 250px;
-  margin-left: 400px;
+  width: 262px;
+  height: 200px;
+  margin-left: 480px;
 }
 #aboutme {
   /*background-color: red;*/
   height: 120px;
   overflow: auto
 }
-#aboutme::-webkit-scrollbar {
+#profilebox::-webkit-scrollbar {
     -webkit-appearance: none;
 }
-#aboutme::-webkit-scrollbar:vertical {
+#profilebox::-webkit-scrollbar:vertical {
     width: 11px;
 }
-#aboutme::-webkit-scrollbar:horizontal {
+#profilebox::-webkit-scrollbar:horizontal {
     height: 11px;
 }
-#aboutme::-webkit-scrollbar-thumb {
+#profilebox::-webkit-scrollbar-thumb {
     border-radius: 8px;
     border: 2px solid white; /* should match background, can't be transparent */
     background-color: rgba(0, 0, 0, .5);
 }
-#aboutme::-webkit-scrollbar-track { 
+#profilebox::-webkit-scrollbar-track { 
     background-color: #fff; 
     border-radius: 8px; 
 } 
