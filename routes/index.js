@@ -452,6 +452,60 @@ router.post('/updateprofile',upload.single('picture'), function(req, res,next){
   }
 });
 
+router.post('/updateitem', upload.single('picture'),function(req, res, next){
+  if (req.isAuthenticated()){
+    console.log("this is the id " + req.body.id);
+    Item.findOne({'_id':req.body.itemid},function(err,item){
+      console.log('this is the item ' + item);
+      var itemname = item.itemname
+      console.log('fuck everybody this is ' + itemname);
+      var price = item.itemprice
+      var description = item.description
+      var category = item.category
+      var picture = item.picture
+      var firstname = item.firstname;
+      console.log('this is the new name PLS ' + req.body.newname);
+      console.log('this is the picture' + picture);
+      console.log('this is my original price' + price)
+
+    if (req.body.newname != ''){
+      itemname = req.body.newname;
+    }
+
+    if (req.body.description != ''){
+      description = req.body.description;
+    }
+
+    if(req.body.price != ''){
+      price = req.body.price;
+    }
+
+    if (req.file){
+      picture = req.file.filename;
+    }
+    if (req.body.category != ''){
+      category = req.body.category;
+    }
+    console.log('item name is ' + itemname);
+    Item.update({'_id':req.body.itemid},{$set:{picture:picture,itemname:itemname,price:price,description:description,category:category}},function(err,raw){
+      if (err){
+        console.log('i fucked up');
+      }
+        else{
+          console.log('we good')
+        }
+      
+    });
+    res.render('deletesuccess', {boolean:true, firstname: firstname});
+    })
+
+    
+
+  }
+
+
+
+});
 
 
   router.get('/uploads/:filename', function(req, res) {
