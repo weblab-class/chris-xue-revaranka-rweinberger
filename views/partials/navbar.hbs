@@ -80,45 +80,45 @@
 
     <div class = 'modal fade' id = 'updateprofile' role = 'dialog'>
     <div class = 'modal-dialog'>
-    <div class = 'modal-content'>
+    <div class = 'modal-content' style='text-align: center;'>
     <div class = 'modal-header'>
     <button type = 'button' class = 'close' data-dismiss='modal'>&times;</button>
     
     <h4 class = 'modal-title'>Update Account</h4>
     </div>
-    <div class = 'modal-body'>
+    <div class = 'modal-body' style='margin-left: -23px;margin-top: -30px'>
       <form id = 'update-profile' name = 'updateprofile' method = 'post' action = '/updateprofile' enctype="multipart/form-data" novalidate>
       <ul>
-      <li> <button class = 'btn btn-default' id = 'open-display'>Update Display Name</button></li>
-      <li><button class = 'btn btn-default' id = 'open-venmo'>Update Venmo</button></li>
-      <li><button class = 'btn btn-default' id = 'open-aboutme'>Update About Me</button></li>
-      <li><button class = 'btn btn-default' id = 'open-picture'>Update Profile Picture</button></li>
-      <li><button class = 'btn btn-default' id = 'open-password'>Change Password</button></li>
-      
+      <li><button class = 'btn btn-default btn-update' id = 'open-display' style='margin: 4px;'>Update Display Name</button></li>
+      <li><button class = 'btn btn-default btn-update' id = 'open-venmo' style='margin: 4px;'>Update Venmo</button></li>
+      <li><button class = 'btn btn-default btn-update' id = 'open-aboutme' style='margin: 4px;'>Update About Me</button></li>
+      <li><button class = 'btn btn-default btn-update' id = 'open-picture' style='margin: 4px;'>Update Profile Picture</button></li>
+      <li><button class = 'btn btn-default btn-update' id = 'open-password' style='margin: 4px;'>Change Password</button></li>
+
       <div id = 'display' style = 'display:none;'>
-      <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'text' placeholder = 'First Name' name = 'firstname'> </li>
-      <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'text' placeholder = 'Last Name' name = 'lastname'> </li>
+      <li> <input style = 'font-size:12pt; padding: 4px; margin:7px; border-radius: 7px; border: solid 1px #ccc' type = 'text' placeholder = 'First Name' name = 'firstname'> </li>
+      <li> <input style = 'font-size:12pt; padding: 4px; margin:7px; border-radius: 7px; border: solid 1px #ccc' type = 'text' placeholder = 'Last Name' name = 'lastname'> </li>
       </div>
 
       <div id = 'venmo' style = 'display:none;'>
-      <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'text' placeholder = 'Venmo' name = 'venmo'> </li> 
+      <li> <input style = 'font-size:12pt; padding: 4px; margin:7px; border-radius: 7px; border: solid 1px #ccc' type = 'text' placeholder = 'Venmo' name = 'venmo'> </li> 
       </div>
 
       <div id = 'about-me' style = 'display:none;'>
-      <li> <textarea rows = 2 cols = 30 name = 'updateaboutme' id = 'updateaboutme' required></textarea> </li>
+      <li> <textarea rows = 4 cols = 40 name = 'updateaboutme' id = 'updateaboutme' style= 'border: solid 1px #ccc; border-radius: 10px;' placeholder='Enter new "about me" text here.'></textarea> </li>
       </div>
 
       <div id = 'new-picture' style = 'display:none;'>
-      <li> <input style = 'font-size:14pt; padding: 4px; margin:7px' type = 'file' placeholder = 'picture' name = 'picture'> </li> 
+      <li> <input style = 'font-size:12pt; padding: 4px; margin:7px; margin-left: 40px;' type = 'file' placeholder = 'picture' name = 'picture'> </li> 
       </div>
 
       <div id = 'display-pass' style = 'display:none;'>
-      <li> <input id = 'password' style = 'font-size:14pt; padding: 4px; margin:7px' type = 'password' placeholder = 'new password' name = 'newpassword'></li>  
-      <li><input id = 'confirm_password' style = 'font-size:14pt; padding:4px; margin:7px' type = 'password' placeholder = 'confirm new password' name = 'confirm_newpassword'></li>
+      <li> <input id = 'password' style = 'line-height: 20px; font-size:12pt; padding: 4px; margin:7px; border-radius: 7px; border: solid 1px #ccc; font-family: custom' type = 'password' placeholder = 'new password' name = 'newpassword'></li>  
+      <li><input id = 'confirm_password' style = 'line-height: 20px;font-size:12pt; padding: 4px; margin:7px; border-radius: 7px; border: solid 1px #ccc; font-family: custom' type = 'password' placeholder = 'confirm new password' name = 'confirm_newpassword'></li>
       <span id='message'></span></li>
       </div>
       <script src="/scripts/confirmpass.js"></script>
-      <br><br>
+      <br>
       <li> <button class = 'twobuttonslog' id = 'signupbutton' type = 'submit'> Make Changes </button> </li>
       </ul>
       </form>
