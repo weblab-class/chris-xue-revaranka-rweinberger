@@ -793,7 +793,7 @@ router.post('/unstar', function (req, res, next) {
   };
 });
 
-router.get('/starreditems', function(req, res) {
+router.get('/favorites', function(req, res) {
   if(req.isAuthenticated()) {
     var bool = true;
     var starredIds = req.user.starred;

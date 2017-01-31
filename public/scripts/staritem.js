@@ -6,7 +6,7 @@ $(".blankstar").on("click", function() {
   var blankstarid = $(this).attr('id');
   var itemid = blankstarid.substring(9);
   console.log('starring '+itemid);
-  $(this).html("&#9733;");
+  $(this).html("&#9829;");
   $.ajax({url:'/star', type: 'POST', data: {
     id: itemid
     }, success: function(data) {
@@ -22,7 +22,7 @@ $(".star").on("click", function() {
   var starid = $(this).attr('id');
   var itemid = starid.substring(4);
   console.log('unstarring '+itemid);
-  $(this).html("&#9734;");
+  $(this).html("&#9825;");
   $.ajax({url:'/unstar', type: 'POST', data: {
     id: itemid
     }, success: function(data) {
