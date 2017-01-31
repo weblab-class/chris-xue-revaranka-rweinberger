@@ -562,14 +562,13 @@ body.modal-open div.modal-backdrop {
   outline:none;
 }
 
-<<<<<<< HEAD
 #login-form input {
   font-family: custom;
 }
 
 #modalsignup input {
   font-family: custom;
-=======
+}
 
 #confirm_password1 {
     position: absolute center;
@@ -589,7 +588,6 @@ body.modal-open div.modal-backdrop {
 }
 #confirm_password1:focus {
   outline:none;
->>>>>>> 2f711234c1a8d2faee7cf4416453b16e3a10cae9
 }
 
 #login1 {
