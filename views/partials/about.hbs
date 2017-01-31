@@ -5,14 +5,14 @@
 {{/if}}
   <div class="container" id='aboutcontainer'>
     <h1 id = 'welcome'>
-      A site to buy, sell, trade, or just give away items - created by MIT students for MIT students!
+      A site to buy, sell, trade, or just give away items - made by MIT students for MIT students!
     </h1>
-    <h3 style='margin-top:-100px;'>Made by Reva, Rebecca, and Chris for <a href='http://6.148.scripts.mit.edu'>6.148</a> 2017</h3>
+    <h4 style='margin-top:-80px;'>Created by Reva, Rebecca, and Chris for <a href='http://6.148.scripts.mit.edu'>6.148</a> 2017.</h4>
     <form action="mailto:beaverplusteam@mit.edu" method="GET">
-      <input style='border: none; border-radius: 20px; background-color: #E1E1E1; padding: 8px; padding-right: 13px; padding-left: 13px; margin-top: 50px; margin-right: 15px;' type="submit" value="Contact us!" />
+      <input type="submit" id='aboutcontact' value="Contact us!" />
       {{#if onIndex}}
       {{else}}
-      <input id='closeabout' style='border: none; border-radius: 20px; background-color: #E1E1E1; padding: 8px; padding-right: 13px; padding-left: 13px; margin-top: 50px;' type="button" value="Close" />
+      <input id='closeabout' type="button" value="Close" />
       {{/if}}
     </form>
   </div>

@@ -12,6 +12,7 @@ body {
   font-family: custom;
 }
 a{
+  color: #000;
   font-weight: bold;
   text-decoration: none;
 }
@@ -19,9 +20,41 @@ a:visited {
   color: #000;
 }
 a:hover {
-  color: #D3D3D3;
+  color: #A83838;
+  text-decoration: none;
 }
 
+#scrolltoabout:hover {
+  cursor: pointer;
+}
+
+#aboutcontact {
+  border: solid 1px #E1E1E1;
+  background-color: #fff;
+  border-radius: 10px; 
+  padding: 8px; 
+  padding-right: 13px; 
+  padding-left: 13px; 
+  margin-top: 50px; 
+  margin-right: 15px;
+}
+#aboutcontact:hover {
+  background-color: #E1E1E1
+}
+
+#closeabout {
+  border: solid 1px #E1E1E1;
+  background-color: #fff;
+  border-radius: 10px; 
+  padding: 8px; 
+  padding-right: 13px; 
+  padding-left: 13px; 
+  margin-top: 50px; 
+  margin-right: 15px;
+}
+#closeabout:hover {
+  background-color: #E1E1E1
+}
 .dropdown-toggle:active, .open .dropdown-toggle {background:#47474C !important; }
 
 
@@ -79,7 +112,6 @@ body.modal-open div.modal-backdrop {
 }
 
 .modal-header {
-  height: 100px;
 }
 
 .modal-title{
@@ -104,6 +136,10 @@ body.modal-open div.modal-backdrop {
 
 }
 
+#modal-content-product {
+  width: 70%;
+  height: 500px;
+}
 /*  height: 140px;
   width: 194px;*/
 
@@ -123,6 +159,7 @@ body.modal-open div.modal-backdrop {
 /* The Close Button */
 .close {
     /* Position it in the top right corner outside of the modal */
+    z-index: 2;
     position: absolute;
     right: 12px;
     top: 0; 
@@ -134,8 +171,10 @@ body.modal-open div.modal-backdrop {
 /* Close button on hover */
 .close:hover,
 .close:focus {
-    color: red;
+    opacity: 1;
+    color: #A83838;
     cursor: pointer;
+    outline: none;
 }
 
 /* Add Zoom Animation */
@@ -389,7 +428,7 @@ body.modal-open div.modal-backdrop {
 }
 
 #welcome{
-  padding: 175px;
+  padding: 125px;
 }
 /*  background-size: 100% 400px;
 *//*-webkit-background-size: cover;
@@ -408,10 +447,10 @@ body.modal-open div.modal-backdrop {
 
 #logohome2 {
     position: absolute;
-    height: 142px;
-    width: 118px;
-    left: 15%;
-    top: 108px;
+    height: 190px;
+    /*width: 118px;*/
+    left: 3%;
+    top: 57px;
 
     margin-left: 20px;
 }
@@ -629,17 +668,17 @@ body.modal-open div.modal-backdrop {
 }
 .twobuttonsfog {
   border: none;
-    position: absolute;
-    width: 140px;
-    height: 23px;
-    background-color: #E5E5E5;
-    top: 180px;
-    text-align: center;
-    color: #a1282d;
-    font-size: 15.6px;
-    font-family: sans-serif;
+  position: absolute;
+  width: 140px;
+  height: 23px;
+  top: 180px;
+  background-color: #fff;
+  text-align: center;
+  color: #a1282d;
+  font-size: 15.6px;
+  font-family: sans-serif;
 /*    border-radius: 20px;*/
-    margin-left: -192px;
+  margin-left: -192px;
 
 }
 .twobuttonsfog:focus {
@@ -669,7 +708,7 @@ body.modal-open div.modal-backdrop {
     font-size: 12px;
     font-family: sans-serif;
     border-radius: 20px;
-    margin-left: -166px;
+    margin-left: -160px;
 
 }
 .twobuttonsforgot:focus {
@@ -728,26 +767,22 @@ body.modal-open div.modal-backdrop {
 
 
 #forgotpass{
-    margin-right: 42px;
-    margin-top: 120px;
- 
-
+  margin-right: 42px;
+  margin-top: 120px;
 }
 
-
-
 #searchboxhome {
-    position: absolute;
-    color: #000;
-    width: 185px;
-    height: 23px;
-    top: 125px;
-    border: none;
-    border-bottom: solid 1px #6C6C6C;
-    background:transparent;
-    font-family: sans-serif;
-    font-size: 15.4px;
-    margin-left: -85px;
+  position: absolute;
+  color: #000;
+  width: 305px;
+  height: 40px;
+  top: 85px;
+  border: none;
+  border-bottom: solid 1px #6C6C6C;
+  background:transparent;
+  font-family: sans-serif;
+  font-size: 19px;
+  margin-left: -65px;
 }
 #searchboxhome:focus {
   outline:none;
@@ -935,6 +970,12 @@ body.modal-open div.modal-backdrop {
   padding: 7px;
   margin-left: 10px;
 }
+
+#gohome{
+  margin-left: -40px;
+  margin-top: -12px;
+}
+
 .inputbox {
   margin-top: 25px;
   padding: 7px;
@@ -997,6 +1038,13 @@ body.modal-open div.modal-backdrop {
   margin-background-color: #F3F3F3;
 }
 
+.col-s-6:hover {
+  opacity: 0.4;
+  cursor: pointer
+}
+.contentinbox:hover {
+  cursor: pointer;
+}
 
 #forsale{
   max-height: 135px;
@@ -1233,24 +1281,24 @@ body.modal-open div.modal-backdrop {
 .star {
   font-size: 30px;
   position: absolute;
-
-/*  top: 27px;
+  top: 27px;
   left: 30px;
 }
+
 .blankstar {
-  font-size: 25px;
+  font-size: 30px;
   position: absolute;
   top: 27px;
   left: 30px;
 }
-.dropdown-content {
+/*.dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 100px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-.show {display:block;}
+.show {display:block;}*/
 
 /*.dropdown{
   float: right;

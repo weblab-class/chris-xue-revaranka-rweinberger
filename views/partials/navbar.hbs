@@ -175,7 +175,7 @@
 
             <!-- Modal -->
            
-                <li role="presentation"><a class="nav-link" href="/starreditems">Starred Items</a></li>
+                <li role="presentation"><a class="nav-link" href="/favorites">Favorites</a></li>
                 <li role="presentation"><a class="nav-link" href="/profile">Profile</a></li>
                 {{#if notification}}
                 <li role="presentation"><a class="nav-link" style='background-color: #E4A3A3' href="/chat">Messages</a></li>
@@ -253,7 +253,6 @@
               <h4 class="modal-title">LOGIN</h4>
             </div>
             <div class="modal-body">
-            <br>
               <form name="sign in" method = 'post' id="login-form" action = '/login'>
                 <ul>
                 <div class = 'signuppage'>
@@ -265,7 +264,7 @@
 
                   <li><input class="inputbox" id="login1" type="text" placeholder="Password" name="password" ></li>
 
-                  <li><input class="twobuttonslog" id="go" type="submit" value="+ +" style="left: 300px;"></li>
+                  <li><input class="twobuttonslog" id="go" type="submit" value="+ +" style="left: 305px;"></li>
                   <br>
 
                   <li id="login-flash" style="display: none; color: red;">Username or Password Incorrect</li>
@@ -279,7 +278,6 @@
               </form>
               
               <div id = 'forgotpassword' style = 'display:none'>
-              <br>
               <form name = 'passwordreset' method = 'post' id = 'forgot-pass' action= '/forgot'>
               <ul>
 
