@@ -32,14 +32,16 @@
   <div class="modal fade" id="newitem" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content" id='newitemmodal'>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-titlelist" >LIST AN ITEM</h4>
+          <div class='modal-header'>
+            <h4 class="modal-titlelist" >LIST AN ITEM</h4>
+          </div>
           <div id="itemform">
             <form id='submititemform' method="post" action="/uploaditem" enctype="multipart/form-data">
             
-            <li><input class="inputbox" id="additem" type="text" maxlength="15" placeholder="Item Name" name="itemname" ></li>
-            <li><input class="inputbox" id="additemprice" type="text" maxlength="15" placeholder="Price" name="price" ></li>
+            <li><input class="inputbox" id="additem" type="text" maxlength="15" placeholder="item name" name="itemname" required></li>
+            <li><input class="inputbox" id="additemprice" type="number" maxlength="15" placeholder="price ($)" name="price" required></li>
 
             <!-- <input id="itemname" class='inputbox' type='text' maxlength="15" placeholder='item name' name='itemname' required>  -->
             
@@ -52,22 +54,23 @@
 <!--             <textarea id='description' rows="8" placeholder='description' name='description' cols="50" required></textarea> --> <br>
             
             <select id='category' class = id='category' name = 'category' required>
+              <option selected='selected'>select a category</option>
               <option value="clothes">Clothes</option>
               <option value="book">Books</option>
               <option value="tech">Tech</option>
               <option value="furniture">Furniture</option>
             </select>
+            <input id="inserttag" class='addtags' type='text' placeholder='add tag' name='inserttag'>
 
-            <input id="inserttag" class='addtags' type='text' placeholder='Add Tag' name='inserttag'>
-
-            <li><input class="twobuttonsaddtag" id="addtag" type="button" value="+ +" style="left: 300px;"></li>
+            <input class="twobuttonsaddtag" id="addtag" type="button" value="+ +">
 
 <!--             <button id="addtag" class="btn btn-default" type='button'>add</button><br> -->
             <div id="tags"></div>
+            <br>
+            <div id='uploadphoto'>upload a photo:</div> 
+            <input type="file" name="picture" id='submititempic'/>
 
-            <input type="file" name="picture" />
-
-            <li><input class="twobuttonsadditem" id="submititem" type="submit" value="+ +" style="left: 300px;"></li>
+            <input class="twobuttonsadditem" id="submititem" type="submit" value="+ +" style="left: 300px;">
 
             </form>
         </div>
@@ -262,7 +265,7 @@
 
                   <!-- <li style = 'position:relative; font-size:17pt''> Password: </li> -->
 
-                  <li><input class="inputbox" id="login1" type="text" placeholder="Password" name="password" ></li>
+                  <li><input class="inputbox" id="login1" type="password" placeholder="Password" name="password" ></li>
 
                   <li><input class="twobuttonslog" id="go" type="submit" value="+ +" style="left: 305px;"></li>
                   <br>
@@ -315,7 +318,7 @@
                 <div class="modal-dialog">
         
           <!-- Modal content-->
-                  <div class="modal-content">
+                  <div class="modal-content" id='modal-content-signup'>
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                      <h4 class="modal-title" >SIGN UP</h4>
