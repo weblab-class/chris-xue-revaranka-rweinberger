@@ -16,9 +16,7 @@
         <b>Venmo:</b> {{venmo}} <br> 
         <b>Email:</b> <a href = 'mailto:{{email}}'>{{email}} </a><br><br>
         {{#if notOwnProfile}}
-        <form action="/chat">
-          <input id='{{email}}' class='msgProf' type="submit" value="message {{profilefirstname}}" style='background-color: #F0F0F0; border: none; display: block; margin-top: -13px; margin-bottom: 10px;'/>
-        </form>
+        <input id='{{email}}' class='msgProf' type="button" value="message {{profilefirstname}}" style='background-color: #F0F0F0; border: none; display: block; margin-top: -13px; margin-bottom: 10px;'/>
         {{/if}}
         <div id='aboutme'>
           <b>About Me:</b> <br>{{aboutme}}

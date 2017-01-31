@@ -4,6 +4,7 @@
 }
 
 body {
+  height:100%;
   font-family: custom;
 }
 a{
@@ -327,6 +328,16 @@ body.modal-open div.modal-backdrop {
     margin-top: 150px;
 /*    left: 50%;
 */  margin-left: 0px;
+}
+
+#about{
+  border-top: solid 7px #cac9c9;
+  height: 90.3%;
+  width: 100%;
+}
+
+#welcome{
+  padding: 175px;
 }
 /*  background-size: 100% 400px;
 *//*-webkit-background-size: cover;
