@@ -471,49 +471,53 @@ Item.find({'userid':req.user.id},function(err,items){
 
 router.post('/updateitem', upload.single('picture'),function(req, res, next){
   if (req.isAuthenticated()){
-    Item.findOne({'_id':req.body.itemid},function(err,item){
-      //console.log('this is the item ' + item);
-      var itemname = item.itemname
-      var price = item.itemprice
-      var description = item.description
-      var category = item.category
+     console.log("this is the id " + req.body.itemid);
+     Item.findOne({'_id':req.body.itemid},function(err,item){
+       console.log('this is the item ' + item);
+       var itemname = item.itemname
+       console.log('fuck everybody this is ' + itemname);
+       var price = item.price
+       var description = item.description
+       var category = item.category
       var picture = item.picture
-      var firstname = item.firstname;
-
-    if (req.body.newname != ''){
-      itemname = req.body.newname;
-    }
-
-    if (req.body.description != ''){
-      description = req.body.description;
-    }
-
-    if(req.body.price != ''){
-      price = req.body.price;
-    }
-
-    if (req.file){
-      picture = req.file.filename;
-    }
-    if (req.body.category != ''){
-      category = req.body.category;
-    }
-    Item.update({'_id':req.body.itemid},{$set:{picture:picture,itemname:itemname,price:price,description:description,category:category}},function(err,raw){
-      if (err){
-      }
-        else{
-        }
-      
-    });
-    res.render('deletesuccess', {boolean:true, firstname: firstname});
-    })
-
-    
-
-  }
-
-
-
+       var firstname = item.firstname;
+       console.log('this is the new name PLS ' + req.body.newname);
+       console.log('this is the picture' + picture);
+       console.log('this is my original price' + price)
+ 
+     if (req.body.newname != ''){
+       itemname = req.body.newname;
+     }
+ 
+     if (req.body.description != ''){
+       description = req.body.description;
+     }
+ 
+     if(req.body.price != ''){
+       price = req.body.price;
+     }
+ 
+     if (req.file){
+       picture = req.file.filename;
+     }
+     if (req.body.category != ''){
+       category = req.body.category;
+     }
+     console.log('item name is ' + itemname);
+     console.log('item description is ' + description);
+     Item.update({'_id':req.body.itemid},{$set:{picture:picture,itemname:itemname,price:price,description:description,category:category}},function(err,raw){
+       if (err){
+         console.log('i fucked up');
+       }
+         else{
+           console.log('we good')
+         }
+       
+     });
+     res.render('deletesuccess', {boolean:true, firstname: firstname});
+     })
+ 
+ }
 });
 
 
