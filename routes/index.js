@@ -644,6 +644,7 @@ router.get('/logout', function(req, res){
   res.redirect('/');
 });
 
+//forgot password implementation referenced from http://sahatyalkabov.com/how-to-implement-password-reset-in-nodejs/
 router.post('/forgot', function(req, res, next) {
   async.waterfall([
     function(done) {
@@ -686,8 +687,6 @@ router.post('/forgot', function(req, res, next) {
       });
     }
   ], function(err) {
-    if (err) return next(err);
-    res.redirect('/');
   });
 });
 
@@ -708,7 +707,6 @@ router.post('/reset/:token', function(req, res) {
 
     User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
     if (!user) {
-      req.flash('error', 'Password reset token is invalid or has expired.');
       return res.redirect('back');
     }
     user.setPassword(req.body.password, function(err) {
