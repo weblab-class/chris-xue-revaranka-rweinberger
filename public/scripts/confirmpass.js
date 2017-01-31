@@ -1,9 +1,12 @@
 $('#password, #confirm_password').on('keyup', function () {
     if ($('#password').val() == $('#confirm_password').val()) {
         $('#message').html('Matching').css('color', 'green');
-        //$('#signup-form button[type=submit]').attr('disabled',false);
+        console.log('match')
+        $('#signupbutton').prop('disabled',false);
     
-    } else 
+    } else {
         $('#message').html('Not Matching').css('color', 'red');
-        //$('#signup-form button[type=submit]').attr('disabled',true);
+        console.log('no match')
+        $('#signupbutton').prop('disabled',true);
+    }
 });
