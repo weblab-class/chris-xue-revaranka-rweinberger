@@ -1,5 +1,21 @@
 var tags = [];
 
+$("#inserttag").on('keyup', function (e) {
+  if (e.keyCode == 13) {
+    var text = $("#inserttag").val();
+    var id = Math.floor((Math.random() * 100000) + 1);
+    tags.push(text);
+    $("#tags").append(
+      "<div class='tag' id='tag"+id+"'><div class='tagtext' id='tagtext"+id+"'>"
+      +text+
+      "</div>&#32;<button id='closetag"
+      +id+
+      "' class='closetag' type='button'>&#10005;</button></div>");
+    console.log("tags: "+tags);
+    $("#inserttag").val("");
+  }
+});
+
 $("#addtag").on("click", function() {
   var text = $("#inserttag").val();
   var id = Math.floor((Math.random() * 100000) + 1);
@@ -11,6 +27,7 @@ $("#addtag").on("click", function() {
     +id+
     "' class='closetag' type='button'>&#10005;</button></div>");
   console.log("tags: "+tags);
+  $("#inserttag").val("");
 });
 
 $(document).on('click', ".closetag", function() {
@@ -24,6 +41,7 @@ $(document).on('click', ".closetag", function() {
   console.log("tag removed: "+tagtext);
   console.log("new tag array: "+ tags);
 });
+
 /*
 $('#submititem').on('click', function(){
   console.log(tags);

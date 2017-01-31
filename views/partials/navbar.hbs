@@ -36,7 +36,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-titlelist" >LIST AN ITEM</h4>
           <div id="itemform">
-            <form method="post" action="/uploaditem" enctype="multipart/form-data">
+            <form id='submititemform' method="post" action="/uploaditem" enctype="multipart/form-data">
             
             <li><input class="inputbox" id="additem" type="text" maxlength="15" placeholder="Item Name" name="itemname" ></li>
             <li><input class="inputbox" id="additemprice" type="text" maxlength="15" placeholder="Price" name="price" ></li>
@@ -71,7 +71,6 @@
 
             </form>
         </div>
-        <script src="/scripts/addtag.js"></script>
       </div>
     </div>
     </div>
@@ -405,6 +404,7 @@
    
      
   {{/if}}
-
+<script src="/scripts/addtag.js"></script>
+<script src="/scripts/prevent-enter.js" type="text/javascript"></script>
 </div>
 
