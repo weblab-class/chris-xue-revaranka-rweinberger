@@ -77,7 +77,7 @@ body.modal-open div.modal-backdrop {
 /* Modal Content/Box */
 .modal-content {
   overflow: auto;
-    background-color: #E5E5E5;
+    background-color: white;
     margin: 5px auto; /* 15% from the top and centered */
     border: .5px solid #47474C;
     width: 60%; /* Could be more or less, depending on screen size */
@@ -85,15 +85,16 @@ body.modal-open div.modal-backdrop {
 }
 
 .modal-header {
-  height: 20px;
+  height: 100px;
 }
 
 .modal-title{
   font-size: 20px;
-  color: #C1272D;
+  color: black;
 }
 .modal-price{
-  font: 10px;
+  font: 12px;
+  color: black;
 }
 
 .modal-body{
@@ -105,6 +106,7 @@ body.modal-open div.modal-backdrop {
 
 .modal-description{
   padding-top: 5px;
+  color: black;
 
 }
 
@@ -115,6 +117,7 @@ body.modal-open div.modal-backdrop {
 
 .post-modal{
   font-size: 10px;
+  color: black;
 }
 
 .sellingproduct{
@@ -180,8 +183,10 @@ body.modal-open div.modal-backdrop {
 
 #beaverbubble{
 
-  margin-left: 80px;
+  margin-left: 500px;
   margin-top: 55px;
+  position: absolute;
+
 
 }
 #profilecontent {
@@ -193,6 +198,7 @@ body.modal-open div.modal-backdrop {
 /*  margin-left: 170px;*/
   border-bottom: solid 5px black;
   background-color: #c9c9c9;
+  position: absolute;
 
 
 }
@@ -201,18 +207,23 @@ body.modal-open div.modal-backdrop {
   margin: 30px;
   background-color: #ccc;
   width: 100%;
-  margin-top: -20px;
+  margin-top: 50px;
   margin-left: 90px;
+  position: absolute;
+
+
 /*  border: solid 5px #C2373C;*/
 
 }
 #profilebox {
   overflow: auto;
-  margin-top: -300px;
+  margin-top: 106px;
   /*background-color: red;*/
   width: 262px;
-  height: 200px;
-  margin-left: 480px;
+  height: 212px;
+  margin-left: 528px;
+  position: absolute;
+
 }
 #aboutme {
   /*background-color: red;*/
@@ -1047,7 +1058,7 @@ body.modal-open div.modal-backdrop {
 #productcontent{
   font-size: 15px;
   color: #47474C;
-  margin-bottom:5px;
+  margin-top:10px;
   margin-left: 2px;
   width: 100px;
   float: left;
@@ -1066,7 +1077,7 @@ body.modal-open div.modal-backdrop {
   float: right;
   bottom: 20px;
   margin-right: 2px;
-  margin-top: 11px;
+  margin-top: 6px;
 /*  margin-left: 2px;*/
 }
 
