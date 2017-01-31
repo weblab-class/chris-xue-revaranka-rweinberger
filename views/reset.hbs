@@ -21,16 +21,26 @@
 </html>
 
 
-<!--First Page-->
+First Page
 <div id="home" class="home">
     <div id="center-divs">
         <img src="/images/webbeaver-newfont.png" id="logos" />
         <form name = 'resetpassword' action = '/reset/{{ token }}' method = 'post'>
-		<input class = 'inputbox' id= 'searchbox' type = 'password' name = 'password' placeholder = 'new password'>
-		<button class="btn btn-default" style = 'margin-top:160px;margin-left:80px;' type = 'submit'>Reset Password</button></li>
+		<input class = 'inputbox' id= 'newpass' type = 'password' name = 'password' placeholder = 'new password'>
+        <br>
+        <input class = 'inputbox' id= 'newpassconfirm' type = 'password' name = 'password2' placeholder = 'confirm new password'>
+
+		<br><br><br><br><br><br><br><br><br>
+        <span style = 'margin-left:140px;' id='message2'></span></li>
+        <script src="/scripts/confirmpass.js"></script>
+        <br>
+        <button id = 'resetbutton' style = 'margin-top:10px;margin-left:140px;' class="btn btn-default" type = 'submit'>Reset Password</button></li>
+        
 		</form>
     </div>
 
 </div>
+
+
 
 

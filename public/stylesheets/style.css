@@ -809,6 +809,39 @@ body.modal-open div.modal-backdrop {
   outline:none;
 }
 
+#newpass{
+  position: absolute;
+  color: #000;
+  width: 305px;
+  height: 40px;
+  top: 85px;
+  border: none;
+  border-bottom: solid 1px #6C6C6C;
+  background:transparent;
+  font-family: sans-serif;
+  font-size: 19px;
+  margin-left: -65px;
+}
+#newpass:focus {
+  outline:none;
+}
+#newpassconfirm{
+  position: absolute;
+  color: #000;
+  width: 305px;
+  height: 40px;
+  top: 120px;
+  border: none;
+  border-bottom: solid 1px #6C6C6C;
+  background:transparent;
+  font-family: sans-serif;
+  font-size: 19px;
+  margin-left: -65px;
+}
+#newpassconfirm:focus {
+  outline:none;
+}
+
 #welcomehome{
   color: #C2272D;
   margin-left: 200px;
