@@ -12,7 +12,7 @@
     {{> navbar}}
 
 
-<div id="centerline" class="centerline">
+
     <div id="content" class="content">
     <h1 id = 'welcomehome'>Buy, sell, or just browse.</h1>
       <div id = 'grouped' class = 'grouped'>
@@ -23,11 +23,12 @@
             </form>
         </div>
     </div>
-  </div>
+
     
 
 
-    <div id = 'typeofsell'> <!-- Welcome -->
+    <div id = 'typeofsell'> 
+      <h1 id = 'typeofbrowse'>{{type}}</h1>
       <div id="flexbox">
             {{#each starItems}}
               {{> starred_item_partial}}
