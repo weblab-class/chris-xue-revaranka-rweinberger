@@ -685,6 +685,7 @@ router.post('/reset/:token', function(req, res) {
 
 router.get('/home', function (req, res, next) {
   Item.find({}, function(err, items) {
+    var type = 'Browse All'
     if(req.isAuthenticated()) {
       var bool = true;
       var firstname = req.user.firstname;
@@ -711,14 +712,14 @@ router.get('/home', function (req, res, next) {
             } else {
               var notification = false
             }
-            res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
+            res.render('home', {notification: notification, type: type, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username
             });
           });
         }
       });
     } else {
       var bool = false;
-      res.render('home', {boolean: bool, otherItems: items, helpers: {
+      res.render('home', {boolean: bool, type: type, otherItems: items, helpers: {
         starred: function () {
           console.log('doing starred function for unregistered user');
           return "&#9734;"
@@ -1126,6 +1127,7 @@ router.post('/searchresults', function(req, res) {
 
 router.get('/clothes', function(req,res){
   Item.find({'category':'clothes'}, function(err, items){
+    var type = 'Clothes';
     if(req.isAuthenticated()) {
       var bool = true;
       var firstname = req.user.firstname;
@@ -1147,11 +1149,11 @@ router.get('/clothes', function(req,res){
         } else {
           var notification = false
         }
-        res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
+        res.render('home', {notification: notification, type: type, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
       });
     } else {
       var bool = false;
-      res.render('home', {boolean: bool, otherItems: items, helpers: {
+      res.render('home', {boolean: bool, type: type, otherItems: items, helpers: {
         starred: function () {
           console.log('doing starred function for unregistered user');
           return "&#9734;"
@@ -1164,6 +1166,7 @@ router.get('/clothes', function(req,res){
 
 router.get('/books', function(req,res){
   Item.find({'category':'books'}, function(err, items){
+    var type = 'Books'
     if(req.isAuthenticated()) {
       var bool = true;
       var firstname = req.user.firstname;
@@ -1185,11 +1188,11 @@ router.get('/books', function(req,res){
         } else {
           var notification = false
         }
-        res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
+        res.render('home', {notification: notification, type: type, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
       });
     } else {
       var bool = false;
-      res.render('home', {boolean: bool, otherItems: items, helpers: {
+      res.render('home', {boolean: bool, type: type, otherItems: items, helpers: {
         starred: function () {
           console.log('doing starred function for unregistered user');
           return "&#9734;"
@@ -1202,6 +1205,7 @@ router.get('/books', function(req,res){
 
 router.get('/tech', function(req,res){
   Item.find({'category':'tech'}, function(err, items){
+    var type = 'Tech';
     if(req.isAuthenticated()) {
       var bool = true;
       var firstname = req.user.firstname;
@@ -1223,11 +1227,11 @@ router.get('/tech', function(req,res){
         } else {
           var notification = false
         }
-        res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
+        res.render('home', {notification: notification, type: type, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
       });
     } else {
       var bool = false;
-      res.render('home', {boolean: bool, otherItems: items, helpers: {
+      res.render('home', {boolean: bool, type: type, otherItems: items, helpers: {
         starred: function () {
           console.log('doing starred function for unregistered user');
           return "&#9734;"
@@ -1240,6 +1244,7 @@ router.get('/tech', function(req,res){
 
 router.get('/furniture', function(req,res){
   Item.find({'category':'furniture'}, function(err, items){
+    var type = 'Furniture';
     if(req.isAuthenticated()) {
       var bool = true;
       var firstname = req.user.firstname;
@@ -1261,11 +1266,13 @@ router.get('/furniture', function(req,res){
         } else {
           var notification = false
         }
-        res.render('home', {notification: notification, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
+        console.log(type)
+        res.render('home', {notification: notification, type: type, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
       });
     } else {
       var bool = false;
-      res.render('home', {boolean: bool, otherItems: items, helpers: {
+      console.log(type)
+      res.render('home', {boolean: bool, type: type, otherItems: items, helpers: {
         starred: function () {
           console.log('doing starred function for unregistered user');
           return "&#9734;"
