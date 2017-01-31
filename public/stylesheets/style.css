@@ -562,7 +562,7 @@ body.modal-open div.modal-backdrop {
     font-size: 12px;
     font-family: sans-serif;
     border-radius: 20px;
-    margin-left: -160px;
+    margin-left: -166px;
 
 }
 .twobuttonslog:focus {
@@ -579,7 +579,7 @@ body.modal-open div.modal-backdrop {
     width: 77px;
     height: 23px;
     background-color: #C1272D;
-    top: 400px;
+    top: 310px !important;
     text-align: center;
     color: white;
     font-size: 12px;
@@ -632,13 +632,13 @@ body.modal-open div.modal-backdrop {
     width: 77px;
     height: 23px;
     background-color: #C1272D;
-    top: 270px;
+    top: 290px;
     text-align: center;
     color: white;
     font-size: 12px;
     font-family: sans-serif;
     border-radius: 20px;
-    margin-left: -160px;
+    margin-left: -166px;
 
 }
 .twobuttonsforgot:focus {
@@ -736,21 +736,7 @@ body.modal-open div.modal-backdrop {
   margin-top: 150px;
 }
 
-.twobuttonssign {
-  border: none;
-    position: absolute;
-    width: 77px;
-    height: 23px;
-    background-color: #C1272D;
-    top: 322px;
-    text-align: center;
-    color: white;
-    font-size: 12px;
-    font-family: sans-serif;
-    border-radius: 20px;
-    margin-left: -158px;
 
-}
 .twobuttonshome:focus {
   outline:none;
 
