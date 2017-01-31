@@ -6,6 +6,6 @@ Inspired by the popular Facebook [Free & for Sale](https://www.facebook.com/grou
 
 **beaver++** was made over IAP 2017 by Reva Ranka, Rebecca Weinberger, and Chris Xue as their final submission for the [6.148](http://6.148.scripts.mit.edu) web development competition. 
 
-The site is live [here](http://dank6148.herokuapp.com/).
+The site is live [here](http://beaverplus.herokuapp.com).
 
 Enjoy!
