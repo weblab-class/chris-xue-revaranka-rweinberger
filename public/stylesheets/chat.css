@@ -8,18 +8,18 @@
 }
 
 body {
-  padding: ;
+  height: 100%;
   font-family: raleway;
 }
 
-form { 
+form#sendmsg { 
   padding: 10px; 
-  position: fixed; 
+  position: relative; 
   bottom: 40px; 
-  right: 165px; 
+  right: -235px; 
 }
 
-form input { 
+form#sendmsg input { 
   font-size: 14px;
   height: 35px;
   border: none;
@@ -28,11 +28,11 @@ form input {
   width: 300px; 
   display: inline-block;
 }
-form input:focus { 
+form#sendmsg input:focus { 
   outline:none;
 }
 
-form button { 
+form#sendmsg button { 
   width: 50px; 
   background: #ccc; 
   border-radius: 7px;
@@ -98,10 +98,10 @@ form button {
   margin-left: 60px;
 }
 #nochat {
-  position: fixed;
-  top: 330px;
-  right: 160px;
-  width: 365px;
+  position: relative;
+  top: -400px;
+  right: -300px;
+  /*width: 365px;*/
   height: 85%;
 }
 #users {

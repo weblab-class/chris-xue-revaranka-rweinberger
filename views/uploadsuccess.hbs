@@ -8,11 +8,12 @@
 
  <body> 
     {{> navbar}}
-    <div id='content'>
+    <div id='content' style='height: 100%; margin-top: 175px'>
       <h1>Success!</h1>
       <p>Your item is now live.</p>
       <button class="contentbutton" type="button" onclick="location.href='/home'">return home</button>&#32;
       <button class="contentbutton" type="button" onclick="location.href='/newitem'">list another item</button>
     </div>
   </body>
+  {{>about}}
 </html>
