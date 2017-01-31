@@ -2,7 +2,7 @@
 
 <div class="manageritem">
   <button class='managerdeletebtn' id='deletebtn{{id}}'>&#10005;</button>
-  <button class = 'managereditbtn' id = 'edititem{{id}}'>Edit Item</button>
+  <button class = 'managereditbtn' id = 'edititem{{id}}' style='background-color: #fff; border: none; margin-left: -10px; margin-right: 10px;'><big>&#9998;</big></button>
   <div class='manage_elt'><b>{{itemname}}</b>, </div>
   <div class='manage_elt'>ID: <b>{{id}}</b></div> <br>
 </div>
@@ -10,7 +10,7 @@
 <div class= 'hiddenconfirm' id='hiddenconfirm{{id}}' style='display:none'>
   To confirm deletion of <b>{{itemname}}</b>, enter the item's ID as displayed above: <br>
   <form class = 'manage_elt' name="manageitem" method='post' action='/deleteitem'>
-    <input  type='text' name ='itemid' placeholder='item ID'>
+    <input  style='border:none; border-bottom: solid 1px #ccc;' type='text' name ='itemid' placeholder='item ID'>
     <input  id='managerdeletebtn' type='submit' value='confirm'>
     <button type='button' class='canceldelete' id='canceldelete{{id}}'>cancel</button><br>
   </form>
@@ -20,13 +20,14 @@
 <div class = 'hiddenconfirm' id = 'hiddenitem{{id}}' style = 'display:none'>
 
 <form method = 'post' action = '/updateitem' enctype="multipart/form-data"">
-<input type = 'text' name = 'newname' id = 'newitemname' placeholder = 'new item name'>
+<input type = 'text' name = 'newname' id = 'newitemname' placeholder = 'new item name' style='border:none; border-bottom: solid 1px #ccc; font-size: 12pt'>
 <input type = 'hidden' value = {{id}} name = itemid>
-<input class="inputbox" id="additemprice" type="text" maxlength="15" placeholder="Price" name="price" >
-<textarea class="inputbox" id='description' rows="6" placeholder='Please write a description of your item here.' name='description' cols="50" ></textarea>
-<select id='category' class = id='category' name = 'category'>
+<input class="inputbox" id="additemprice" type="number" maxlength="15" placeholder="price ($)" name="price" style='margin-bottom: 10px;border-bottom: solid 1px #ccc; font-family: custom'>
+<textarea class="inputbox" id='description' rows="6" placeholder='Please write a description of your item here.' name='description' cols="50" style='border: solid 1px #ccc; font-family: custom; border-radius: 10px;'></textarea>
+<select id='category' class = id='category' name = 'category' style='color: #B5B5B5; width: 160px'>
+              <option select="select">choose a category</option>
               <option value="clothes">Clothes</option>
-              <option value="book">Books</option>
+              <option value="books">Books</option>
               <option value="tech">Tech</option>
               <option value="furniture">Furniture</option>
 </select>
@@ -35,10 +36,10 @@
 
 <!--<li><input class="twobuttonsaddtag" id="addtag" type="button" value="+ +" style="left: 300px;"></li>-->
 <!--<div id="tags"></div>-->
+<br><br>upload photo: 
+<input id = 'picture' type="file" name="picture" style='position:relative; margin-top: -18px; margin-left: 100px;'/>
 
-<input id = 'picture' type="file" name="picture" />
-
-<li><input class="twobuttonsadditem" id="submititem{{id}}" type="submit" value="+ +" style="left: 300px;"></li>
+<li><input class="twobuttonsadditem" id="submititem{{id}}" type="submit" value="confirm" style="font-family: custom; color: #000; left: 150px; background-color: #fff; border: solid 1px #ccc"></li>
 </form>
 </div>
 

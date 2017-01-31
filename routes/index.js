@@ -472,7 +472,7 @@ Item.find({'userid':req.user.id},function(err,items){
 router.post('/updateitem', upload.single('picture'),function(req, res, next){
   if (req.isAuthenticated()){
     Item.findOne({'_id':req.body.itemid},function(err,item){
-      console.log('this is the item ' + item);
+      //console.log('this is the item ' + item);
       var itemname = item.itemname
       var price = item.itemprice
       var description = item.description
@@ -1310,6 +1310,129 @@ router.get('/tech', function(req,res){
 router.get('/furniture', function(req,res){
   Item.find({'category':'furniture'}, function(err, items){
     var type = 'Furniture';
+    if(req.isAuthenticated()) {
+      var bool = true;
+      var firstname = req.user.firstname;
+      var username = req.user.username;
+      var starredItemIds = req.user.starred;
+      var otherItems = [];
+      var starredItems = [];
+      for (var i = 0; i < items.length; i++) {
+        if (starredItemIds.indexOf(items[i].id) == -1) {
+          otherItems.push(items[i]);
+        } else {
+          starredItems.push(items[i])
+        };
+      };
+      Notification.find({'toWho': username}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        console.log(type)
+        res.render('home', {notification: notification, type: type, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
+      });
+    } else {
+      var bool = false;
+      console.log(type)
+      res.render('home', {boolean: bool, type: type, otherItems: items, helpers: {
+        starred: function () {
+          console.log('doing starred function for unregistered user');
+          return "&#9734;"
+          }
+        }
+      });
+    };
+  });
+});
+
+router.get('/outdoors', function(req,res){
+  Item.find({'category':'outdoors'}, function(err, items){
+    var type = 'Outdoors';
+    if(req.isAuthenticated()) {
+      var bool = true;
+      var firstname = req.user.firstname;
+      var username = req.user.username;
+      var starredItemIds = req.user.starred;
+      var otherItems = [];
+      var starredItems = [];
+      for (var i = 0; i < items.length; i++) {
+        if (starredItemIds.indexOf(items[i].id) == -1) {
+          otherItems.push(items[i]);
+        } else {
+          starredItems.push(items[i])
+        };
+      };
+      Notification.find({'toWho': username}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        console.log(type)
+        res.render('home', {notification: notification, type: type, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
+      });
+    } else {
+      var bool = false;
+      console.log(type)
+      res.render('home', {boolean: bool, type: type, otherItems: items, helpers: {
+        starred: function () {
+          console.log('doing starred function for unregistered user');
+          return "&#9734;"
+          }
+        }
+      });
+    };
+  });
+});
+
+router.get('/kitchen', function(req,res){
+  Item.find({'category':'kitchen'}, function(err, items){
+    var type = 'Kitchen';
+    if(req.isAuthenticated()) {
+      var bool = true;
+      var firstname = req.user.firstname;
+      var username = req.user.username;
+      var starredItemIds = req.user.starred;
+      var otherItems = [];
+      var starredItems = [];
+      for (var i = 0; i < items.length; i++) {
+        if (starredItemIds.indexOf(items[i].id) == -1) {
+          otherItems.push(items[i]);
+        } else {
+          starredItems.push(items[i])
+        };
+      };
+      Notification.find({'toWho': username}, function (err, notifications) {
+        if (err) {console.log("error from /chat route")}
+        else if (notifications.length != 0) {
+          var notification = true
+        } else {
+          var notification = false
+        }
+        console.log(type)
+        res.render('home', {notification: notification, type: type, boolean: bool, starItems: starredItems, otherItems:otherItems, firstname: firstname, username:username});
+      });
+    } else {
+      var bool = false;
+      console.log(type)
+      res.render('home', {boolean: bool, type: type, otherItems: items, helpers: {
+        starred: function () {
+          console.log('doing starred function for unregistered user');
+          return "&#9734;"
+          }
+        }
+      });
+    };
+  });
+});
+
+router.get('/other', function(req,res){
+  Item.find({'category':'other'}, function(err, items){
+    var type = 'Other';
     if(req.isAuthenticated()) {
       var bool = true;
       var firstname = req.user.firstname;
