@@ -337,7 +337,9 @@ body.modal-open div.modal-backdrop {
   outline: none;
 }
 /*ITEM MANAGER STUFF*/
-
+.hiddenconfirm {
+  margin-left: 45px;
+}
 #managecontent {
   margin-top: 130px;
 }
@@ -347,14 +349,14 @@ body.modal-open div.modal-backdrop {
   width: 600px;
   margin: auto;
   padding: 15px;
-  background-color: #F3F3F3
+  /*background-color: #F3F3F3*/
 }
 
 .managerdeletebtn {
   padding-left: 7px;
   padding-right: 7px;
   margin-right: 10px;
-  background-color: #C8C8C8;
+  background-color: #fff;
   border: none;
   border-radius: 20px;
 }
@@ -367,18 +369,26 @@ body.modal-open div.modal-backdrop {
   padding-left: 7px;
   padding-right: 7px;
   margin-right: 10px;
-  background-color: #C8C8C8;
-  border: none;
+  background-color: #fff;
+  border: solid 1px #E1E1E1;
   border-radius: 20px;
 }
-
+#managerdeletebtn:hover {
+  background-color: #E1E1E1
+}
 .manage_elt button {
   padding-left: 7px;
   padding-right: 7px;
   margin-right: 10px;
-  background-color: #C8C8C8;
-  border: none;
+  background-color: #fff;
+  border: solid 1px #E1E1E1;
   border-radius: 20px;
+}
+.manage_elt button:hover {
+  background-color: #E1E1E1
+}
+.managereditbtn:focus{
+  outline: none
 }
 .categories{
   margin-top: 70px;
@@ -463,7 +473,8 @@ body.modal-open div.modal-backdrop {
 /*    left: 50%;
 */  margin-left: 0px;
     background: url(/images/long-background.png) no-repeat fixed;
-    background-size: 100% 380px;
+    background-size: 100% 440px;
+    background-position: 2% -15%;
     display: table;
 /*    height: 104%;*/
     position: relative;
@@ -693,7 +704,27 @@ body.modal-open div.modal-backdrop {
   outline:none;
 }
 
+.twobuttonslogIN {
+  font-family: custom;
+  position: relative;
+  width: 150px;
+  height: 30px;
+  background-color: #C1272D;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  border-radius: 20px;
+  border: none;
+  margin-top: 30px;
+}
+.twobuttonslogIN:focus {
+  outline:none;
 
+}
+.twobuttonslogIN:hover {
+  color: white !important; 
+  background-color: #a1282d
+}
 .twobuttonslog {
   font-family: custom;
   margin-bottom: 30px;
@@ -706,7 +737,6 @@ body.modal-open div.modal-backdrop {
     text-align: center;
     color: white;
     font-size: 12px;
-    font-family: sans-serif;
     border-radius: 20px;
     /*margin-left: -166px;*/
 
