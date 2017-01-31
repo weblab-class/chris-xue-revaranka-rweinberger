@@ -12,6 +12,7 @@ body {
   font-family: custom;
 }
 a{
+  color: #000;
   font-weight: bold;
   text-decoration: none;
 }
@@ -19,7 +20,12 @@ a:visited {
   color: #000;
 }
 a:hover {
-  color: #D3D3D3;
+  color: #A83838;
+  text-decoration: none;
+}
+
+#scrolltoabout:hover {
+  cursor: pointer;
 }
 
 .dropdown-toggle:active, .open .dropdown-toggle {background:#47474C !important; }
@@ -374,7 +380,7 @@ body.modal-open div.modal-backdrop {
 }
 
 #welcome{
-  padding: 175px;
+  padding: 125px;
 }
 /*  background-size: 100% 400px;
 *//*-webkit-background-size: cover;
@@ -393,10 +399,10 @@ body.modal-open div.modal-backdrop {
 
 #logohome2 {
     position: absolute;
-    height: 142px;
-    width: 118px;
-    left: 15%;
-    top: 108px;
+    height: 190px;
+    /*width: 118px;*/
+    left: 3%;
+    top: 57px;
 
     margin-left: 20px;
 }
@@ -713,26 +719,22 @@ body.modal-open div.modal-backdrop {
 
 
 #forgotpass{
-    margin-right: 42px;
-    margin-top: 120px;
- 
-
+  margin-right: 42px;
+  margin-top: 120px;
 }
 
-
-
 #searchboxhome {
-    position: absolute;
-    color: #000;
-    width: 185px;
-    height: 23px;
-    top: 125px;
-    border: none;
-    border-bottom: solid 1px #6C6C6C;
-    background:transparent;
-    font-family: sans-serif;
-    font-size: 15.4px;
-    margin-left: -85px;
+  position: absolute;
+  color: #000;
+  width: 305px;
+  height: 40px;
+  top: 85px;
+  border: none;
+  border-bottom: solid 1px #6C6C6C;
+  background:transparent;
+  font-family: sans-serif;
+  font-size: 19px;
+  margin-left: -65px;
 }
 #searchboxhome:focus {
   outline:none;
@@ -920,6 +922,12 @@ body.modal-open div.modal-backdrop {
   padding: 7px;
   margin-left: 10px;
 }
+
+#gohome{
+  margin-left: -40px;
+  margin-top: -12px;
+}
+
 .inputbox {
   margin-top: 25px;
   padding: 7px;
@@ -982,6 +990,13 @@ body.modal-open div.modal-backdrop {
   margin-background-color: #F3F3F3;
 }
 
+.col-s-6:hover {
+  opacity: 0.4;
+  cursor: pointer
+}
+.contentinbox:hover {
+  cursor: pointer;
+}
 
 #forsale{
   max-height: 135px;
