@@ -13,10 +13,13 @@ body {
 }
 
 form#sendmsg { 
-  padding: 10px; 
+/*  padding: 10px; */
   position: relative; 
-  bottom: 40px; 
-  right: -235px; 
+  height: 90%
+/*  bottom: 50px; */
+  width: 65%;
+  right: 0px; 
+  margin-left: 35%;
 }
 
 form#sendmsg input { 
@@ -25,7 +28,7 @@ form#sendmsg input {
   border: none;
   border-bottom: solid 1px #ccc;
   margin: 10px; 
-  width: 300px; 
+  width: 65%; 
   display: inline-block;
 }
 form#sendmsg input:focus { 
@@ -43,11 +46,20 @@ form#sendmsg button {
 
 .userbutton {
   position: absolute;
-  left: 50px;
-  margin-bottom: 15px;
+/*  left: 50px;*/
+  margin: 0px;
+  text-align: center;
+/*  margin-bottom: 15px;*/
   background-color: #fff;
+/*  border-bottom: 1px solid black !important;*/
   border: none;
-  border-radius: 10px
+  width: 100%;
+  height: 60px;
+/*  border-radius: 10px*/
+}
+
+.userbutton:hover{
+  background-color: #E1E0E0;
 }
 
 .selectuser {
@@ -81,21 +93,31 @@ form#sendmsg button {
 #msgtitle {
   text-align: left;
   position: relative;
-  margin-left: 90px;
-  top: -2px;
+  margin-left: 30px;
+  width: 30px;
+  top: -20px;
+  font-size: 20px;
+  left: 6%;
 }
 
 #convos {
   text-align: left;
   position: relative;
   overflow: auto;
-  top: 7px;
-  height: 570px;
-  border-radius: 10px;
+/*  top: 7px;*/
+  height: 100%;
+/*  border-radius: 10px;*/
   background-color: #E1E0E0;
-  width: 40%;
-  padding: 15px;
-  margin-left: 60px;
+  width: 35%;
+  margin-left: -20px;
+  margin-top: -14px;
+  border-left: 0px !important;
+  border: 2px solid black;
+
+
+
+/*  padding: 15px;*/
+/*  margin-left: 60px;*/
 }
 #nochat {
   position: relative;
@@ -125,6 +147,8 @@ form#sendmsg button {
   text-align: left;
   background: #F5F5F5;
 }
+
+
 
 #receiver {
   position: absolute;

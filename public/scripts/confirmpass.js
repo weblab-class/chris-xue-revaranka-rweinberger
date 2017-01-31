@@ -10,3 +10,7 @@ $('#password, #confirm_password').on('keyup', function () {
         $('#signupbutton').prop('disabled',true);
     }
 });
+
+
+
+
