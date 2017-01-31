@@ -9,7 +9,7 @@
   <body>
     {{> navbar}}
 
-    <div id="managecontent">
+    <div id="managecontent" style='height: 100%'>
       <h1 id="title">Item Manager for {{user}}</h1>
       <p> Delete any of your posted items.</p>
       <div id="managercontainer">
@@ -20,4 +20,6 @@
     </div>
     <script src="/scripts/deleteitem.js"></script>
   </body>
+  <div id='padding' style='width: 100%; height:50px;'></div>
+  {{>about}}
 </html>
