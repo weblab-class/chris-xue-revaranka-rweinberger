@@ -28,6 +28,6 @@ $("#closeabout").click(function() {
 $(".twobuttonsfog").click(function() {
   console.log('hi');
   $('.modal-content').animate({
-     scrollTop: $(".twobuttonsfog").offset().top - 120
+     scrollTop: $(".twobuttonsfog").offset().top - 100
   }, 800);
 });
