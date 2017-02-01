@@ -11,7 +11,7 @@ $(function() {
 			if(cb.status == 401) {
 				$('#login-flash').show();
 			} else {
-				// something else is wrong (dont have internet)
+
 			}
 		});
 		return false;
@@ -36,7 +36,7 @@ $(function() {
 			if(cb.status == 401) {
 				$('#forgot-flash').show();
 			} else {
-				// something else is wrong (dont have internet)
+
 			}
 		});
 		return false;
