@@ -12,7 +12,7 @@ body {
   font-family: raleway;
 }
 
-form { 
+#chatform { 
   padding: 10px; 
 /*  position: fixed; */
   bottom: 0px; 
@@ -21,7 +21,7 @@ form {
   bottom: 50px;
 }
 
-form input { 
+#chatform input { 
   font-size: 14px;
   height: 35px;
   border: none;
@@ -30,11 +30,11 @@ form input {
   width: 300px; 
   display: inline-block;
 }
-form input:focus { 
+#chatform input:focus { 
   outline:none;
 }
 
-form button { 
+#chatform button { 
   width: 50px; 
   background: #ccc; 
   border-radius: 7px;
@@ -100,11 +100,10 @@ form button {
   margin-left: 60px;
 }
 #nochat {
-  position: relative;
-  top: 330px;
-  right: 160px;
-  width: 365px;
-  height: 85%;
+  position:   absolute;
+  right: 175px;
+  top: 350px;
+  width: 405px;
 }
 #users {
   position: fixed;

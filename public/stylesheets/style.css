@@ -321,7 +321,7 @@ body.modal-open div.modal-backdrop {
 } 
 
 #profileitems{
-  margin-top: 450px;
+  margin-top: 400px;
 }
 
 .msgProf {
@@ -522,8 +522,7 @@ body.modal-open div.modal-backdrop {
     height: 190px;
     /*width: 118px;*/
     left: 3%;
-    top: 57px;
-
+    top: 60px;
     margin-left: 20px;
 }
 
@@ -1152,7 +1151,7 @@ body.modal-open div.modal-backdrop {
 }
 
 #typeofsell{
-  border-top: solid 7px #cac9c9;
+  border-top: solid 10px #9D9D9D;
   color: #C2272D;
   padding-top: 30px;
   font-size: 50px;
