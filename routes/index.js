@@ -420,7 +420,7 @@ router.post('/updateprofile',upload.single('picture'), function(req, res,next){
       lastname = req.body.lastname;
     }
     if (req.body.venmo != ''){
-      vemo = req.body.venmo;
+      venmo = req.body.venmo;
     }
     if (req.file){
       picture = req.file.filename;
@@ -437,7 +437,8 @@ router.post('/updateprofile',upload.single('picture'), function(req, res,next){
     else{
       real = true;
     }
-
+    //console.log('this is the body venmo ' + req.body.venmo);
+    //console.log(venmo);
     User.update({username:req.user.username}, {$set:{real:real, aboutme: aboutme, picture:picture, firstname:firstname, lastname: lastname, venmo: venmo}}, function(err,raw){
         if (err){
           return handleError(error);
@@ -645,7 +646,7 @@ router.get('/logout', function(req, res){
 });
 
 //forgot password implementation referenced from http://sahatyalkabov.com/how-to-implement-password-reset-in-nodejs/
-router.post('/forgot', function(req, res, next) {
+router.post('/forgot.json', function(req, res, next) {
   async.waterfall([
     function(done) {
       crypto.randomBytes(20, function(err, buf) {
@@ -657,7 +658,7 @@ router.post('/forgot', function(req, res, next) {
       User.findOne({ 'username': req.body.recoveremail }, function(err, user) {
         if (!user) {
           //req.flash('error', 'No account with that email address exists.');
-          res.send('That email does not exist!  Please try again.');
+          res.send(401);
         }
         else{
 
@@ -683,6 +684,7 @@ router.post('/forgot', function(req, res, next) {
       };
       smtpTransport.sendMail(mailOptions, function(err) {
         //console.flash('info', 'An e-mail has been sent to ' + user.username + ' with further instructions.');
+        res.send(200);
         done(err, 'done');
       });
     }

@@ -22,4 +22,25 @@ $(function() {
 		e.preventDefault();
 		$('#forgotpassword').toggle();
 	});
+
+	$("#forgot-pass").submit(function(e) {
+		e.preventDefault();
+		var email = $("#forgot-pass input[name=recoveremail]").val();
+
+		$("#forgot-pass input[type=submit]").attr('disabled', true);
+		$.post("/forgot.json", {"recoveremail": email}, function(cb) {
+			$("#forgot-flash-s").show();
+			$("#forgot-flash").hide();
+		}).fail(function (cb) {
+			$("#forgot-pass input[type=submit]").attr('disabled', false);
+			if(cb.status == 401) {
+				$('#forgot-flash').show();
+			} else {
+				// something else is wrong (dont have internet)
+			}
+		});
+		return false;
+	});
+
+
 });
