@@ -11,8 +11,8 @@
   To confirm deletion of <b>{{itemname}}</b>, enter the item's ID as displayed above: <br>
   <form class = 'manage_elt' name="manageitem" method='post' action='/deleteitem'>
     <input  style='border:none; border-bottom: solid 1px #ccc;' type='text' name ='itemid' placeholder='item ID'>
-    <input  id='managerdeletebtn' type='submit' value='confirm'>
-    <button type='button' class='canceldelete' id='canceldelete{{id}}'>cancel</button><br>
+    <input  id='managerdeletebtn' type='submit' value='confirm' style='font-size: 9pt; padding: 3px; padding-left: 20px; padding-right: 20px; '>
+    <button type='button' class='canceldelete' id='canceldelete{{id}}' style='font-size: 9pt; padding: 3px; padding-left: 20px; padding-right: 20px;'>cancel</button><br>
   </form>
 </div>
 
@@ -41,9 +41,10 @@
 <!--<li><input class="twobuttonsaddtag" id="addtag" type="button" value="+ +" style="left: 300px;"></li>-->
 <!--<div id="tags"></div>-->
 <br><br>upload a new photo: 
-<input id = 'picture' type="file" name="picture" style='position:relative; margin-top: -18px; margin-left: 100px;'/>
+<input id = 'picture' type="file" name="picture" style='position:relative; margin-top: -18px; margin-left: 140px;'/>
 
-<li><input class="twobuttonsadditem" id="submititem{{id}}" type="submit" value="confirm" style="font-family: custom; color: #000; left: 150px; background-color: #fff; border: solid 1px #ccc"></li>
+<li><input class="twobuttonsadditem" id="submititem{{id}}" type="submit" value="confirm" style="font-family: custom; color: #000; left: 150px; background-color: #fff; border: solid 1px #E1E1E1"></li>
+<input class="twobuttonsadditem editcancel" id="canceledit{{id}}" type='button' value="cancel" style="font-family: custom; color: #000; left: 250px; top: -47px; background-color: #fff; border: solid 1px #E1E1E1"></li>
 </form>
 </div>
 

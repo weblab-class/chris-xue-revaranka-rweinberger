@@ -1402,7 +1402,7 @@ body.modal-open div.modal-backdrop {
 
 }
 .twobuttonsadditem:hover {
-  background-color: #a1282d
+  background-color: #E1E1E1 !important;
 }
 
 .modal-titlelist{
